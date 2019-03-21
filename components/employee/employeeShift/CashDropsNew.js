@@ -21,6 +21,7 @@ import axios from "axios";
 import { StyleSheet, TextInput, Alert } from "react-native";
 import { connect } from "react-redux";
 import { addCashDrop } from "../../../modules/employeeShift";
+import EmployeeApi from "../../../services/EmployeeApi";
 
 export class CashDropsNew extends Component {
   constructor(props) {
@@ -31,23 +32,16 @@ export class CashDropsNew extends Component {
     };
   }
   onSubmit() {
-    const { employee } = this.props.employee;
     const { id } = this.props.employeeShift;
-    axios
-      .post(
-        `http://localhost:8000/api/v1/managers/${
-          employee.attributes.manager_id
-        }/employees/${employee.id}/shifts/${id}/cash_drops`,
-        this.state
-      )
-      .then(() => {
-        Alert.alert(
-          "Cash Drop created",
-          "A cash drop has been added to your shift report.",
-          [{ text: "Ok" }]
-        );
-        this.props.addCashDrop(this.state);
-      });
+    const { number, amount } = this.state;
+    EmployeeApi.createCashDrop(id, number, amount).then(() => {
+      Alert.alert(
+        "Cash Drop created",
+        "A cash drop has been added to your shift report.",
+        [{ text: "Ok" }]
+      );
+      this.props.addCashDrop(this.state);
+    });
   }
   render() {
     return (

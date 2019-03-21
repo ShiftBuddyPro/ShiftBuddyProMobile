@@ -1,3 +1,4 @@
 import ManagerApi from "./ManagerApi";
+import EmployeeApi from "./EmployeeApi";
 
-export { ManagerApi };
+export { ManagerApi, EmployeeApi };

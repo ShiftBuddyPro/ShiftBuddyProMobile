@@ -24,17 +24,23 @@ import {
   setInventoryItemField
 } from "../../modules/employeeShift";
 import axios from "axios";
+import { EmployeeApi } from "@services";
 import { Alert } from "react-native";
 
 class EmployeeDashboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      date: new Date()
-    };
-  }
+  state = {
+    date: new Date(),
+    name: "",
+    managerId: null
+  };
 
   componentDidMount() {
+    EmployeeApi.getEmployee()
+      .then(employee => {
+        this.setState({ name: employee.name, managerId: employee.manager_id });
+      })
+      .catch(err => err);
+
     this.timerID = setInterval(() => this.tick(), 1000);
   }
 
@@ -49,19 +55,27 @@ class EmployeeDashboard extends Component {
   }
 
   onShiftCreate() {
-    axios
-      .post(
-        `http://localhost:8000/api/v1/managers/${
-          this.props.employee.employee.attributes.manager_id
-        }/employees/${this.props.employee.employee.id}}/shifts`
-      )
-      .then(res => {
-        this.props.setCurrentShift(res.data.id);
+    EmployeeApi.beginShift()
+      .then(id => {
+        this.props.setCurrentShift(id);
         this.props.showInventory();
         this.props.setInventoryItemField("start_amount");
+        this.props.navigation.navigate("EmployeeShift");
       })
-      .then(this.props.navigation.navigate("EmployeeShift"))
-      .catch(err => console.log(err));
+      .catch(err => err);
+    // EmployeeShiftApi.axios
+    //   .post(
+    //     `http://localhost:8000/api/v1/managers/${
+    //       this.props.employee.employee.attributes.manager_id
+    //     }/employees/${this.props.employee.employee.id}}/shifts`
+    //   )
+    //   .then(res => {
+    //     this.props.setCurrentShift(res.data.id);
+    //     this.props.showInventory();
+    //     this.props.setInventoryItemField("start_amount");
+    //   })
+    //   .then(this.props.navigation.navigate("EmployeeShift"))
+    //   .catch(err => console.log(err));
   }
 
   handlePress() {
@@ -76,7 +90,6 @@ class EmployeeDashboard extends Component {
   }
 
   render() {
-    const { employee } = this.props.employee;
     return (
       <Container>
         <Header>
@@ -93,7 +106,7 @@ class EmployeeDashboard extends Component {
             <CardItem>
               <Body style={{ alignItems: "center" }}>
                 <Text style={{ fontWeight: "bold", marginBottom: 10 }}>
-                  Welcome {employee.attributes && employee.attributes.name}
+                  Welcome {this.state.name}
                 </Text>
                 <FontAwesome name="user-circle" size={128} color="orange" />
               </Body>

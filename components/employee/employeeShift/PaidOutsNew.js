@@ -21,6 +21,7 @@ import axios from "axios";
 import { StyleSheet, TextInput, Alert } from "react-native";
 import { connect } from "react-redux";
 import { addPaidOut } from "../../../modules/employeeShift";
+import EmployeeApi from "../../../services/EmployeeApi";
 
 export class PaidOutsNew extends Component {
   constructor(props) {
@@ -32,23 +33,16 @@ export class PaidOutsNew extends Component {
   }
 
   onSubmit() {
-    const { employee } = this.props.employee;
     const { id } = this.props.employeeShift;
-    axios
-      .post(
-        `http://localhost:8000/api/v1/managers/${
-          employee.attributes.manager_id
-        }/employees/${employee.id}/shifts/${id}/paid_outs`,
-        this.state
-      )
-      .then(() => {
-        Alert.alert(
-          "Paid Out created",
-          "A paid out has been added to your shift report.",
-          [{ text: "Ok" }]
-        );
-        this.props.addPaidOut(this.state);
-      });
+    const { company, amount } = this.state;
+    EmployeeApi.createPaidOut(id, company, amount).then(() => {
+      Alert.alert(
+        "Paid Out created",
+        "A paid out has been added to your shift report.",
+        [{ text: "Ok" }]
+      );
+      this.props.addPaidOut(this.state);
+    });
   }
   render() {
     return (

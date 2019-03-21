@@ -17,10 +17,10 @@ import {
   Input,
   View
 } from "native-base";
-import axios from "axios";
 import { StyleSheet, TextInput, Alert } from "react-native";
 import { connect } from "react-redux";
 import { addCheck } from "../../../modules/employeeShift";
+import EmployeeApi from "../../../services/EmployeeApi";
 
 export class ChecksNew extends Component {
   constructor(props) {
@@ -35,22 +35,16 @@ export class ChecksNew extends Component {
   onSubmit() {
     const { employee } = this.props.employee;
     const { id } = this.props.employeeShift;
-    axios
-      .post(
-        `http://localhost:8000/api/v1/managers/${
-          employee.attributes.manager_id
-        }/employees/${employee.id}/shifts/${id}/checks`,
-        this.state
-      )
-      .then(() => {
-        Alert.alert(
-          "Check created",
-          "A check has been added to your shift report.",
-          [{ text: "Ok" }]
-        );
-        this.props.addCheck(this.state);
-      });
+    EmployeeApi.createCheck(id, this.state).then(() => {
+      Alert.alert(
+        "Check created",
+        "A check has been added to your shift report.",
+        [{ text: "Ok" }]
+      );
+      this.props.addCheck(this.state);
+    });
   }
+
   render() {
     return (
       <View style={{ marginTop: 40 }}>

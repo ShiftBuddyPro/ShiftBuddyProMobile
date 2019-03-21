@@ -165,13 +165,6 @@ class EmployeeShift extends Component {
             </Button>
           </View>
         </Content>
-        <Footer>
-          <FooterTab>
-            <Body>
-              <Text />
-            </Body>
-          </FooterTab>
-        </Footer>
       </Container>
     );
   }

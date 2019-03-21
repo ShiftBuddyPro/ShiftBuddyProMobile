@@ -12,6 +12,7 @@ import {
   Right,
   Body,
   Icon,
+  Spinner,
   Text,
   Form,
   Item,
@@ -19,17 +20,15 @@ import {
 } from "native-base";
 import BackButton from "../common/BackButton";
 import { loginEmployee } from "../../modules/employee";
+import { EmployeeApi } from "@services";
 import { connect } from "react-redux";
 
 class EmployeeLogin extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "john",
-      password: "john"
-    };
-    this.handlePress = this.handlePress.bind(this);
-  }
+  state = {
+    username: "John",
+    password: "John",
+    loading: false
+  };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.employee.isAuthenticated) {
@@ -37,26 +36,18 @@ class EmployeeLogin extends Component {
     }
   }
 
-  componentWillMount() {
-    this.setState({
-      beginLoading: false
-    });
-  }
-
-  componentWillUnmount() {
-    this.setState({
-      beginLoading: false
-    });
-  }
-
   handlePress() {
-    this.props.loginEmployee(this.state, () =>
-      this.props.navigation.navigate("EmployeeDashboard")
-    );
-    this.setState({
-      beginLoading: true
-    });
+    this.setState({ loading: true });
+    EmployeeApi.login(this.state)
+      .then(employeeId => {
+        this.props.navigation.navigate("EmployeeDashboard", { employeeId });
+        this.setState({ loading: false });
+      })
+      .catch(err => {
+        this.setState({ errors: true, loading: false });
+      });
   }
+
   render() {
     return (
       <Container>
@@ -103,6 +94,7 @@ class EmployeeLogin extends Component {
               <Text>Log in</Text>
             </Button>
           </Form>
+          {this.state.loading ? <Spinner color="orange" /> : null}
         </Content>
       </Container>
     );

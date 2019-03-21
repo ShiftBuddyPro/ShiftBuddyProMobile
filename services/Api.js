@@ -6,10 +6,11 @@ export default class Api {
       baseURL: "http://www.shiftbuddypro.com"
     });
   }
-  
+
   setDefaultHeader(authToken) {
     this.client.defaults.headers.common.Authorization = `Bearer ${authToken}`;
   }
+
 
   setBasePrefix(basePrefix) {
     this.basePrefix = basePrefix;

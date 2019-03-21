@@ -21,6 +21,7 @@ import axios from "axios";
 import { StyleSheet, TextInput, Alert } from "react-native";
 import { connect } from "react-redux";
 import { addNote } from "../../../modules/employeeShift";
+import EmployeeApi from "../../../services/EmployeeApi";
 
 export class NotesNew extends Component {
   constructor(props) {
@@ -32,23 +33,16 @@ export class NotesNew extends Component {
   }
 
   onSubmit() {
-    const { employee } = this.props.employee;
     const { id } = this.props.employeeShift;
-    axios
-      .post(
-        `http://localhost:8000/api/v1/managers/${
-          employee.attributes.manager_id
-        }/employees/${employee.id}/shifts/${id}/notes`,
-        this.state
-      )
-      .then(() => {
-        Alert.alert(
-          "Note created",
-          "A note has been added to your shift report.",
-          [{ text: "Ok" }]
-        );
-        this.props.addNote(this.state);
-      });
+    const { title, message } = this.state;
+    EmployeeApi.createNote(id, title, message).then(() => {
+      Alert.alert(
+        "Note created",
+        "A note has been added to your shift report.",
+        [{ text: "Ok" }]
+      );
+      this.props.addNote(this.state);
+    });
   }
   render() {
     return (
