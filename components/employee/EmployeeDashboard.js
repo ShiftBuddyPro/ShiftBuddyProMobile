@@ -37,7 +37,15 @@ class EmployeeDashboard extends Component {
   componentDidMount() {
     EmployeeApi.getEmployee()
       .then(employee => {
-        this.setState({ name: employee.name, managerId: employee.manager_id });
+        const { status, current_shift_id: shiftId } = employee;
+        if (status === "working" && shiftId) {
+          this.props.setCurrentShift(shiftId);
+          this.props.navigation.navigate("EmployeeShift");
+        } else
+          this.setState({
+            name: employee.name,
+            managerId: employee.manager_id
+          });
       })
       .catch(err => err);
 

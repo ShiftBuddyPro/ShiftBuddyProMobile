@@ -25,6 +25,7 @@ import CashDrops from "./employeeShift/CashDrops";
 import Checks from "./employeeShift/Checks";
 import Notes from "./employeeShift/Notes";
 import { showInventory } from "../../modules/employeeShift";
+import EmployeeApi from "../../services/EmployeeApi";
 
 class EmployeeShift extends Component {
   state = {
@@ -69,7 +70,16 @@ class EmployeeShift extends Component {
         onPress: () => console.log("Cancel Pressed"),
         style: "cancel"
       },
-      { text: "End Shift", onPress: () => this.props.navigation.pop() }
+      {
+        text: "End Shift",
+        onPress: () => {
+          EmployeeApi.completeShift(this.props.employeeShift.id)
+            .then(() => {
+              this.props.navigation.navigate("EmployeeDashboard");
+            })
+            .catch(err => console.log(err));
+        }
+      }
     ]);
   }
 

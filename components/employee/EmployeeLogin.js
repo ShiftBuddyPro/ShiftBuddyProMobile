@@ -22,7 +22,7 @@ import BackButton from "../common/BackButton";
 import { loginEmployee } from "../../modules/employee";
 import { EmployeeApi } from "@services";
 import { connect } from "react-redux";
-
+import { setCurrentShift } from "../../modules/employeeShift";
 class EmployeeLogin extends Component {
   state = {
     username: "John",
@@ -40,8 +40,16 @@ class EmployeeLogin extends Component {
     this.setState({ loading: true });
     EmployeeApi.login(this.state)
       .then(employeeId => {
-        this.props.navigation.navigate("EmployeeDashboard", { employeeId });
-        this.setState({ loading: false });
+        EmployeeApi.getEmployee().then(employee => {
+          console.log(employee);
+          const { status, current_shift_id: shiftId } = employee;
+          this.setState({ loading: false });
+          if (status === "working" && shiftId) {
+            this.props.setCurrentShift(shiftId);
+            this.props.navigation.navigate("EmployeeShift");
+          } else
+            this.props.navigation.navigate("EmployeeDashboard", { employeeId });
+        });
       })
       .catch(err => {
         this.setState({ errors: true, loading: false });
@@ -102,7 +110,8 @@ class EmployeeLogin extends Component {
 }
 
 const mapDispatchToProps = {
-  loginEmployee
+  loginEmployee,
+  setCurrentShift
 };
 
 const mapStateToProps = state => ({

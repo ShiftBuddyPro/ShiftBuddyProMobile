@@ -23,21 +23,14 @@ import { connect } from "react-redux";
 import BackButton from "../../common/BackButton";
 import axios from "axios";
 import { setChangeFields } from "../../../modules/employeeShift";
+import EmployeeApi from "../../../services/EmployeeApi";
 
 export class Change extends Component {
-  state = {
-    changeFields: this.props.employeeShift.changeFields
-  };
-
   onSubmit() {
-    axios
-      .put(
-        `http://localhost:8000/api/v1/shifts/${
-          this.props.employeeShift.id
-        }/change_sheet`,
-        { change_sheet: this.props.employeeShift.changeFields }
-      )
-      .then(this.props.navigation.navigate("EmployeeShift"));
+    const { id, changeFields } = this.props.employeeShift;
+    EmployeeApi.updateChange(id, changeFields)
+      .then(res => this.props.navigation.navigate("EmployeeShift"))
+      .catch(err => console.log(err));
   }
 
   onValueChange(prefix, changeType, value) {
@@ -69,7 +62,7 @@ export class Change extends Component {
             onValueChange={this.onValueChange.bind(this, "start_", changeType)}
           >
             {oneToTwelve.map(num => (
-              <Picker.Item label={num} value={num} />
+              <Picker.Item key={num} label={num} value={num} />
             ))}
           </Picker>
         </Button>

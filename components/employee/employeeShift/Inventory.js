@@ -26,6 +26,7 @@ import {
   getInventoryItems
 } from "../../../modules/employeeShift";
 import { unshowInventory } from "../../../modules/employeeShift";
+import EmployeeApi from "../../../services/EmployeeApi";
 
 export class Inventory extends Component {
   state = {
@@ -35,16 +36,10 @@ export class Inventory extends Component {
   };
 
   componentDidMount() {
-    axios
-      .get(
-        `http://localhost:8000/api/v1/managers/${
-          this.props.employee.employee.attributes.manager_id
-        }/employees/${this.props.employee.employee.id}/shifts/${
-          this.props.employeeShift.id
-        }/inventory_items`
-      )
-      .then(response => {
-        this.setState({ inventoryItems: response.data });
+    const { id } = this.props.employeeShift;
+    EmployeeApi.getInventory(id)
+      .then(inventoryItems => {
+        this.setState({ inventoryItems });
       })
       .catch(err => {
         console.log(err);
@@ -52,7 +47,7 @@ export class Inventory extends Component {
   }
 
   emptyInventoryView() {
-    return <Text>No Inventory Items</Text>;
+    return <Text className="super-center">No Inventory Items</Text>;
   }
 
   inventoryView(item, field) {
@@ -62,7 +57,7 @@ export class Inventory extends Component {
           style={{
             fontSize: 12,
             color: "orange",
-            fontWeight: "bold",
+            fontWeight: "500",
             marginTop: 25,
             marginLeft: "auto"
           }}
@@ -79,20 +74,18 @@ export class Inventory extends Component {
         >
           Please enter the{" "}
           {this.props.employeeShift.inventoryItemField == "start_amount" ? (
-            <Text style={{ fontSize: 13, fontWeight: "bold" }}>
+            <Text style={{ fontSize: 13, fontWeight: "500" }}>
               starting amount{" "}
             </Text>
           ) : (
-            <Text style={{ fontSize: 13, fontWeight: "bold" }}>
+            <Text style={{ fontSize: 13, fontWeight: "500" }}>
               ending amount{" "}
             </Text>
           )}
           of the item below
         </Text>
         <Text style={{ marginLeft: "auto", marginRight: "auto" }}>
-          <Text style={{ fontWeight: "bold", fontSize: 30 }}>
-            {item.name}:{" "}
-          </Text>
+          <Text style={{ fontWeight: "500", fontSize: 30 }}>{item.name}: </Text>
           <Text style={{ color: "orange", fontSize: 30, fontWeight: "500" }}>
             {this.state.currentValue}
           </Text>
@@ -117,7 +110,7 @@ export class Inventory extends Component {
             </Button>
           </View>
           <View style={{ marginLeft: 30, marginRight: 30 }}>
-            <Text style={{ fontWeight: "450", fontSize: 20 }}>- 1 -</Text>
+            <Text style={{ fontWeight: "500", fontSize: 20 }}>- 1 -</Text>
           </View>
           <View>
             <Button
@@ -149,7 +142,7 @@ export class Inventory extends Component {
             </Button>
           </View>
           <View style={{ marginLeft: 30, marginRight: 30 }}>
-            <Text style={{ fontWeight: "450", fontSize: 20 }}>- 5 -</Text>
+            <Text style={{ fontWeight: "500", fontSize: 20 }}>- 5 -</Text>
           </View>
           <View>
             <Button
@@ -180,7 +173,7 @@ export class Inventory extends Component {
             </Button>
           </View>
           <View style={{ marginLeft: 30, marginRight: 30 }}>
-            <Text style={{ fontWeight: "450", fontSize: 20 }}>- 10 -</Text>
+            <Text style={{ fontWeight: "500", fontSize: 20 }}>- 10 -</Text>
           </View>
           <View>
             <Button
@@ -249,14 +242,13 @@ export class Inventory extends Component {
     params = {};
     params["inventory_item"] = {};
     params["inventory_item"][field] = this.state.currentValue;
-    axios
-      .put(`http://localhost:8000/api/v1/inventory_items/${itemId}`, params)
-      .then(() => {
-        this.setState({
-          currentIndex: this.state.currentIndex + 1,
-          currentValue: 0
-        });
+
+    EmployeeApi.updateInventory(itemId, params).then(() => {
+      this.setState({
+        currentIndex: this.state.currentIndex + 1,
+        currentValue: 0
       });
+    });
   }
 
   putLastItem(itemId) {
@@ -264,19 +256,17 @@ export class Inventory extends Component {
     params = {};
     params["inventory_item"] = {};
     params["inventory_item"][field] = this.state.currentValue;
-    axios
-      .put(`http://localhost:8000/api/v1/inventory_items/${itemId}`, params)
-      .then(() => {
-        this.setState({
-          currentIndex: 0,
-          currentValue: 0
-        });
-        this.props.navigation.pop();
-        if (this.props.employeeShift.inventoryItemField == "end_amount") {
-          this.props.unshowInventory();
-        }
-        this.props.setInventoryItemField("end_amount");
+    EmployeeApi.updateInventory(itemId, params).then(() => {
+      this.setState({
+        currentIndex: 0,
+        currentValue: 0
       });
+      this.props.navigation.pop();
+      if (this.props.employeeShift.inventoryItemField == "end_amount") {
+        this.props.unshowInventory();
+      }
+      this.props.setInventoryItemField("end_amount");
+    });
   }
 
   incrementValue(amt) {

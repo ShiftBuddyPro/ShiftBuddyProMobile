@@ -32,6 +32,8 @@ class EmployeeApi {
       .get(`/api/v1/employees/${this.employeeId}`)
       .then(res => {
         this.managerId = res.data.data.attributes.manager_id;
+        console.log(this.managerId);
+        console.log(res.data.data.attributes);
         return res.data.data.attributes;
       })
       .catch(throwErr);
@@ -76,6 +78,26 @@ class EmployeeApi {
       amount,
       number
     });
+  }
+
+  updateChange(shiftId, change_sheet) {
+    return this.api.client.put("/api/v1/shifts/" + shiftId + "/change_sheet", {
+      change_sheet
+    });
+  }
+
+  getInventory(shiftId) {
+    return this.api.client
+      .get(this.shiftUrl(shiftId) + "/inventory_items")
+      .then(res => res.data);
+  }
+
+  updateInventory(itemId, params) {
+    return this.api.client.put(`/api/v1/inventory_items/${itemId}`, params);
+  }
+
+  completeShift(shiftId) {
+    return this.api.client.put("/api/v1/shifts/" + shiftId + "/complete");
   }
 
   shiftUrl(shiftId) {
