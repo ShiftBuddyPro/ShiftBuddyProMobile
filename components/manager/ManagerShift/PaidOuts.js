@@ -29,7 +29,9 @@ export class Shifts extends Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:8000/api/v1/shifts/${this.props.shiftId}/paid_outs`
+        `http://www.shiftbuddypro.com/api/v1/shifts/${
+          this.props.shiftId
+        }/paid_outs`
       )
       .then(res => {
         this.setState({ paidOuts: res.data });
@@ -72,7 +74,7 @@ export class Shifts extends Component {
           <Text
             style={{
               fontWeight: "bold",
-              fontSize: "24",
+              fontSize: 24,
               marginLeft: "auto",
               marginRight: "auto",
               marginBottom: 15,

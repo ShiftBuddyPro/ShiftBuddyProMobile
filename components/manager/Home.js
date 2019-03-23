@@ -69,8 +69,8 @@ export class Home extends Component {
 
   emptyView() {
     return (
-      <View>
-        <Text>No activities</Text>
+      <View style={{ marginLeft: "auto", marginRight: "auto" }}>
+        <Text style={{ fontStyle: "italic", fontSize: 12 }}>No activities</Text>
       </View>
     );
   }

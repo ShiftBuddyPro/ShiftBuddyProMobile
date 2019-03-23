@@ -28,7 +28,9 @@ export default class Notes extends Component {
 
   componentDidMount() {
     axios
-      .get(`http://localhost:8000/api/v1/shifts/${this.props.shiftId}/notes`)
+      .get(
+        `http://www.shiftbuddypro.com/api/v1/shifts/${this.props.shiftId}/notes`
+      )
       .then(res => {
         this.setState({ notes: res.data });
       })
@@ -45,14 +47,13 @@ export default class Notes extends Component {
             marginBottom: 10,
             marginLeft: 10
           }}
+          key={note.message}
         >
-          <Entypo name="triangle-right" color="orange" size="20" />
+          <Entypo name="triangle-right" color="orange" size={20} />
           <Text style={{ fontWeight: "bold" }}>
             {note.title ? note.title + ": " : ""}
           </Text>
-          <Text style={{ flexWrap: "wrap", flex: 1, flexGrow: "100" }}>
-            {note.message}
-          </Text>
+          <Text style={{ flexWrap: "wrap", flex: 1 }}>{note.message}</Text>
         </View>
       );
     });
@@ -77,7 +78,7 @@ export default class Notes extends Component {
           <Text
             style={{
               fontWeight: "bold",
-              fontSize: "24",
+              fontSize: 24,
               marginLeft: "auto",
               marginRight: "auto",
               textAlign: "center",

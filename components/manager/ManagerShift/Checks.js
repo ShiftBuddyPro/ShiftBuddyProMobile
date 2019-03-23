@@ -28,7 +28,11 @@ export default class Checks extends Component {
 
   componentDidMount() {
     axios
-      .get(`http://localhost:8000/api/v1/shifts/${this.props.shiftId}/checks`)
+      .get(
+        `http://www.shiftbuddypro.com/api/v1/shifts/${
+          this.props.shiftId
+        }/checks`
+      )
       .then(res => {
         this.setState({ checks: res.data });
       })
@@ -70,7 +74,7 @@ export default class Checks extends Component {
           <Text
             style={{
               fontWeight: "bold",
-              fontSize: "24",
+              fontSize: 24,
               marginLeft: "auto",
               marginRight: "auto",
               textAlign: "center",

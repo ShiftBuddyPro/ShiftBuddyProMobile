@@ -4,14 +4,13 @@ export default class Api {
   constructor() {
     this.client = axios.create({
       baseURL: "http://www.shiftbuddypro.com"
-      // baseURL: 'http://localhost:8000'
+      // baseURL: 'http://www.shiftbuddypro.com'
     });
   }
 
   setDefaultHeader(authToken) {
     this.client.defaults.headers.common.Authorization = `Bearer ${authToken}`;
   }
-
 
   setBasePrefix(basePrefix) {
     this.basePrefix = basePrefix;

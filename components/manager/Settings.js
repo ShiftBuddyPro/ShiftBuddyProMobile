@@ -33,13 +33,17 @@ export default class Settings extends Component {
             Settings
           </Text>
         </View>
-        <View>
+        <View style={{ flex: 1, justifyContent: "space-between" }}>
           <Button
+            style={{ marginBottom: 25 }}
             full
             warning
             onPress={() => this.props.navigate("TrackedItems")}
           >
             <Text>Tracked Inventory Items</Text>
+          </Button>
+          <Button full danger onPress={() => this.props.navigate("Home")}>
+            <Text>Log Out</Text>
           </Button>
         </View>
       </View>

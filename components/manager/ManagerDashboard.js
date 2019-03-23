@@ -52,7 +52,7 @@ export class ManagerDashboard extends Component {
     return (
       <Container>
         <Header>
-          <BackButton />
+          <Left />
           <Body>
             <Title>Dashboard</Title>
           </Body>

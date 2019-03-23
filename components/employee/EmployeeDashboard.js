@@ -101,11 +101,9 @@ class EmployeeDashboard extends Component {
     return (
       <Container>
         <Header>
-          <BackButton />
           <Body>
             <Title>Dashboard</Title>
           </Body>
-          <Right />
         </Header>
         <Content
           contentContainerStyle={{ flex: 1, backgroundColor: "seashell" }}
@@ -139,6 +137,16 @@ class EmployeeDashboard extends Component {
               </Body>
             </CardItem>
           </Card>
+          <Button
+            style={{ marginTop: 35 }}
+            onPress={() => {
+              this.props.navigation.navigate("Home");
+            }}
+            full
+            danger
+          >
+            <Text>Logout</Text>
+          </Button>
         </Content>
         <Footer>
           <FooterTab>

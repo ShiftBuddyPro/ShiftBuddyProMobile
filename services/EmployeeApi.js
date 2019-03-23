@@ -32,8 +32,6 @@ class EmployeeApi {
       .get(`/api/v1/employees/${this.employeeId}`)
       .then(res => {
         this.managerId = res.data.data.attributes.manager_id;
-        console.log(this.managerId);
-        console.log(res.data.data.attributes);
         return res.data.data.attributes;
       })
       .catch(throwErr);

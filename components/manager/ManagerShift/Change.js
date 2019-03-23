@@ -28,7 +28,9 @@ export default class Change extends Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:8000/api/v1/shifts/${this.props.shiftId}/change_sheet`
+        `http://www.shiftbuddypro.com/api/v1/shifts/${
+          this.props.shiftId
+        }/change_sheet`
       )
       .then(res => {
         this.setState({ change: res.data });
@@ -53,7 +55,7 @@ export default class Change extends Component {
           <Text
             style={{
               fontWeight: "bold",
-              fontSize: "24",
+              fontSize: 24,
               marginLeft: "auto",
               marginRight: "auto",
               marginBottom: 15,
@@ -102,6 +104,7 @@ export default class Change extends Component {
                   borderBottomColor: "grey",
                   borderBottomWidth: 1
                 }}
+                key={start_amount + end_amount + changeType}
               >
                 <Text style={{ flexBasis: 50, textAlign: "center" }}>
                   {start_amount}

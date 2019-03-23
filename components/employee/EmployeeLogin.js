@@ -27,7 +27,8 @@ class EmployeeLogin extends Component {
   state = {
     username: "John",
     password: "John",
-    loading: false
+    loading: false,
+    errors: false
   };
 
   componentWillReceiveProps(nextProps) {
@@ -41,10 +42,9 @@ class EmployeeLogin extends Component {
     EmployeeApi.login(this.state)
       .then(employeeId => {
         EmployeeApi.getEmployee().then(employee => {
-          console.log(employee);
           const { status, current_shift_id: shiftId } = employee;
           this.setState({ loading: false });
-          if (status === "working" && shiftId) {
+          if (shiftId && status === "working") {
             this.props.setCurrentShift(shiftId);
             this.props.navigation.navigate("EmployeeShift");
           } else
@@ -54,6 +54,23 @@ class EmployeeLogin extends Component {
       .catch(err => {
         this.setState({ errors: true, loading: false });
       });
+  }
+
+  renderError() {
+    if (!this.state.errors) return;
+
+    return (
+      <Text
+        style={{
+          color: "red",
+          fontSize: 12,
+          textAlign: "center",
+          marginVertical: 10
+        }}
+      >
+        Invalid Credentials
+      </Text>
+    );
   }
 
   render() {
@@ -98,6 +115,7 @@ class EmployeeLogin extends Component {
                 value={this.state.password}
               />
             </Item>
+            {this.renderError()}
             <Button full large warning onPress={() => this.handlePress()}>
               <Text>Log in</Text>
             </Button>

@@ -28,7 +28,7 @@ export default class CashDrops extends Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:8000/api/v1/shifts/${this.props.shiftId}/cash_drops`
+        `http://shiftbuddypro.com/api/v1/shifts/${this.props.shiftId}/cash_drops`
       )
       .then(res => {
         this.setState({ cashDrops: res.data });
@@ -74,7 +74,7 @@ export default class CashDrops extends Component {
           <Text
             style={{
               fontWeight: "bold",
-              fontSize: "24",
+              fontSize: 24,
               marginLeft: "auto",
               marginRight: "auto",
               marginBottom: 0,

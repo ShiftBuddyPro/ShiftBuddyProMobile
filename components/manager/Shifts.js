@@ -29,7 +29,7 @@ export class Shifts extends Component {
 
   componentDidMount() {
     ManagerApi.getShifts(this.props.manager.managerData.manager_id)
-      .then(shifts => this.setState({ shifts: shifts.splice(0, 9) }))
+      .then(shifts => this.setState({ shifts: shifts.splice(0, 19) }))
       .catch(err => this.setState({ errors: true }));
   }
 

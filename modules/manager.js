@@ -51,7 +51,6 @@ export const loginManager = (managerData, callback) => dispatch => {
   axios
     .post("http://www.shiftbuddypro.com/api/v1/managers/authenticate", managerData)
     .then(res => {
-      console.log(1)
       // Save to local storage
       const { auth_token } = res.data;
       // Set auth_token to local storage

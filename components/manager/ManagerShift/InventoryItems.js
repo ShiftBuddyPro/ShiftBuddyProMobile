@@ -29,7 +29,7 @@ export default class InventoryItems extends Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:8000/api/v1/shifts/${
+        `http://www.shiftbuddypro.com/api/v1/shifts/${
           this.props.shiftId
         }/inventory_items`
       )
@@ -70,6 +70,11 @@ export default class InventoryItems extends Component {
                 marginBottom: 5,
                 marginTop: 5
               }}
+              key={
+                inventoryItem.start_amount +
+                inventoryItem.end_amount +
+                inventoryItem.name
+              }
             >
               <Text style={{ flexBasis: 50, textAlign: "center" }}>
                 {inventoryItem.start_amount}
@@ -111,7 +116,7 @@ export default class InventoryItems extends Component {
           <Text
             style={{
               fontWeight: "bold",
-              fontSize: "24",
+              fontSize: 24,
               marginLeft: "auto",
               marginRight: "auto",
               marginBottom: 25,

@@ -99,7 +99,7 @@ export class Change extends Component {
             onValueChange={this.onValueChange.bind(this, "end_", changeType)}
           >
             {oneToTwelve.map(num => (
-              <Picker.Item label={num} value={num} />
+              <Picker.Item key={num * 21} label={num} value={num} />
             ))}
           </Picker>
         </Button>
@@ -126,7 +126,11 @@ export class Change extends Component {
           <Body style={{ flex: 1 }}>
             <Title>Change</Title>
           </Body>
-          <Right style={{ flex: 1 }} />
+          <Right style={{ flex: 1 }}>
+            <Button onPress={() => this.onSubmit()} transparent>
+              <Text>Done</Text>
+            </Button>
+          </Right>
         </Header>
         <Content style={{ marginTop: 25 }}>
           <View
@@ -142,23 +146,6 @@ export class Change extends Component {
             <Text style={{ fontWeight: "bold" }}>End</Text>
           </View>
           {changeTypes.map(changeType => this.changeTypeInput(changeType))}
-          <Button
-            transparent
-            warning
-            onPress={() => this.onSubmit()}
-            style={{
-              marginLeft: "auto",
-              marginRight: "auto",
-              width: 200,
-              justifyContent: "center",
-              borderWidth: 3,
-              borderColor: "orange",
-              borderStyle: "solid",
-              marginTop: 20
-            }}
-          >
-            <Text>Done</Text>
-          </Button>
         </Content>
       </Container>
     );
