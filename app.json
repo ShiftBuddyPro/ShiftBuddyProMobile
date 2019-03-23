@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "ShiftBuddy",
+    "name": "ShiftBuddyPro",
     "slug": "shift_buddy_mobile",
     "privacy": "public",
     "sdkVersion": "32.0.0",
@@ -13,8 +13,7 @@
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffa500"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
