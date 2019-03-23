@@ -73,7 +73,7 @@ class EmployeeDashboard extends Component {
       .catch(err => err);
     // EmployeeShiftApi.axios
     //   .post(
-    //     `http://localhost:8000/api/v1/managers/${
+    //     `https://localhost:8000/api/v1/managers/${
     //       this.props.employee.employee.attributes.manager_id
     //     }/employees/${this.props.employee.employee.id}}/shifts`
     //   )

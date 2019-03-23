@@ -29,7 +29,7 @@ export default class InventoryItems extends Component {
   componentDidMount() {
     axios
       .get(
-        `http://www.shiftbuddypro.com/api/v1/shifts/${
+        `https://www.shiftbuddypro.com/api/v1/shifts/${
           this.props.shiftId
         }/inventory_items`
       )

@@ -49,7 +49,10 @@ export const logoutManager = () => dispatch => {
 // Side Effects
 export const loginManager = (managerData, callback) => dispatch => {
   axios
-    .post("http://www.shiftbuddypro.com/api/v1/managers/authenticate", managerData)
+    .post(
+      "https://www.shiftbuddypro.com/api/v1/managers/authenticate",
+      managerData
+    )
     .then(res => {
       // Save to local storage
       const { auth_token } = res.data;

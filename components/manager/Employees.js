@@ -54,7 +54,7 @@ export class Employees extends Component {
       .catch(err => console.log(err));
     // axios
     //   .post(
-    //     `http://www.shiftbuddypro.com/api/v1/managers/${
+    //     `https://www.shiftbuddypro.com/api/v1/managers/${
     //       this.props.manager.managerData.manager_id
     //     }/employees`,
     //     {

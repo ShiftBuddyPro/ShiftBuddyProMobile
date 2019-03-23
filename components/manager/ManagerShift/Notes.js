@@ -29,7 +29,9 @@ export default class Notes extends Component {
   componentDidMount() {
     axios
       .get(
-        `http://www.shiftbuddypro.com/api/v1/shifts/${this.props.shiftId}/notes`
+        `https://www.shiftbuddypro.com/api/v1/shifts/${
+          this.props.shiftId
+        }/notes`
       )
       .then(res => {
         this.setState({ notes: res.data });

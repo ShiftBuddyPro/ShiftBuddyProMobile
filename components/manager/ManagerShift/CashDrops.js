@@ -28,7 +28,7 @@ export default class CashDrops extends Component {
   componentDidMount() {
     axios
       .get(
-        `http://shiftbuddypro.com/api/v1/shifts/${this.props.shiftId}/cash_drops`
+        `https://shiftbuddypro.com/api/v1/shifts/${this.props.shiftId}/cash_drops`
       )
       .then(res => {
         this.setState({ cashDrops: res.data });
