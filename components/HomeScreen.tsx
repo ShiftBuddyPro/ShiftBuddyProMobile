@@ -1,24 +1,25 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Container,
-  Header,
-  Title,
   Content,
   Footer,
   FooterTab,
   Button,
-  Left,
-  Right,
-  Body,
-  Icon,
   Text,
-  Card,
-  CardItem
-} from "native-base";
-import * as UI from "@ui";
-import appColors from "@constants/appColors";
+} from 'native-base';
+import * as UI from '@ui';
+import appColors from '@constants/appColors';
+
+enum UserType {
+  Manager = 'Manager',
+  Employee = 'Employee',
+}
 
 export default class HomeScreen extends Component {
+  state = {
+    userType: UserType.Manager,
+  };
+
   render() {
     return (
       <Container>
@@ -69,39 +70,39 @@ export default class HomeScreen extends Component {
 
 const styles = UI.StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
 
   topHalfContainer: {
     flex: 1,
     backgroundColor: appColors.lighterOrange,
-    alignItems: "center",
-    justifyContent: "center"
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   bottomHalfContainer: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   header: {
     fontSize: 36,
-    color: appColors.orange
+    color: appColors.orange,
   },
 
   loginCard: {
-    width: "80%",
-    height: "100%",
-    marginTop: "-40%",
-    backgroundColor: "white",
+    width: '80%',
+    height: '100%',
+    marginTop: '-40%',
+    backgroundColor: 'white',
     borderRadius: 20,
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   loginText: {
-    marginBottom: "auto",
-    marginTop: "10%"
-  }
+    marginBottom: 'auto',
+    marginTop: '10%',
+  },
 });
