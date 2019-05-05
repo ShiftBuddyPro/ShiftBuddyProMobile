@@ -3,7 +3,7 @@ import axios from "axios";
 export default class Api {
   constructor() {
     this.client = axios.create({
-      baseURL: "http://www.shiftbuddypro.com"
+      baseURL: "https://www.shiftbuddypro.com"
       // baseURL: 'http://www.shiftbuddypro.com'
     });
   }
