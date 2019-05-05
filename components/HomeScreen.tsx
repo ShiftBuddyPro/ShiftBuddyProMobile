@@ -88,7 +88,7 @@ const styles = UI.StyleSheet.create({
 
   header: {
     fontSize: 36,
-    color: appColors.orange,
+    color: appColors.darkOrange,
   },
 
   loginCard: {
