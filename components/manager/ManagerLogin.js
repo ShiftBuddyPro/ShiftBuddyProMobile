@@ -36,31 +36,38 @@ export class ManagerLogin extends Component {
     this.handlePress = this.handlePress.bind(this);
   }
 
-  componentWillMount() {
-    this.setState({
-      loading: false
-    });
-  }
-
-  componentWillUnmount() {
-    this.setState({
-      loading: false
-    });
-  }
-
   handlePress() {
     const { email, password } = this.state;
 
-    this.setState({ loading: true });
+    this.setState({ loading: true, errors: false });
     ManagerApi.login({ email, password })
       .then(res => {
         const { auth_token } = res.data;
         const decodedToken = jwt_decode(auth_token);
         this.props.setCurrentManager(decodedToken);
         this.props.navigation.navigate("ManagerDashboard");
-        this.setState({loading: false})
+        this.setState({ loading: false });
       })
-      .catch(err => {this.setState({loading: false, errors: true})});
+      .catch(err => {
+        this.setState({ loading: false, errors: true });
+      });
+  }
+
+  renderError() {
+    if (!this.state.errors) return;
+
+    return (
+      <Text
+        style={{
+          color: "red",
+          fontSize: 12,
+          textAlign: "center",
+          marginVertical: 10
+        }}
+      >
+        Invalid Credentials
+      </Text>
+    );
   }
 
   render() {
@@ -109,6 +116,7 @@ export class ManagerLogin extends Component {
               <Text>Log in</Text>
             </Button>
           </Form>
+          {this.renderError()}
           {this.state.loading ? <Spinner color="orange" /> : null}
         </Content>
       </Container>
