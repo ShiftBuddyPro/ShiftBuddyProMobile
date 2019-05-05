@@ -47,7 +47,17 @@ export class Inventory extends Component {
   }
 
   emptyInventoryView() {
-    return <Text className="super-center">No Inventory Items</Text>;
+    return (
+      <Text
+        style={{
+          textAlign: "center",
+          marginTop: "40%",
+          fontStyle: "italic"
+        }}
+      >
+        No Inventory Items
+      </Text>
+    );
   }
 
   inventoryView(item, field) {

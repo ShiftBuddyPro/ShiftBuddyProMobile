@@ -4,7 +4,6 @@ export default class Api {
   constructor() {
     this.client = axios.create({
       baseURL: "https://www.shiftbuddypro.com"
-      // baseURL: 'https://www.shiftbuddypro.com'
     });
   }
 

@@ -52,34 +52,6 @@ export class Employees extends Component {
         })
       )
       .catch(err => console.log(err));
-    // axios
-    //   .post(
-    //     `https://www.shiftbuddypro.com/api/v1/managers/${
-    //       this.props.manager.managerData.manager_id
-    //     }/employees`,
-    //     {
-    //       employee: {
-    //         name: this.state.name,
-    //         username: this.state.username,
-    //         password: this.state.password,
-    //         password_confirmation: this.state.passwordConfirmation,
-    //         manager_id: this.props.manager.managerData.manager_id
-    //       }
-    //     }
-    //   )
-    //   .then(res => {
-    //     this.setState({
-    //       employees: [...this.state.employees, res.data],
-    // name: "",
-    // username: "",
-    // password: "",
-    // passwordConfirmation: "",
-    // shouldShowInput: false
-    //     });
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
   }
 
   deleteEmployee(id, index) {

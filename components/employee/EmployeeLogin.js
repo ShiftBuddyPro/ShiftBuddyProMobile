@@ -25,8 +25,8 @@ import { connect } from "react-redux";
 import { setCurrentShift } from "../../modules/employeeShift";
 class EmployeeLogin extends Component {
   state = {
-    username: "John",
-    password: "John",
+    username: "Taimur",
+    password: "Taimur",
     loading: false,
     errors: false
   };
@@ -38,7 +38,7 @@ class EmployeeLogin extends Component {
   }
 
   handlePress() {
-    this.setState({ loading: true });
+    this.setState({ loading: true, errors: false });
     EmployeeApi.login(this.state)
       .then(employeeId => {
         EmployeeApi.getEmployee().then(employee => {
@@ -115,11 +115,11 @@ class EmployeeLogin extends Component {
                 value={this.state.password}
               />
             </Item>
-            {this.renderError()}
             <Button full large warning onPress={() => this.handlePress()}>
               <Text>Log in</Text>
             </Button>
           </Form>
+          {this.renderError()}
           {this.state.loading ? <Spinner color="orange" /> : null}
         </Content>
       </Container>
