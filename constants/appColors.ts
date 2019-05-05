@@ -4,6 +4,12 @@ export default {
   orange: '#FDA50F',
   lightOrange: '#ffc04c',
   lighterOrange: '#ffd27f',
-  blue: '#005aff',
+  blue: '#6699cc',
+  darkBlue: '#4477b2',
   textGrey: '#222',
+  darkGrey: '#3f3f3f',
+  lightGrey: '#d3d3d3',
+  lighterGrey: '#E8E8E8',
+  lightestGrey: '#F5F5F5',
+  white: 'white',
 };

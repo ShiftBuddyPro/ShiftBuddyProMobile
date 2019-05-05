@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Container,
   View,
@@ -14,17 +14,17 @@ import {
   Icon,
   Text,
   Card,
-  CardItem
-} from "native-base";
-import { FlatList, ScrollView } from "react-native";
-import { connect } from "react-redux";
-import { ManagerApi } from "@services";
-import { FontAwesome } from "@expo/vector-icons";
+  CardItem,
+} from 'native-base';
+import { FlatList, ScrollView } from 'react-native';
+import { connect } from 'react-redux';
+import { ManagerApi } from 'services';
+import { FontAwesome } from '@expo/vector-icons';
 
 export class Shifts extends Component {
   state = {
     shifts: [],
-    errors: false
+    errors: false,
   };
 
   componentDidMount() {
@@ -39,37 +39,37 @@ export class Shifts extends Component {
         <Button
           transparent
           onPress={() =>
-            this.props.navigate("ManagerShift", {
-              shiftId: shift.id
+            this.props.navigate('ManagerShift', {
+              shiftId: shift.id,
             })
           }
           style={{
-            flexDirection: "row",
-            width: "100%",
+            flexDirection: 'row',
+            width: '100%',
             borderBottomWidth: 0.5,
             borderTopWidth: index == 0 ? 0.5 : 0,
-            borderColor: "grey",
+            borderColor: 'grey',
             height: 70,
             paddingTop: 10,
             paddingBottom: 10,
-            paddingLeft: 10
+            paddingLeft: 10,
           }}
         >
           <View
             style={{
-              flexDirection: "column",
-              justifyContent: "space-between",
-              flex: 1
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              flex: 1,
             }}
           >
             <Text style={{ fontSize: 18 }}>
               {shift.attributes.employee_name}
             </Text>
-            <Text style={{ color: "grey" }}>{shift.attributes.date}</Text>
+            <Text style={{ color: 'grey' }}>{shift.attributes.date}</Text>
           </View>
           <FontAwesome
             name="chevron-right"
-            style={{ marginLeft: "auto", marginRight: 12 }}
+            style={{ marginLeft: 'auto', marginRight: 12 }}
             color="orange"
             size={20}
           />
@@ -93,10 +93,10 @@ export class Shifts extends Component {
     return (
       <Text
         style={{
-          fontStyle: "italic",
+          fontStyle: 'italic',
           fontSize: 12,
-          marginLeft: "auto",
-          marginRight: "auto"
+          marginLeft: 'auto',
+          marginRight: 'auto',
         }}
       />
     );
@@ -108,12 +108,12 @@ export class Shifts extends Component {
       <ScrollView>
         <Text
           style={{
-            fontWeight: "bold",
+            fontWeight: 'bold',
             fontSize: 24,
-            marginLeft: "auto",
-            marginRight: "auto",
+            marginLeft: 'auto',
+            marginRight: 'auto',
             marginBottom: 15,
-            marginTop: 20
+            marginTop: 20,
           }}
         >
           Shifts
@@ -127,7 +127,7 @@ export class Shifts extends Component {
 }
 
 const mapStateToProps = state => ({
-  manager: state.manager
+  manager: state.manager,
 });
 
 const mapDispatchToProps = {};

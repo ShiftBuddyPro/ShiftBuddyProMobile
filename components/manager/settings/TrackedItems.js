@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Container,
   View,
@@ -18,20 +18,20 @@ import {
   Form,
   Item,
   Label,
-  Input
-} from "native-base";
-import { TextInput, FlatList, ScrollView } from "react-native";
-import BackButton from "../../common/BackButton";
-import { FontAwesome } from "@expo/vector-icons";
-import axios from "axios";
-import { ManagerApi } from "@services";
-import { connect } from "react-redux";
+  Input,
+} from 'native-base';
+import { TextInput, FlatList, ScrollView } from 'react-native';
+import BackButton from '../../common/BackButton';
+import { FontAwesome } from '@expo/vector-icons';
+import axios from 'axios';
+import { ManagerApi } from 'services';
+import { connect } from 'react-redux';
 
 export class TrackedItems extends Component {
   state = {
     itemInputOn: false,
-    itemName: "",
-    trackedItems: []
+    itemName: '',
+    trackedItems: [],
   };
 
   componentDidMount() {
@@ -45,10 +45,10 @@ export class TrackedItems extends Component {
       <View
         style={{
           flex: 1,
-          flexDirection: "row",
+          flexDirection: 'row',
           marginTop: 15,
           marginLeft: 10,
-          marginRight: 10
+          marginRight: 10,
         }}
       >
         <TextInput
@@ -57,8 +57,8 @@ export class TrackedItems extends Component {
             marginRight: 5,
             borderRadius: 999,
             paddingLeft: 10,
-            borderColor: "grey",
-            borderWidth: 1
+            borderColor: 'grey',
+            borderWidth: 1,
           }}
           onChangeText={itemName => this.setState({ itemName })}
           value={this.state.itemName}
@@ -67,9 +67,9 @@ export class TrackedItems extends Component {
         <Button
           onPress={() => this.addItem(this.state.itemName)}
           rounded
-          style={{ flex: 2, alignSelf: "flex-end" }}
+          style={{ flex: 2, alignSelf: 'flex-end' }}
         >
-          <Text style={{ marginLeft: "auto", marginRight: "auto" }}>Add</Text>
+          <Text style={{ marginLeft: 'auto', marginRight: 'auto' }}>Add</Text>
         </Button>
       </View>
     );
@@ -79,7 +79,7 @@ export class TrackedItems extends Component {
     try {
       const trackedItem = await ManagerApi.addTrackedItem(itemName);
       this.setState({
-        trackedItems: [...this.state.trackedItems, trackedItem]
+        trackedItems: [...this.state.trackedItems, trackedItem],
       });
     } catch (err) {
       return err;
@@ -99,9 +99,9 @@ export class TrackedItems extends Component {
       <Text
         style={{
           fontSize: 12,
-          fontStyle: "italic",
-          marginLeft: "auto",
-          marginRight: "auto"
+          fontStyle: 'italic',
+          marginLeft: 'auto',
+          marginRight: 'auto',
         }}
       >
         You currently do not have any tracked inventory items set.
@@ -115,21 +115,21 @@ export class TrackedItems extends Component {
         <View
           style={{
             flex: 1,
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
             borderBottomWidth: 1,
             paddingTop: 15,
             paddingBottom: 15,
             borderTopWidth: index == 0 ? 1 : 0,
-            borderColor: "grey"
+            borderColor: 'grey',
           }}
         >
           <Text style={{ marginLeft: 10 }}>{item.name}</Text>
           <Button
             danger
             small
-            style={{ marginLeft: "auto", marginRight: 10 }}
+            style={{ marginLeft: 'auto', marginRight: 10 }}
             onPress={() => this.deleteItem(item.id, index)}
           >
             <Text>Remove</Text>
@@ -181,7 +181,7 @@ export class TrackedItems extends Component {
 }
 
 const mapStateToProps = state => ({
-  manager: state.manager
+  manager: state.manager,
 });
 
 export default connect(mapStateToProps)(TrackedItems);

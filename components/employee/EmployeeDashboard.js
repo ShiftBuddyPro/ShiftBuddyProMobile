@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Container,
   Header,
@@ -13,38 +13,38 @@ import {
   Icon,
   Text,
   Card,
-  CardItem
-} from "native-base";
-import BackButton from "../common/BackButton";
-import { connect } from "react-redux";
-import { FontAwesome } from "@expo/vector-icons";
+  CardItem,
+} from 'native-base';
+import BackButton from '../common/BackButton';
+import { connect } from 'react-redux';
+import { FontAwesome } from '@expo/vector-icons';
 import {
   setCurrentShift,
   showInventory,
-  setInventoryItemField
-} from "../../modules/employeeShift";
-import axios from "axios";
-import { EmployeeApi } from "@services";
-import { Alert } from "react-native";
+  setInventoryItemField,
+} from '../../modules/employeeShift';
+import axios from 'axios';
+import { EmployeeApi } from 'services';
+import { Alert } from 'react-native';
 
 class EmployeeDashboard extends Component {
   state = {
     date: new Date(),
-    name: "",
-    managerId: null
+    name: '',
+    managerId: null,
   };
 
   componentDidMount() {
     EmployeeApi.getEmployee()
       .then(employee => {
         const { status, current_shift_id: shiftId } = employee;
-        if (status === "working" && shiftId) {
+        if (status === 'working' && shiftId) {
           this.props.setCurrentShift(shiftId);
-          this.props.navigation.navigate("EmployeeShift");
+          this.props.navigation.navigate('EmployeeShift');
         } else
           this.setState({
             name: employee.name,
-            managerId: employee.manager_id
+            managerId: employee.manager_id,
           });
       })
       .catch(err => err);
@@ -58,7 +58,7 @@ class EmployeeDashboard extends Component {
 
   tick() {
     this.setState({
-      date: new Date()
+      date: new Date(),
     });
   }
 
@@ -67,8 +67,8 @@ class EmployeeDashboard extends Component {
       .then(id => {
         this.props.setCurrentShift(id);
         this.props.showInventory();
-        this.props.setInventoryItemField("start_amount");
-        this.props.navigation.navigate("EmployeeShift");
+        this.props.setInventoryItemField('start_amount');
+        this.props.navigation.navigate('EmployeeShift');
       })
       .catch(err => err);
     // EmployeeShiftApi.axios
@@ -87,13 +87,13 @@ class EmployeeDashboard extends Component {
   }
 
   handlePress() {
-    Alert.alert("Confirm", "You are about to begin a new shift.", [
+    Alert.alert('Confirm', 'You are about to begin a new shift.', [
       {
-        text: "Cancel",
-        onPress: () => console.log("Cancel Pressed"),
-        style: "cancel"
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
       },
-      { text: "Ok", onPress: () => this.onShiftCreate() }
+      { text: 'Ok', onPress: () => this.onShiftCreate() },
     ]);
   }
 
@@ -106,12 +106,12 @@ class EmployeeDashboard extends Component {
           </Body>
         </Header>
         <Content
-          contentContainerStyle={{ flex: 1, backgroundColor: "seashell" }}
+          contentContainerStyle={{ flex: 1, backgroundColor: 'seashell' }}
         >
           <Card>
             <CardItem>
-              <Body style={{ alignItems: "center" }}>
-                <Text style={{ fontWeight: "bold", marginBottom: 10 }}>
+              <Body style={{ alignItems: 'center' }}>
+                <Text style={{ fontWeight: 'bold', marginBottom: 10 }}>
                   Welcome {this.state.name}
                 </Text>
                 <FontAwesome name="user-circle" size={128} color="orange" />
@@ -120,15 +120,15 @@ class EmployeeDashboard extends Component {
           </Card>
           <Card style={{ marginTop: 50, paddingTop: 30, paddingBottom: 30 }}>
             <CardItem>
-              <Body style={{ alignItems: "center" }}>
+              <Body style={{ alignItems: 'center' }}>
                 <Button
                   onPress={() => this.handlePress()}
                   large
                   style={{
-                    marginLeft: "auto",
-                    marginRight: "auto",
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
                     marginBottom: 20,
-                    marginTop: 20
+                    marginTop: 20,
                   }}
                 >
                   <Text>Begin Shift</Text>
@@ -140,7 +140,7 @@ class EmployeeDashboard extends Component {
           <Button
             style={{ marginTop: 35 }}
             onPress={() => {
-              this.props.navigation.navigate("Home");
+              this.props.navigation.navigate('Home');
             }}
             full
             danger
@@ -161,13 +161,13 @@ class EmployeeDashboard extends Component {
 }
 
 const mapStateToProps = state => ({
-  employee: state.employee
+  employee: state.employee,
 });
 
 const mapDispatchToProps = {
   setCurrentShift,
   showInventory,
-  setInventoryItemField
+  setInventoryItemField,
 };
 
 export default connect(

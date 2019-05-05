@@ -1,22 +1,22 @@
 import {
   createStackNavigator,
   createAppContainer,
-  createSwitchNavigator
-} from "react-navigation";
-import HomeScreen from "@components/HomeScreen";
-import EmployeeLogin from "@components/employee/EmployeeLogin";
-import ManagerLogin from "@components/manager/ManagerLogin";
-import ManagerDashboard from "@components/manager/ManagerDashboard";
-import EmployeeDashboard from "@components/employee/EmployeeDashboard";
-import EmployeeShift from "@components/employee/EmployeeShift";
-import Inventory from "@components/employee/employeeShift/Inventory";
-import Change from "@components/employee/employeeShift/Change";
-import TrackedItems from "@components/manager/settings/TrackedItems";
-import ManagerShift from "@components/manager/ManagerShift";
+  createSwitchNavigator,
+} from 'react-navigation';
+import LoginScreen from '@components/LoginScreen';
+import EmployeeLogin from '@components/employee/EmployeeLogin';
+import ManagerLogin from '@components/manager/ManagerLogin';
+import ManagerDashboard from '@components/manager/ManagerDashboard';
+import EmployeeDashboard from '@components/employee/EmployeeDashboard';
+import EmployeeShift from '@components/employee/EmployeeShift';
+import Inventory from '@components/employee/employeeShift/Inventory';
+import Change from '@components/employee/employeeShift/Change';
+import TrackedItems from '@components/manager/settings/TrackedItems';
+import ManagerShift from '@components/manager/ManagerShift';
 
 const AppStack = createStackNavigator(
   {
-    Home: { screen: HomeScreen },
+    Home: { screen: LoginScreen },
     ManagerLogin: { screen: ManagerLogin },
     ManagerDashboard: { screen: ManagerDashboard },
     EmployeeLogin: { screen: EmployeeLogin },
@@ -25,16 +25,16 @@ const AppStack = createStackNavigator(
     Inventory: { screen: Inventory },
     Change: { screen: Change },
     TrackedItems: { screen: TrackedItems },
-    ManagerShift: { screen: ManagerShift }
+    ManagerShift: { screen: ManagerShift },
   },
   {
-    initialRouteName: "Home",
-    headerMode: "none"
+    initialRouteName: 'Home',
+    headerMode: 'none',
   }
 );
 
 export default createAppContainer(
   createSwitchNavigator({
-    Main: AppStack
+    Main: AppStack,
   })
 );

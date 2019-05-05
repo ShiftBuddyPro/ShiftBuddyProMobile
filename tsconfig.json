@@ -2,7 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "components/*": ["components/*"]
+      "components/*": ["components/*"],
+      "modules/*": ["modules/*"],
+      "services/*": ["services/*"]
     },
     "lib": ["es2016"],
     "target": "es6",

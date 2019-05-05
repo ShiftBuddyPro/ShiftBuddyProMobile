@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Container,
   View,
@@ -16,24 +16,24 @@ import {
   Text,
   Form,
   Item,
-  Input
-} from "native-base";
-import BackButton from "../common/BackButton";
-import { loginEmployee } from "../../modules/employee";
-import { EmployeeApi } from "@services";
-import { connect } from "react-redux";
-import { setCurrentShift } from "../../modules/employeeShift";
+  Input,
+} from 'native-base';
+import BackButton from '../common/BackButton';
+import { loginEmployee } from '../../modules/employee';
+import { EmployeeApi } from 'services';
+import { connect } from 'react-redux';
+import { setCurrentShift } from '../../modules/employeeShift';
 class EmployeeLogin extends Component {
   state = {
-    username: "Taimur",
-    password: "Taimur",
+    username: 'Taimur',
+    password: 'Taimur',
     loading: false,
-    errors: false
+    errors: false,
   };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.employee.isAuthenticated) {
-      this.props.navigation.navigate("EmployeeDashboard");
+      this.props.navigation.navigate('EmployeeDashboard');
     }
   }
 
@@ -44,11 +44,11 @@ class EmployeeLogin extends Component {
         EmployeeApi.getEmployee().then(employee => {
           const { status, current_shift_id: shiftId } = employee;
           this.setState({ loading: false });
-          if (shiftId && status === "working") {
+          if (shiftId && status === 'working') {
             this.props.setCurrentShift(shiftId);
-            this.props.navigation.navigate("EmployeeShift");
+            this.props.navigation.navigate('EmployeeShift');
           } else
-            this.props.navigation.navigate("EmployeeDashboard", { employeeId });
+            this.props.navigation.navigate('EmployeeDashboard', { employeeId });
         });
       })
       .catch(err => {
@@ -62,10 +62,10 @@ class EmployeeLogin extends Component {
     return (
       <Text
         style={{
-          color: "red",
+          color: 'red',
           fontSize: 12,
-          textAlign: "center",
-          marginVertical: 10
+          textAlign: 'center',
+          marginVertical: 10,
         }}
       >
         Invalid Credentials
@@ -84,21 +84,21 @@ class EmployeeLogin extends Component {
           <Right />
         </Header>
         <Content
-          contentContainerStyle={{ flex: 1, backgroundColor: "seashell" }}
+          contentContainerStyle={{ flex: 1, backgroundColor: 'seashell' }}
         >
           <View
             style={{
               marginTop: 25,
               marginBottom: 25,
-              marginLeft: "auto",
-              marginRight: "auto"
+              marginLeft: 'auto',
+              marginRight: 'auto',
             }}
           >
-            <Text style={{ fontWeight: "bold", fontSize: 24 }}>
+            <Text style={{ fontWeight: 'bold', fontSize: 24 }}>
               Employee Login
             </Text>
           </View>
-          <Form style={{ backgroundColor: "white" }}>
+          <Form style={{ backgroundColor: 'white' }}>
             <Item>
               <Input
                 autofocus
@@ -129,11 +129,11 @@ class EmployeeLogin extends Component {
 
 const mapDispatchToProps = {
   loginEmployee,
-  setCurrentShift
+  setCurrentShift,
 };
 
 const mapStateToProps = state => ({
-  employee: state.employee
+  employee: state.employee,
 });
 
 export default connect(

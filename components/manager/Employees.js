@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Container,
   View,
@@ -14,22 +14,22 @@ import {
   Icon,
   Text,
   Card,
-  CardItem
-} from "native-base";
-import axios from "axios";
-import { connect } from "react-redux";
-import { FontAwesome } from "@expo/vector-icons";
-import { TextInput, FlatList, ScrollView } from "react-native";
-import { ManagerApi } from "@services";
+  CardItem,
+} from 'native-base';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { FontAwesome } from '@expo/vector-icons';
+import { TextInput, FlatList, ScrollView } from 'react-native';
+import { ManagerApi } from 'services';
 
 export class Employees extends Component {
   state = {
     employees: [],
-    name: "",
-    username: "",
-    password: "",
-    passwordConfirmation: "",
-    shouldShowInput: false
+    name: '',
+    username: '',
+    password: '',
+    passwordConfirmation: '',
+    shouldShowInput: false,
   };
 
   componentDidMount() {
@@ -44,11 +44,11 @@ export class Employees extends Component {
       .then(res =>
         this.setState({
           employees: [...this.state.employees, res.data],
-          name: "",
-          username: "",
-          password: "",
-          passwordConfirmation: "",
-          shouldShowInput: false
+          name: '',
+          username: '',
+          password: '',
+          passwordConfirmation: '',
+          shouldShowInput: false,
         })
       )
       .catch(err => console.log(err));
@@ -69,9 +69,9 @@ export class Employees extends Component {
       <Text
         style={{
           fontSize: 12,
-          fontStyle: "italic",
-          marginLeft: "auto",
-          marginRight: "auto"
+          fontStyle: 'italic',
+          marginLeft: 'auto',
+          marginRight: 'auto',
         }}
       >
         There are no Employees in the system.
@@ -84,21 +84,21 @@ export class Employees extends Component {
       return (
         <View
           style={{
-            flexDirection: "row",
-            alignItems: "center",
+            flexDirection: 'row',
+            alignItems: 'center',
             borderBottomWidth: 0.5,
             borderTopWidth: index == 0 ? 0.5 : 0,
-            borderColor: "grey",
+            borderColor: 'grey',
             paddingTop: 10,
             paddingLeft: 10,
             paddingRight: 10,
             paddingBottom: 10,
-            height: 70
+            height: 70,
           }}
         >
-          <View style={{ flexDirection: "column" }}>
+          <View style={{ flexDirection: 'column' }}>
             <Text style={{ fontSize: 18 }}>{employee.name}</Text>
-            <Text style={{ fontSize: 14, color: "grey" }}>
+            <Text style={{ fontSize: 14, color: 'grey' }}>
               {employee.username}
             </Text>
           </View>
@@ -106,9 +106,9 @@ export class Employees extends Component {
             danger
             small
             style={{
-              marginLeft: "auto",
-              marginTop: "auto",
-              marginBottom: "auto"
+              marginLeft: 'auto',
+              marginTop: 'auto',
+              marginBottom: 'auto',
             }}
             onPress={() => this.deleteEmployee(employee.id, index)}
           >
@@ -131,9 +131,9 @@ export class Employees extends Component {
       <View
         style={{
           flex: 1,
-          flexDirection: "column",
-          marginLeft: "auto",
-          marginRight: "auto"
+          flexDirection: 'column',
+          marginLeft: 'auto',
+          marginRight: 'auto',
         }}
       >
         <TextInput
@@ -142,9 +142,9 @@ export class Employees extends Component {
             width: 300,
             borderRadius: 999,
             paddingLeft: 10,
-            borderColor: "grey",
+            borderColor: 'grey',
             borderWidth: 1,
-            marginBottom: 15
+            marginBottom: 15,
           }}
           onChangeText={name => this.setState({ name })}
           value={this.state.name}
@@ -156,9 +156,9 @@ export class Employees extends Component {
             width: 300,
             borderRadius: 999,
             paddingLeft: 10,
-            borderColor: "grey",
+            borderColor: 'grey',
             borderWidth: 1,
-            marginBottom: 15
+            marginBottom: 15,
           }}
           onChangeText={username => this.setState({ username })}
           value={this.state.username}
@@ -170,9 +170,9 @@ export class Employees extends Component {
             width: 300,
             borderRadius: 999,
             paddingLeft: 10,
-            borderColor: "grey",
+            borderColor: 'grey',
             borderWidth: 1,
-            marginBottom: 15
+            marginBottom: 15,
           }}
           onChangeText={password => this.setState({ password })}
           value={this.state.password}
@@ -182,11 +182,11 @@ export class Employees extends Component {
           style={{
             borderRadius: 999,
             paddingLeft: 10,
-            borderColor: "grey",
+            borderColor: 'grey',
             height: 45,
             width: 300,
             borderWidth: 1,
-            marginBottom: 25
+            marginBottom: 25,
           }}
           onChangeText={passwordConfirmation =>
             this.setState({ passwordConfirmation })
@@ -195,7 +195,7 @@ export class Employees extends Component {
           placeholder="Password Confirmation"
         />
         <Button
-          style={{ marginLeft: "auto", marginRight: "auto", width: "50%" }}
+          style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }}
           onPress={() => this.addEmployee()}
         >
           <Text>Add</Text>
@@ -210,16 +210,16 @@ export class Employees extends Component {
         <ScrollView>
           <View
             style={{
-              flexDirection: "row",
-              justifyContent: "center",
-              marginTop: 15
+              flexDirection: 'row',
+              justifyContent: 'center',
+              marginTop: 15,
             }}
           >
             <Text
               style={{
-                fontWeight: "bold",
+                fontWeight: 'bold',
                 fontSize: 24,
-                marginRight: 10
+                marginRight: 10,
               }}
             >
               Employees
@@ -227,7 +227,7 @@ export class Employees extends Component {
             <FontAwesome
               onPress={() =>
                 this.setState({
-                  shouldShowInput: !this.state.shouldShowInput
+                  shouldShowInput: !this.state.shouldShowInput,
                 })
               }
               name="user-plus"
@@ -247,17 +247,17 @@ export class Employees extends Component {
         <View>
           <View
             style={{
-              flexDirection: "row",
-              justifyContent: "center",
+              flexDirection: 'row',
+              justifyContent: 'center',
               marginTop: 15,
-              marginBottom: 20
+              marginBottom: 20,
             }}
           >
             <Text
               style={{
-                fontWeight: "bold",
+                fontWeight: 'bold',
                 fontSize: 24,
-                marginRight: 10
+                marginRight: 10,
               }}
             >
               Employees
@@ -265,7 +265,7 @@ export class Employees extends Component {
             <FontAwesome
               onPress={() =>
                 this.setState({
-                  shouldShowInput: !this.state.shouldShowInput
+                  shouldShowInput: !this.state.shouldShowInput,
                 })
               }
               name="users"
@@ -281,7 +281,7 @@ export class Employees extends Component {
 }
 
 const mapStateToProps = state => ({
-  manager: state.manager
+  manager: state.manager,
 });
 
 export default connect(mapStateToProps)(Employees);

@@ -2,7 +2,7 @@ import { Text } from 'native-base';
 import React from 'react';
 import { systemWeights } from 'react-native-typography';
 import { StyleSheet } from 'react-native';
-import appColors from '@constants/appColors';
+import appColors from 'constants/appColors';
 
 interface Props {
   children: JSX.Element | string;

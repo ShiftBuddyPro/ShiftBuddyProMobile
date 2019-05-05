@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Container,
   View,
@@ -14,16 +14,16 @@ import {
   Icon,
   Text,
   Card,
-  CardItem
-} from "native-base";
-import { ScrollView, FlatList, List } from "react-native";
-import { connect } from "react-redux";
-import { ManagerApi } from "@services";
+  CardItem,
+} from 'native-base';
+import { ScrollView, FlatList, List } from 'react-native';
+import { connect } from 'react-redux';
+import { ManagerApi } from 'services';
 
 export class Home extends Component {
   state = {
     activities: [],
-    errors: false
+    errors: false,
   };
 
   componentWillMount() {
@@ -38,15 +38,15 @@ export class Home extends Component {
         <Text
           key={activity}
           style={{
-            color: "white",
-            fontWeight: "bold",
-            backgroundColor: "orange",
+            color: 'white',
+            fontWeight: 'bold',
+            backgroundColor: 'orange',
             padding: 15,
             margin: 10,
             borderRadius: 10,
-            overflow: "hidden",
-            width: "80%",
-            alignSelf: "center"
+            overflow: 'hidden',
+            width: '80%',
+            alignSelf: 'center',
           }}
         >
           {activity}
@@ -69,8 +69,8 @@ export class Home extends Component {
 
   emptyView() {
     return (
-      <View style={{ marginLeft: "auto", marginRight: "auto" }}>
-        <Text style={{ fontStyle: "italic", fontSize: 12 }}>No activities</Text>
+      <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+        <Text style={{ fontStyle: 'italic', fontSize: 12 }}>No activities</Text>
       </View>
     );
   }
@@ -80,12 +80,12 @@ export class Home extends Component {
       <ScrollView>
         <Text
           style={{
-            fontWeight: "bold",
+            fontWeight: 'bold',
             fontSize: 24,
-            marginLeft: "auto",
-            marginRight: "auto",
+            marginLeft: 'auto',
+            marginRight: 'auto',
             marginBottom: 10,
-            marginTop: 15
+            marginTop: 15,
           }}
         >
           Activity Log
@@ -100,7 +100,7 @@ export class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-  manager: state.manager
+  manager: state.manager,
 });
 
 const mapDispatchToProps = {};
