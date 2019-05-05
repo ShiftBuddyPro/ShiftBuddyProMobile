@@ -28,8 +28,8 @@ export class ManagerLogin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "usman",
-      password: "usman",
+      email: "usman@shiftbuddypro.com",
+      password: "password",
       loading: false,
       errors: false
     };
