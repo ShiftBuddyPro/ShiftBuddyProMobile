@@ -23,7 +23,10 @@ interface State {
 
 interface CurrentUser {
   type: 'manager' | 'employee';
-  authToken: string;
+  auth_token: string;
+  name: string;
+  id: string;
+  email: string;
 }
 
 enum LoginType {
@@ -41,7 +44,7 @@ class LoginScreen extends Component<Props, State> {
       if (currentUser) {
         const { type } = currentUser;
         if (type === 'manager') {
-          ManagerApi.setDefaultHeader(currentUser.authToken);
+          ManagerApi.setManager(currentUser);
           this.props.setCurrentManager(currentUser);
           this.props.navigation.navigate('ManagerDashboard');
         }

@@ -1,6 +1,7 @@
 import Api from './Api';
 import storage from 'react-native-modest-storage';
-import jwt_decode from 'jwt-decode';
+import store from 'modules/store';
+import { setCurrentManager } from 'modules/manager';
 
 interface LoginParams {
   email: string;
@@ -32,31 +33,39 @@ class ManagerApi {
       })
       .then((res: LoginResponse) => {
         const { data: manager } = res;
-        const { auth_token } = manager;
         const currentUser = {
           ...manager,
           type: 'manager',
         };
         storage.set('currentUser', currentUser);
-        this.setDefaultHeader(auth_token);
+        this.setManager(currentUser);
         return manager;
       });
   }
 
-  setDefaultHeader(authToken: string) {
-    this.api.setDefaultHeader(authToken);
+  setManager(currentUser: Manager) {
+    this.api.setDefaultHeader(currentUser.auth_token);
+    store.dispatch(setCurrentManager(currentUser));
+  }
+
+  managerId() {
+    return store.getState().manager.managerData.id;
+  }
+
+  managerUrl(suffix: string) {
+    return `/api/v1/managers/${this.managerId()}/${suffix}`;
   }
 
   getActivityLogs() {
-    return this.api.get(`/activity_logs`).then(res => res.data);
+    return this.api.get(this.managerUrl('activity_logs')).then(res => res.data);
   }
 
   getShifts() {
-    return this.api.get(`/shifts`).then(res => res.data.data);
+    return this.api.get(this.managerUrl('shifts')).then(res => res.data.data);
   }
 
   getEmployees() {
-    return this.api.get(`/employees`).then(res => res.data);
+    return this.api.get(this.managerUrl(`employees`)).then(res => res.data);
   }
 
   addEmployee({
@@ -66,13 +75,13 @@ class ManagerApi {
     passwordConfirmation: password_confirmation,
   }) {
     return this.api
-      .post(`/employees`, {
+      .post(this.managerUrl(`/employees`), {
         employee: {
           name,
           username,
           password,
           password_confirmation,
-          manager_id: this.managerId,
+          manager_id: this.managerId(),
         },
       })
       .then(res => res);
@@ -85,18 +94,22 @@ class ManagerApi {
   }
 
   async addTrackedItem(itemName) {
-    const response = await this.api.post(`/tracked_items`, {
+    const response = await this.api.post(this.managerUrl(`/tracked_items`), {
       tracked_item: { name: itemName },
     });
     return response.data;
   }
 
   getTrackedItems() {
-    return this.api.get('/tracked_items').then(res => res.data);
+    return this.api
+      .get(this.managerUrl('/tracked_items'))
+      .then(res => res.data);
   }
 
   deleteTrackedItem(id) {
-    return this.api.delete(`/tracked_items/${id}`).then(res => res);
+    return this.api
+      .delete(this.managerUrl(`/tracked_items/${id}`))
+      .then(res => res);
   }
 }
 
