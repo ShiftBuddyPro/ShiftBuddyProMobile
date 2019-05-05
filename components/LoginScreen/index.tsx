@@ -4,11 +4,26 @@ import appColors from 'constants/appColors';
 import ManagerLogin from './ManagerLogin';
 import EmployeeLogin from './EmployeeLogin';
 import { TouchableOpacity } from 'react-native';
+import storage from 'react-native-modest-storage';
+import ManagerApi from 'services/ManagerApi';
+import { setCurrentManager } from 'modules/manager';
+import { setCurrentEmployee } from 'modules/employee';
+import { connect } from 'react-redux';
+import EmployeeApi from 'services/EmployeeApi';
 
-interface Props {}
+interface Props {
+  setCurrentManager: (currentUser: CurrentUser) => void;
+  setCurrentEmployee: (currentUser: CurrentUser) => void;
+  navigation: any;
+}
 
 interface State {
   loginType: LoginType;
+}
+
+interface CurrentUser {
+  type: 'manager' | 'employee';
+  authToken: string;
 }
 
 enum LoginType {
@@ -16,10 +31,23 @@ enum LoginType {
   Employee = 'Employee',
 }
 
-export default class LoginScreen extends Component<Props, State> {
+class LoginScreen extends Component<Props, State> {
   state = {
     loginType: LoginType.Manager,
   };
+
+  componentDidMount() {
+    storage.get('currentUser').then((currentUser: CurrentUser) => {
+      if (currentUser) {
+        const { type } = currentUser;
+        if (type === 'manager') {
+          ManagerApi.setDefaultHeader(currentUser.authToken);
+          this.props.setCurrentManager(currentUser);
+          this.props.navigation.navigate('ManagerDashboard');
+        }
+      }
+    });
+  }
 
   renderToggle() {
     const renderToggleButton = (loginType: LoginType) => {
@@ -110,7 +138,7 @@ const styles = UI.StyleSheet.create({
 
   loginCard: {
     width: '85%',
-    height: '100%',
+    height: '105%',
     marginTop: '-40%',
     backgroundColor: 'white',
     borderRadius: 20,
@@ -122,7 +150,7 @@ const styles = UI.StyleSheet.create({
 
   toggleRow: {
     flexDirection: 'row',
-    flex: 0.8,
+    height: 35,
     borderColor: appColors.orange,
     borderRadius: 10,
     marginBottom: 15,
@@ -151,3 +179,8 @@ const styles = UI.StyleSheet.create({
     color: 'dimgray',
   },
 });
+
+export default connect(
+  null,
+  { setCurrentEmployee, setCurrentManager }
+)(LoginScreen);

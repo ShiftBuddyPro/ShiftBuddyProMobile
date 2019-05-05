@@ -12,4 +12,5 @@ export default {
   lighterGrey: '#E8E8E8',
   lightestGrey: '#F5F5F5',
   white: 'white',
+  darkRed: '#c23b22',
 };

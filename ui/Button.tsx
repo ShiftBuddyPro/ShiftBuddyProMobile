@@ -22,9 +22,9 @@ export default (props: Props) => {
   return (
     <Button onPress={onPress} style={buttonStyle}>
       {loading ? (
-        <Spinner color={appColors.white} />
+        <Spinner size="small" color={appColors.white} />
       ) : (
-        <Text style={systemWeights.bold}>{children}</Text>
+        <Text style={systemWeights.regular}>{children}</Text>
       )}
     </Button>
   );

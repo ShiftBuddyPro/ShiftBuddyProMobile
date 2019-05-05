@@ -1,4 +1,5 @@
 import Api from './Api';
+import storage from 'react-native-modest-storage';
 import jwt_decode from 'jwt-decode';
 
 interface LoginParams {
@@ -32,9 +33,18 @@ class ManagerApi {
       .then((res: LoginResponse) => {
         const { data: manager } = res;
         const { auth_token } = manager;
-        this.api.setDefaultHeader(auth_token);
+        const currentUser = {
+          ...manager,
+          type: 'manager',
+        };
+        storage.set('currentUser', currentUser);
+        this.setDefaultHeader(auth_token);
         return manager;
       });
+  }
+
+  setDefaultHeader(authToken: string) {
+    this.api.setDefaultHeader(authToken);
   }
 
   getActivityLogs() {

@@ -5,9 +5,9 @@ import { StyleSheet } from 'react-native';
 import appColors from 'constants/appColors';
 
 interface Props {
-  children: JSX.Element | string;
-  style: object;
-  weight: 'bold' | 'semibold' | 'regular' | 'light' | 'thin';
+  children: JSX.Element | string | JSX.Element[] | string[];
+  style?: object;
+  weight?: 'bold' | 'semibold' | 'regular' | 'light' | 'thin';
 }
 
 export default (props: Props) => {
