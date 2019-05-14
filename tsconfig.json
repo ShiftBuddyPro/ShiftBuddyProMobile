@@ -4,7 +4,8 @@
     "paths": {
       "components/*": ["components/*"],
       "modules/*": ["modules/*"],
-      "services/*": ["services/*"]
+      "services/*": ["services/*"],
+      "types/*": ["types/*"]
     },
     "lib": ["es2016"],
     "target": "es6",

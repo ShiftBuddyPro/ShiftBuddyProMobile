@@ -2,22 +2,16 @@ import Api from './Api';
 import storage from 'react-native-modest-storage';
 import store from 'modules/store';
 import { setCurrentManager } from 'modules/manager';
-
-interface LoginParams {
-  email: string;
-  password: string;
-}
-
-interface LoginResponse {
-  data: Manager;
-}
-
-interface Manager {
-  auth_token: string;
-  name: string;
-  id: string;
-  email: string;
-}
+import {
+  LoginParams,
+  LoginResponse,
+  Manager,
+  EmployeesResponse,
+  Employee,
+  ShiftsResponse,
+  Shift,
+  ActivitiesResponse,
+} from 'types';
 
 class ManagerApi {
   api: Api;
@@ -57,15 +51,21 @@ class ManagerApi {
   }
 
   getActivityLogs() {
-    return this.api.get(this.managerUrl('activity_logs')).then(res => res.data);
+    return this.api
+      .get(this.managerUrl('activity_logs'))
+      .then((res: ActivitiesResponse) => res.data);
   }
 
   getShifts() {
-    return this.api.get(this.managerUrl('shifts')).then(res => res.data.data);
+    return this.api
+      .get(this.managerUrl('shifts'))
+      .then((res: ShiftsResponse) => res.data.data);
   }
 
   getEmployees() {
-    return this.api.get(this.managerUrl(`employees`)).then(res => res.data);
+    return this.api
+      .get(this.managerUrl(`employees`))
+      .then((res: EmployeesResponse) => res.data);
   }
 
   addEmployee({

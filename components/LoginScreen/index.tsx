@@ -143,8 +143,6 @@ const styles = UI.StyleSheet.create({
     width: '85%',
     height: '105%',
     marginTop: '-40%',
-    backgroundColor: 'white',
-    borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
