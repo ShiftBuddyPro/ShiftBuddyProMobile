@@ -15,6 +15,7 @@ import {
 
 class ManagerApi {
   api: Api;
+
   constructor() {
     this.api = new Api();
   }
@@ -113,4 +114,6 @@ class ManagerApi {
   }
 }
 
-export default new ManagerApi();
+const managerApi = new ManagerApi();
+
+export default managerApi;

@@ -4,7 +4,11 @@ import Card from './Card';
 import Text from './Text';
 import Input from './Input';
 import Button from './Button';
-import { FontAwesome } from '@expo/vector-icons';
+import {
+  FontAwesome,
+  MaterialIcons,
+  MaterialCommunityIcons,
+} from '@expo/vector-icons';
 
 export {
   View,
@@ -15,4 +19,6 @@ export {
   Button,
   ScrollView,
   FontAwesome as Icon,
+  MaterialIcons as MIcon,
+  MaterialCommunityIcons as MCIcon,
 };

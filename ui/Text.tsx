@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native';
 import appColors from 'constants/appColors';
 
 interface Props {
-  children: JSX.Element | string | JSX.Element[] | string[];
+  children: JSX.Element | string | (string | JSX.Element)[] | string[];
   style?: object;
   weight?: 'bold' | 'semibold' | 'regular' | 'light' | 'thin';
   size?: 'small' | 'medium' | 'large' | 'extraLarge';
@@ -17,7 +17,7 @@ export default (props: Props) => {
   let fontSize;
   switch (size) {
     case 'small':
-      fontSize = 14;
+      fontSize = 12;
       break;
     case 'medium':
       fontSize = 16;
