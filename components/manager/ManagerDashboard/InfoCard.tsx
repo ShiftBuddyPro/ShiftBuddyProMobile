@@ -15,28 +15,28 @@ const InfoCard = (props: Props) => {
           <UI.Text size="small">Cahaba Heights Texaco</UI.Text>
           <UI.Text size="small">3101 Cahaba Heights Road</UI.Text>
           <UI.Text size="small">Vestavia, AL 35243</UI.Text>
-          <UI.View style={styles.editProfileButton}>
+          <UI.PlainButton style={styles.editProfileButton}>
             <UI.Text style={{ textAlign: 'center' }} weight="semibold">
               Edit Profile
             </UI.Text>
-          </UI.View>
+          </UI.PlainButton>
         </UI.View>
       </UI.View>
       <UI.View style={styles.buttonsRow}>
-        <UI.View style={{ ...styles.button, borderRightWidth: 1 }}>
+        <UI.PlainButton style={{ ...styles.button, borderRightWidth: 1 }}>
           <UI.MIcon color="grey" name="people-outline" size={20} />
           <UI.Text weight="semibold" style={styles.buttonText}>
             Employees
           </UI.Text>
           <UI.MIcon color="grey" name="chevron-right" size={20} />
-        </UI.View>
-        <UI.View style={styles.button}>
+        </UI.PlainButton>
+        <UI.PlainButton style={styles.button}>
           <UI.MIcon color="grey" name="list" size={20} />
           <UI.Text weight="semibold" style={styles.buttonText}>
             Shifts
           </UI.Text>
           <UI.MIcon color="grey" name="chevron-right" size={20} />
-        </UI.View>
+        </UI.PlainButton>
       </UI.View>
     </UI.Card>
   );

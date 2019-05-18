@@ -1,5 +1,5 @@
 import { View } from 'native-base';
-import { StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import Card from './Card';
 import Text from './Text';
 import Input from './Input';
@@ -21,4 +21,5 @@ export {
   FontAwesome as Icon,
   MaterialIcons as MIcon,
   MaterialCommunityIcons as MCIcon,
+  TouchableOpacity as PlainButton,
 };
