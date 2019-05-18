@@ -1,17 +1,10 @@
-import React, { Component } from 'react';
-import { Header, Title, Right, Body } from 'native-base';
-import { connect } from 'react-redux';
+import React from 'react';
 import * as UI from 'ui';
-import axios from 'axios';
 import { StyleSheet } from 'react-native';
-import { AsyncStorage } from 'react-native';
-import ManagerApi from 'services/ManagerApi';
-import { Employee, Shift } from 'types';
-import appColors from 'constants/appColors';
 
 interface Props {
   activityType: ActivityType;
-  activityMessage: 'string';
+  activityMessage: string;
 }
 
 export enum ActivityType {
@@ -49,7 +42,7 @@ const ActivityRow = (props: Props) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    marginBottom: 45,
+    marginBottom: 15,
   },
 
   iconContainer: {

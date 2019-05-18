@@ -1,18 +1,6 @@
-import React, { Component } from 'react';
-import { Header, Title, Right, Body } from 'native-base';
-import { connect } from 'react-redux';
+import React from 'react';
 import * as UI from 'ui';
-import axios from 'axios';
-import { StyleSheet } from 'react-native';
-import { AsyncStorage } from 'react-native';
-import ManagerApi from 'services/ManagerApi';
-import { Employee, Shift } from 'types';
-import appColors from 'constants/appColors';
 import ActivityRow, { ActivityType } from './ActivityRow';
-
-interface State {
-  activities: any;
-}
 
 interface Props {}
 
@@ -40,13 +28,28 @@ const activities = [
 ];
 
 const Activities = (props: Props) => {
-  return activities.map(activity => (
-    <ActivityRow
-      key={activity.activityMessage}
-      activityType={activity.activityType}
-      activityMessage={activity.activityMessage}
-    />
-  ));
+  return (
+    <UI.View style={{ flex: 3 }}>
+      <UI.Text
+        style={{ marginBottom: 15, paddingHorizontal: 20 }}
+        weight="semibold"
+        size="large"
+      >
+        Recent Activities
+      </UI.Text>
+      <UI.ScrollView style={{ flex: 1 }}>
+        <UI.View style={{ paddingHorizontal: 20, paddingTop: 10 }}>
+          {activities.map(activity => (
+            <ActivityRow
+              key={activity.activityMessage}
+              activityType={activity.activityType}
+              activityMessage={activity.activityMessage}
+            />
+          ))}
+        </UI.View>
+      </UI.ScrollView>
+    </UI.View>
+  );
 };
 
 export default Activities;
