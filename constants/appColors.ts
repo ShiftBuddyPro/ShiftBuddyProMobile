@@ -1,4 +1,22 @@
 export default {
+  grey: {
+    lighter: '#f5f5f5',
+    light: '#DDD',
+    regular: 'silver',
+    dark: '#303030',
+  },
+
+  black: '2b2b2b',
+
+  // orange: {
+  //   regular: '#FDA50f'
+  // },
+
+  primary: {
+    light: '#3498db',
+    regular: '#2980b9',
+  },
+
   darkerOrange: '#ff8547',
   darkOrange: '#ff9447',
   orange: '#FDA50F',

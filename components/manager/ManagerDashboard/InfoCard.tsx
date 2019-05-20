@@ -1,9 +1,14 @@
 import React from 'react';
 import * as UI from 'ui';
+import appColors from 'constants/appColors';
 
-interface Props {}
+interface Props {
+  navigate: any;
+}
 
 const InfoCard = (props: Props) => {
+  const { navigate } = props;
+
   return (
     <UI.Card style={styles.card}>
       <UI.View style={styles.avatarAndInfoRow}>
@@ -15,7 +20,10 @@ const InfoCard = (props: Props) => {
           <UI.Text size="small">Cahaba Heights Texaco</UI.Text>
           <UI.Text size="small">3101 Cahaba Heights Road</UI.Text>
           <UI.Text size="small">Vestavia, AL 35243</UI.Text>
-          <UI.PlainButton style={styles.editProfileButton}>
+          <UI.PlainButton
+            onPress={() => navigate('ManagerAccount')}
+            style={styles.editProfileButton}
+          >
             <UI.Text style={{ textAlign: 'center' }} weight="semibold">
               Edit Profile
             </UI.Text>
@@ -23,19 +31,25 @@ const InfoCard = (props: Props) => {
         </UI.View>
       </UI.View>
       <UI.View style={styles.buttonsRow}>
-        <UI.PlainButton style={{ ...styles.button, borderRightWidth: 1 }}>
-          <UI.MIcon color="grey" name="people-outline" size={20} />
+        <UI.PlainButton
+          onPress={() => navigate('ManagerEmployees')}
+          style={{ ...styles.button, borderRightWidth: 1 }}
+        >
+          <UI.MIcon style={styles.buttonIcon} name="people-outline" />
           <UI.Text weight="semibold" style={styles.buttonText}>
             Employees
           </UI.Text>
-          <UI.MIcon color="grey" name="chevron-right" size={20} />
+          <UI.MIcon style={styles.buttonArrow} name="chevron-right" />
         </UI.PlainButton>
-        <UI.PlainButton style={styles.button}>
-          <UI.MIcon color="grey" name="list" size={20} />
+        <UI.PlainButton
+          onPress={() => navigate('ManagerShifts')}
+          style={styles.button}
+        >
+          <UI.MIcon name="list" style={styles.buttonIcon} />
           <UI.Text weight="semibold" style={styles.buttonText}>
             Shifts
           </UI.Text>
-          <UI.MIcon color="grey" name="chevron-right" size={20} />
+          <UI.MIcon style={styles.buttonArrow} name="chevron-right" />
         </UI.PlainButton>
       </UI.View>
     </UI.Card>
@@ -54,11 +68,11 @@ const styles = UI.StyleSheet.create({
 
   avatarAndInfoRow: {
     flexDirection: 'row',
-    borderBottomColor: 'grey',
+    borderBottomColor: appColors.grey.light,
     borderBottomWidth: 1,
     width: '90%',
     marginBottom: 10,
-    paddingBottom: 15,
+    paddingBottom: 35,
   },
 
   avatarContainer: {
@@ -110,14 +124,26 @@ const styles = UI.StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderRightColor: 'grey',
+    borderRightColor: appColors.grey.light,
     paddingLeft: 5,
     paddingRight: 5,
+    paddingTop: 5,
+    paddingBottom: 5,
+  },
+
+  buttonIcon: {
+    fontSize: 20,
+    color: appColors.orange,
   },
 
   buttonText: {
     marginRight: 'auto',
     marginLeft: 5,
+  },
+
+  buttonArrow: {
+    fontSize: 20,
+    color: appColors.orange,
   },
 });
 

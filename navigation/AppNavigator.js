@@ -3,10 +3,7 @@ import {
   createAppContainer,
   createSwitchNavigator,
 } from 'react-navigation';
-import LoginScreen from '@components/LoginScreen';
 import EmployeeLogin from '@components/employee/EmployeeLogin';
-import ManagerLogin from '@components/manager/ManagerLogin';
-import ManagerDashboard from '@components/manager/ManagerDashboard';
 import EmployeeDashboard from '@components/employee/EmployeeDashboard';
 import EmployeeShift from '@components/employee/EmployeeShift';
 import Inventory from '@components/employee/employeeShift/Inventory';
@@ -14,11 +11,22 @@ import Change from '@components/employee/employeeShift/Change';
 import TrackedItems from '@components/manager/settings/TrackedItems';
 import ManagerShift from '@components/manager/ManagerShift';
 
+import LoginScreen from '@components/LoginScreen';
+import ManagerDashboard from '@components/manager/ManagerDashboard';
+import ManagerEmployees from '@components/manager/ManagerEmployees';
+import ManagerShifts from '@components/manager/ManagerShifts';
+import ManagerSettings from '@components/manager/ManagerSettings';
+import ManagerAccount from '@components/manager/ManagerAccount';
+
 const AppStack = createStackNavigator(
   {
     Home: { screen: LoginScreen },
-    ManagerLogin: { screen: ManagerLogin },
     ManagerDashboard: { screen: ManagerDashboard },
+    ManagerEmployees: { screen: ManagerEmployees },
+    ManagerShifts: { screen: ManagerShifts },
+    ManagerSettings: { screen: ManagerSettings },
+    ManagerAccount: { screen: ManagerAccount },
+
     EmployeeLogin: { screen: EmployeeLogin },
     EmployeeDashboard: { screen: EmployeeDashboard },
     EmployeeShift: { screen: EmployeeShift },

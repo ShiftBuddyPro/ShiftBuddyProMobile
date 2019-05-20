@@ -1,6 +1,7 @@
 import React from 'react';
 import * as UI from 'ui';
 import { StyleSheet } from 'react-native';
+import appColors from 'constants/appColors';
 
 interface Props {
   activityType: ActivityType;

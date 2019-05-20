@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as UI from 'ui';
 import { AsyncStorage } from 'react-native';
 import ManagerApi from 'services/ManagerApi';
-import Activities from './activities';
+import Activities from './Activities';
 import InfoCard from './InfoCard';
 import DashboardHeader from './DashboardHeader';
 
@@ -11,7 +11,11 @@ interface State {
   activities: any;
 }
 
-interface Props {}
+interface Props {
+  navigation: {
+    navigate: any;
+  };
+}
 
 export class ManagerDashboard extends Component<Props, State> {
   state = {
@@ -27,7 +31,7 @@ export class ManagerDashboard extends Component<Props, State> {
       <UI.View style={styles.fullContainer}>
         <DashboardHeader />
         <UI.View style={styles.container}>
-          <InfoCard />
+          <InfoCard navigate={this.props.navigation.navigate} />
           <Activities />
         </UI.View>
       </UI.View>
