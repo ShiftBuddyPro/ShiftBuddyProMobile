@@ -2,6 +2,7 @@ import React from 'react';
 import * as UI from 'ui';
 import appColors from 'constants/appColors';
 import { Shift } from 'types';
+import moment from 'moment';
 
 interface Props {
   shift: Shift;
@@ -9,10 +10,11 @@ interface Props {
 
 const ShiftRow = (props: Props) => {
   const { shift } = props;
-  const { created_at } = shift.attributes;
+  const { created_at, employee_name } = shift.attributes;
   const date = new Date(created_at);
   const month = date.toLocaleString('en-us', { month: 'long' });
   const dayOfMonth = date.getDate().toString();
+  const startTime = moment(date).format('hh:mm A');
 
   return (
     <UI.View style={styles.container}>
@@ -22,7 +24,10 @@ const ShiftRow = (props: Props) => {
       </UI.View>
       <UI.PlainButton style={{ flex: 1 }}>
         <UI.Card style={styles.card}>
-          <UI.Text>{shift.attributes.employee_name}</UI.Text>
+          <UI.View>
+            <UI.Text style={{ marginBottom: 2 }}>{employee_name}</UI.Text>
+            <UI.Text size="small">{startTime}</UI.Text>
+          </UI.View>
           <UI.MIcon name="chevron-right" style={styles.rightArrow} />
         </UI.Card>
       </UI.PlainButton>
