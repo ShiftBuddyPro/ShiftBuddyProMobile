@@ -34,7 +34,8 @@ export interface ShiftsResponse {
 
 export interface Shift {
   attributes: {
-    data: Date;
+    created_at: Date;
+    employee_id: number;
     employee_name: string;
     id: number;
   };
