@@ -1,15 +1,12 @@
 import { View } from 'native-base';
-import {
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import { StyleSheet, ScrollView, FlatList } from 'react-native';
 import Card from './Card';
 import Text from './Text';
 import Input from './Input';
 import Button from './Button';
 import BackHeader from './BackHeader';
+import PlainButton from './PlainButton';
+import ErrorText from './ErrorText';
 import {
   FontAwesome,
   MaterialIcons,
@@ -27,7 +24,8 @@ export {
   FontAwesome as Icon,
   MaterialIcons as MIcon,
   MaterialCommunityIcons as MCIcon,
-  TouchableOpacity as PlainButton,
+  PlainButton,
   BackHeader,
+  ErrorText,
   FlatList as List,
 };

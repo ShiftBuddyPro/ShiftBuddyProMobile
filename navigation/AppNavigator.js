@@ -14,6 +14,7 @@ import ManagerShift from '@components/manager/ManagerShift';
 import LoginScreen from '@components/LoginScreen';
 import ManagerDashboard from '@components/manager/ManagerDashboard';
 import ManagerEmployees from '@components/manager/ManagerEmployees';
+import ManagerAddEmployee from '@components/manager/ManagerAddEmployee';
 import ManagerShifts from '@components/manager/ManagerShifts';
 import ManagerSettings from '@components/manager/ManagerSettings';
 import ManagerAccount from '@components/manager/ManagerAccount';
@@ -23,6 +24,7 @@ const AppStack = createStackNavigator(
     Home: { screen: LoginScreen },
     ManagerDashboard: { screen: ManagerDashboard },
     ManagerEmployees: { screen: ManagerEmployees },
+    ManagerAddEmployee: { screen: ManagerAddEmployee },
     ManagerShifts: { screen: ManagerShifts },
     ManagerSettings: { screen: ManagerSettings },
     ManagerAccount: { screen: ManagerAccount },

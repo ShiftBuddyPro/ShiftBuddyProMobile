@@ -18,20 +18,43 @@ class ManagerEmployees extends React.Component<Props, State> {
     employees: [],
   };
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.fetchEmployees();
+  }
+
+  fetchEmployees = async () => {
     const employees: Employee[] = await managerApi.getEmployees();
     this.setState({ employees });
+  };
+
+  renderAddEmployeeButton() {
+    const { navigation } = this.props;
+    return (
+      <UI.PlainButton
+        shadow="medium"
+        onPress={() =>
+          navigation.navigate('ManagerAddEmployee', {
+            fetchEmployees: this.fetchEmployees,
+          })
+        }
+        style={styles.addEmployeeButton}
+      >
+        <UI.MIcon name="person-add" style={styles.addEmployeeIcon} />
+      </UI.PlainButton>
+    );
   }
 
   render() {
+    const { navigation } = this.props;
     const { employees } = this.state;
     return (
       <UI.View style={styles.container}>
         <UI.View style={styles.headerContainer}>
           <UI.BackHeader
             title="Employees"
-            onBackPress={() => this.props.navigation.pop()}
+            onBackPress={() => navigation.pop()}
           />
+          {this.renderAddEmployeeButton()}
         </UI.View>
         <UI.List
           data={employees}
@@ -55,6 +78,24 @@ const styles = UI.StyleSheet.create({
     paddingBottom: 10,
     borderBottomColor: appColors.grey.regular,
     marginBottom: 20,
+    flexDirection: 'row',
+  },
+
+  addEmployeeButton: {
+    alignSelf: 'flex-end',
+    marginLeft: 'auto',
+    marginRight: 15,
+    backgroundColor: appColors.white,
+    height: 35,
+    width: 80,
+    borderRadius: 30,
+    justifyContent: 'center',
+  },
+
+  addEmployeeIcon: {
+    textAlign: 'center',
+    color: appColors.success.regular,
+    fontSize: 22,
   },
 });
 

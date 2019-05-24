@@ -8,6 +8,8 @@ export default {
 
   black: '2b2b2b',
 
+  white: 'white',
+
   // orange: {
   //   regular: '#FDA50f'
   // },
@@ -15,6 +17,10 @@ export default {
   primary: {
     light: '#3498db',
     regular: '#2980b9',
+  },
+
+  success: {
+    regular: 'green',
   },
 
   darkerOrange: '#ff8547',
@@ -29,6 +35,5 @@ export default {
   lightGrey: '#d3d3d3',
   lighterGrey: '#E8E8E8',
   lightestGrey: '#F5F5F5',
-  white: 'white',
   darkRed: '#c23b22',
 };
