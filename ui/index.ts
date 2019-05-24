@@ -7,6 +7,7 @@ import Button from './Button';
 import BackHeader from './BackHeader';
 import PlainButton from './PlainButton';
 import ErrorText from './ErrorText';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {
   FontAwesome,
   MaterialIcons,
@@ -27,5 +28,6 @@ export {
   PlainButton,
   BackHeader,
   ErrorText,
+  KeyboardAwareScrollView,
   FlatList as List,
 };

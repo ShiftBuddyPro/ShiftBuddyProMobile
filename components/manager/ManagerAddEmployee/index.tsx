@@ -75,50 +75,52 @@ class ManagerAddEmployee extends React.Component<Props, State> {
     const setField = (fieldName: string) => (fieldValue: string) =>
       this.setState({ [fieldName]: fieldValue });
     return (
-      <UI.View style={styles.container}>
-        <UI.View style={styles.headerContainer}>
-          <UI.BackHeader
-            title="Add Employee"
-            onBackPress={() => this.props.navigation.pop()}
-          />
+      <UI.KeyboardAwareScrollView>
+        <UI.View style={styles.container}>
+          <UI.View style={styles.headerContainer}>
+            <UI.BackHeader
+              title="Add Employee"
+              onBackPress={() => this.props.navigation.pop()}
+            />
+          </UI.View>
+          <UI.Card style={styles.card}>
+            <UI.Input
+              label="Name"
+              value={name}
+              onChangeText={setField('name')}
+              containerStyle={styles.inputContainer}
+            />
+            <UI.Input
+              label="Username"
+              value={username}
+              onChangeText={setField('username')}
+              containerStyle={styles.inputContainer}
+            />
+            <UI.Input
+              label="Password"
+              value={password}
+              onChangeText={setField('password')}
+              containerStyle={styles.inputContainer}
+              secureTextEntry
+            />
+            <UI.Input
+              label="Password Confirmation"
+              value={passwordConfirmation}
+              onChangeText={setField('passwordConfirmation')}
+              containerStyle={styles.inputContainer}
+              secureTextEntry
+            />
+            <UI.ErrorText text={error} />
+            <UI.Button
+              loading={loading}
+              onPress={this.handleSavePress}
+              style={styles.saveButton}
+            >
+              Save
+            </UI.Button>
+          </UI.Card>
         </UI.View>
-        <UI.Card style={styles.card}>
-          <UI.Input
-            label="Name"
-            value={name}
-            onChangeText={setField('name')}
-            containerStyle={styles.inputContainer}
-          />
-          <UI.Input
-            label="Username"
-            value={username}
-            onChangeText={setField('username')}
-            containerStyle={styles.inputContainer}
-          />
-          <UI.Input
-            label="Password"
-            value={password}
-            onChangeText={setField('password')}
-            containerStyle={styles.inputContainer}
-            secureTextEntry
-          />
-          <UI.Input
-            label="Password Confirmation"
-            value={passwordConfirmation}
-            onChangeText={setField('passwordConfirmation')}
-            containerStyle={styles.inputContainer}
-            secureTextEntry
-          />
-          <UI.ErrorText text={error} />
-          <UI.Button
-            loading={loading}
-            onPress={this.handleSavePress}
-            style={styles.saveButton}
-          >
-            Save
-          </UI.Button>
-        </UI.Card>
-      </UI.View>
+      </UI.KeyboardAwareScrollView>
     );
   }
 }
