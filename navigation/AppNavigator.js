@@ -9,7 +9,6 @@ import EmployeeShift from '@components/employee/EmployeeShift';
 import Inventory from '@components/employee/employeeShift/Inventory';
 import Change from '@components/employee/employeeShift/Change';
 import TrackedItems from '@components/manager/settings/TrackedItems';
-import ManagerShift from '@components/manager/ManagerShift';
 
 import LoginScreen from '@components/LoginScreen';
 import ManagerDashboard from '@components/manager/ManagerDashboard';
@@ -19,6 +18,7 @@ import ManagerEmployeeProfile from '@components/manager/ManagerEmployeeProfile';
 import ManagerShifts from '@components/manager/ManagerShifts';
 import ManagerSettings from '@components/manager/ManagerSettings';
 import ManagerAccount from '@components/manager/ManagerAccount';
+import ManagerShift from '@components/manager/ManagerShift';
 
 const AppStack = createStackNavigator(
   {

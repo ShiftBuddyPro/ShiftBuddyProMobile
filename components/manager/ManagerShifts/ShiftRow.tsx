@@ -6,10 +6,11 @@ import moment from 'moment';
 
 interface Props {
   shift: Shift;
+  navigate: any;
 }
 
 const ShiftRow = (props: Props) => {
-  const { shift } = props;
+  const { shift, navigate } = props;
   const { created_at, employee_name } = shift.attributes;
   const date = new Date(created_at);
   const month = date.toLocaleString('en-us', { month: 'long' });
@@ -22,7 +23,10 @@ const ShiftRow = (props: Props) => {
         <UI.Text size="small">{month}</UI.Text>
         <UI.Text size="small">{dayOfMonth}</UI.Text>
       </UI.View>
-      <UI.PlainButton style={{ flex: 1 }}>
+      <UI.PlainButton
+        onPress={() => navigate('ManagerShift', { shiftId: shift.id })}
+        style={{ flex: 1 }}
+      >
         <UI.Card style={styles.card}>
           <UI.View>
             <UI.Text style={{ marginBottom: 2 }}>{employee_name}</UI.Text>

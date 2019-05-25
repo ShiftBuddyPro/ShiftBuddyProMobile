@@ -35,7 +35,9 @@ class ManagerEmployees extends React.Component<Props, State> {
         </UI.View>
         <UI.List
           data={shifts}
-          renderItem={({ item }) => <ShiftRow shift={item} />}
+          renderItem={({ item }) => (
+            <ShiftRow navigate={this.props.navigation.navigate} shift={item} />
+          )}
           keyExtractor={(item: Shift) => item.id.toString()}
         />
       </UI.View>
