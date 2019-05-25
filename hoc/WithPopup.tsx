@@ -2,7 +2,9 @@ import * as React from 'react';
 import { PopupConsumer } from '../context/PopupContext';
 import { ShowPopupObject } from '../context/PopupContext';
 
-const WithPopup = (WrappedComponent: React.ComponentType) => {
+type P = any;
+
+const WithPopup = (WrappedComponent: React.ComponentType<P>) => {
   return (props: any) => (
     <PopupConsumer>
       {({ showPopup, closePopup }) => (

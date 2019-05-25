@@ -6,10 +6,11 @@ import { Employee } from 'types';
 interface Props {
   employee: Employee;
   navigate: any;
+  fetchEmployees: () => void;
 }
 
 const EmployeeRow = (props: Props) => {
-  const { employee, navigate } = props;
+  const { employee, navigate, fetchEmployees } = props;
 
   return (
     <UI.View style={styles.container}>
@@ -18,7 +19,10 @@ const EmployeeRow = (props: Props) => {
       </UI.View>
       <UI.PlainButton
         onPress={() =>
-          navigate('ManagerEmployeeProfile', { employeeId: employee.id })
+          navigate('ManagerEmployeeProfile', {
+            employeeId: employee.id,
+            fetchEmployees,
+          })
         }
         style={{ flex: 1 }}
       >

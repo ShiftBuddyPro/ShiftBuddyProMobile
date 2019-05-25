@@ -66,7 +66,11 @@ class ManagerEmployees extends React.Component<Props, State> {
         <UI.List
           data={employees}
           renderItem={({ item }) => (
-            <EmployeeRow navigate={navigation.navigate} employee={item} />
+            <EmployeeRow
+              fetchEmployees={this.fetchEmployees}
+              navigate={navigation.navigate}
+              employee={item}
+            />
           )}
           keyExtractor={(item: Employee) => item.id.toString()}
         />

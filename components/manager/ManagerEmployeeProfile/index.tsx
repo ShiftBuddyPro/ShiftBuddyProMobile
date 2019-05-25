@@ -17,6 +17,7 @@ interface State {
 
 interface Props {
   navigation: any;
+  fetchEmployees: () => void;
 }
 
 class ManagerEmployeeProfile extends Component<Props, State> {
@@ -55,6 +56,7 @@ class ManagerEmployeeProfile extends Component<Props, State> {
 
   render() {
     const { employee, shifts, loading } = this.state;
+    const { fetchEmployees } = this.props.navigation.state.params;
 
     if (loading) return <UI.LoadingScreen />;
 
@@ -66,6 +68,7 @@ class ManagerEmployeeProfile extends Component<Props, State> {
           <EmployeeProfileCard
             employee={employee}
             navigate={navigation.navigate}
+            fetchEmployees={fetchEmployees}
           />
           <EmployeeShifts shifts={shifts} navigate={navigation.navigate} />
         </UI.View>

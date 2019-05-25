@@ -94,7 +94,7 @@ class ManagerApi {
       .then(res => res);
   }
 
-  deleteEmployee(employeeId) {
+  removeEmployee(employeeId) {
     return this.api.client
       .delete(`/api/v1/employees/${employeeId}`)
       .then(res => res);

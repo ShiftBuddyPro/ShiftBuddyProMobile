@@ -23,7 +23,7 @@ export default (props: Props) => {
       fontSize = 16;
       break;
     case 'large':
-      fontSize = 24;
+      fontSize = 20;
       break;
     case 'extraLarge':
       fontSize = 28;

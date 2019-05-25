@@ -1,15 +1,47 @@
 import React from 'react';
 import * as UI from 'ui';
 import appColors from 'constants/appColors';
-import { Employee } from 'types/';
+import WithPopup, { ShowPopupObject } from '../../../hoc/WithPopup';
+import { Employee } from 'types';
+import managerApi from 'services/ManagerApi';
 
 interface Props {
   navigate: any;
   employee: Employee;
+  showPopup: (showPopupObject: ShowPopupObject) => void;
+  closePopup: () => void;
+  fetchEmployees: () => void;
 }
 
 const InfoCard = (props: Props) => {
-  const { navigate, employee } = props;
+  const { navigate, employee, closePopup, showPopup, fetchEmployees } = props;
+
+  const removeEmployee = () => {
+    managerApi.removeEmployee(employee.id).then(() => {
+      closePopup();
+      fetchEmployees();
+      navigate('ManagerEmployees');
+    });
+  };
+
+  const renderRemoveEmployeePopup = () => {
+    return (
+      <UI.View style={styles.removePopupContainer}>
+        <UI.Text size="large" style={styles.removePopupHeader}>
+          Are you sure you want to remove {employee.name}?
+        </UI.Text>
+        <UI.View style={styles.removePopupButtonsRow}>
+          <UI.Button
+            onPress={removeEmployee}
+            style={styles.removePopupRemoveButton}
+          >
+            Remove
+          </UI.Button>
+          <UI.Button onPress={closePopup}>Cancel</UI.Button>
+        </UI.View>
+      </UI.View>
+    );
+  };
 
   const renderTopContainer = () => {
     return (
@@ -32,25 +64,20 @@ const InfoCard = (props: Props) => {
     );
   };
 
-  const renderBottomContainer = () => {
+  const renderButtonsRow = () => {
     return (
       <UI.View style={styles.buttonsRow}>
-        <UI.PlainButton
-          onPress={() => navigate('ManagerEmployees')}
-          style={{ ...styles.button, borderRightWidth: 1 }}
-        >
+        <UI.PlainButton style={{ ...styles.button, borderRightWidth: 1 }}>
           <UI.MCIcon style={styles.buttonIcon} name="account-edit" />
-          <UI.Text weight="semibold" style={styles.buttonText}>
-            Edit
-          </UI.Text>
+          <UI.Text weight="semibold">Edit</UI.Text>
         </UI.PlainButton>
         <UI.PlainButton
-          onPress={() => navigate('ManagerShifts')}
+          onPress={() => showPopup({ content: renderRemoveEmployeePopup() })}
           style={styles.removeButton}
         >
           <UI.MCIcon style={styles.removeIcon} name="account-remove" />
           <UI.Text weight="semibold" style={styles.removeButtonText}>
-            Delete
+            Remove
           </UI.Text>
         </UI.PlainButton>
       </UI.View>
@@ -60,7 +87,7 @@ const InfoCard = (props: Props) => {
   return (
     <UI.Card style={styles.card}>
       {renderTopContainer()}
-      {renderBottomContainer()}
+      {renderButtonsRow()}
     </UI.Card>
   );
 };
@@ -159,18 +186,31 @@ const styles = UI.StyleSheet.create({
     fontSize: 20,
     color: appColors.darkBlue,
     marginRight: 5,
-    textAlign: 'center',
-  },
-
-  buttonText: {
-    marginLeft: 5,
-    textAlign: 'center',
   },
 
   buttonArrow: {
     fontSize: 20,
     color: appColors.orange,
   },
+
+  removePopupContainer: {
+    paddingTop: 20,
+  },
+
+  removePopupHeader: {
+    textAlign: 'center',
+    marginBottom: 30,
+    color: appColors.grey.dark,
+  },
+
+  removePopupButtonsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+
+  removePopupRemoveButton: {
+    backgroundColor: appColors.darkRed,
+  },
 });
 
-export default InfoCard;
+export default WithPopup(InfoCard);
