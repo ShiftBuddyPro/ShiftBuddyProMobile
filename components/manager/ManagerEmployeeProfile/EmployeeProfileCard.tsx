@@ -1,7 +1,7 @@
 import React from 'react';
 import * as UI from 'ui';
 import appColors from 'constants/appColors';
-import WithPopup, { ShowPopupObject } from '../../../hoc/WithPopup';
+import WithPopup, { ShowPopupObject } from 'hoc/WithPopup';
 import { Employee } from 'types';
 import managerApi from 'services/ManagerApi';
 

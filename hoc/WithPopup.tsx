@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { PopupConsumer } from '../context/PopupContext';
-import { ShowPopupObject } from '../context/PopupContext';
+import { PopupConsumer } from 'context/PopupContext';
+import { ShowPopupObject } from 'context/PopupContext';
 
 type P = any;
 

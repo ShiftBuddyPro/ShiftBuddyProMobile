@@ -5,7 +5,9 @@
       "components/*": ["components/*"],
       "modules/*": ["modules/*"],
       "services/*": ["services/*"],
-      "types/*": ["types/*"]
+      "types/*": ["types/*"],
+      "hoc/*": ["hoc/*"],
+      "context/*": ["context/*"]
     },
     "lib": ["es2016"],
     "target": "es6",
