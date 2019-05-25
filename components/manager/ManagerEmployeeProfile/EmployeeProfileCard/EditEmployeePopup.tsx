@@ -88,6 +88,7 @@ class EditEmployeePopup extends React.Component<Props, State> {
           <UI.Input
             label="Password"
             value={password}
+            placeholder="******"
             onChangeText={setField('password')}
             containerStyle={styles.inputContainer}
             secureTextEntry
@@ -95,6 +96,7 @@ class EditEmployeePopup extends React.Component<Props, State> {
           <UI.Input
             label="Password Confirmation"
             value={passwordConfirmation}
+            placeholder="******"
             onChangeText={setField('passwordConfirmation')}
             containerStyle={styles.inputContainer}
             secureTextEntry

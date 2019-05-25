@@ -18,7 +18,7 @@ const RemoveEmployeePopup = (props: Props) => {
   };
 
   return (
-    <UI.View style={styles.container}>
+    <UI.View>
       <UI.Text size="large" style={styles.header}>
         Are you sure you want to remove {employee.name}?
       </UI.Text>
