@@ -1,5 +1,5 @@
 import React from 'react';
-import * as UI from 'UI';
+import * as UI from 'ui';
 import { Employee } from 'types';
 import appColors from 'constants/appColors';
 

@@ -4,10 +4,8 @@ import * as UI from 'ui';
 import { AsyncStorage } from 'react-native';
 import EmployeeShifts from './EmployeeShifts';
 import EmployeeProfileCard from './EmployeeProfileCard';
-import { Header, Title, Body } from 'native-base';
 import { Shift, Employee } from 'types';
 import managerApi from 'services/ManagerApi';
-import employeeApi from 'services/EmployeeApi';
 
 interface State {
   shifts: Shift[];
@@ -33,7 +31,11 @@ class ManagerEmployeeProfile extends Component<Props, State> {
     loading: false,
   };
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.fetchEmployeeData();
+  }
+
+  fetchEmployeeData = async () => {
     this.setState({ loading: true });
     const { employeeId } = this.props.navigation.state.params;
     const [employee, shifts] = await Promise.all([
@@ -41,7 +43,7 @@ class ManagerEmployeeProfile extends Component<Props, State> {
       managerApi.getShifts(),
     ]);
     this.setState({ employee, shifts, loading: false });
-  }
+  };
 
   renderHeader() {
     const { employee } = this.state;
@@ -69,6 +71,7 @@ class ManagerEmployeeProfile extends Component<Props, State> {
             employee={employee}
             navigate={navigation.navigate}
             fetchEmployees={fetchEmployees}
+            fetchEmployeeData={this.fetchEmployeeData}
           />
           <EmployeeShifts shifts={shifts} navigate={navigation.navigate} />
         </UI.View>
@@ -89,7 +92,7 @@ const styles = UI.StyleSheet.create({
   },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
   manager: state.manager,
 });
 

@@ -11,11 +11,13 @@ interface State {
   content: JSX.Element;
   closePopup: any;
   showPopup: any;
+  fullscreen: boolean;
 }
 
 export interface ShowPopupObject {
   content: State['content'];
   delay?: boolean;
+  fullscreen?: State['fullscreen'];
 }
 
 const PopupContext = React.createContext({
@@ -32,24 +34,30 @@ class PopupProvider extends React.Component<Props, State> {
     closePopup: () => {
       this.setState({ popupVisible: false });
     },
-    showPopup: ({ content, delay }: ShowPopupObject) => {
+    showPopup: ({ content, delay, fullscreen = false }: ShowPopupObject) => {
       setTimeout(
         () => {
-          this.setState({ popupVisible: true, content: content });
+          this.setState({ popupVisible: true, content: content, fullscreen });
         },
         delay ? 600 : 0
       );
     },
+    fullscreen: false,
   };
 
   renderPopup() {
-    const { popupVisible, closePopup, content } = this.state;
+    const { popupVisible, closePopup, content, fullscreen } = this.state;
+
+    const popupContainerStyle = {
+      ...styles.popupContainer,
+      ...(fullscreen && { flex: 1, paddingHorizontal: 0 }),
+    };
 
     return (
       <UI.Modal
         visible={popupVisible}
         onClose={closePopup}
-        style={styles.popupContainer}
+        style={popupContainerStyle}
       >
         {content}
       </UI.Modal>
@@ -71,6 +79,7 @@ const styles = StyleSheet.create({
     height: 'auto',
     paddingBottom: 45,
     paddingHorizontal: 15,
+    paddingTop: 20,
   },
 });
 

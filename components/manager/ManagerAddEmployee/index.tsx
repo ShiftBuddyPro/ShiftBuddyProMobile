@@ -72,8 +72,10 @@ class ManagerAddEmployee extends React.Component<Props, State> {
       loading,
       error,
     } = this.state;
+
     const setField = (fieldName: string) => (fieldValue: string) =>
       this.setState({ [fieldName]: fieldValue });
+
     return (
       <UI.KeyboardAwareScrollView>
         <UI.View style={styles.container}>

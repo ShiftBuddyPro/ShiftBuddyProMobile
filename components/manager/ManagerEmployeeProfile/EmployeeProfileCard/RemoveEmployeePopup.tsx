@@ -5,25 +5,25 @@ import { Employee } from 'types';
 
 interface Props {
   employee: Employee;
-  onRemovePress: () => void;
+  removeEmployee: () => void;
   closePopup: () => void;
 }
 
 const RemoveEmployeePopup = (props: Props) => {
-  const { closePopup, employee, onRemovePress } = props;
+  const { closePopup, employee, removeEmployee } = props;
 
   const handleRemovePress = () => {
     closePopup();
-    onRemovePress();
+    removeEmployee();
   };
 
   return (
-    <UI.View style={styles.popupContainer}>
-      <UI.Text size="large" style={styles.popupHeader}>
+    <UI.View style={styles.container}>
+      <UI.Text size="large" style={styles.header}>
         Are you sure you want to remove {employee.name}?
       </UI.Text>
-      <UI.View style={styles.popupButtonsRow}>
-        <UI.Button onPress={handleRemovePress} style={styles.popupRemoveButton}>
+      <UI.View style={styles.buttonsRow}>
+        <UI.Button onPress={handleRemovePress} style={styles.removeButton}>
           Remove
         </UI.Button>
         <UI.Button onPress={closePopup}>Cancel</UI.Button>
@@ -33,22 +33,18 @@ const RemoveEmployeePopup = (props: Props) => {
 };
 
 const styles = UI.StyleSheet.create({
-  popupContainer: {
-    paddingTop: 20,
-  },
-
-  popupHeader: {
+  header: {
     textAlign: 'center',
     marginBottom: 30,
     color: appColors.grey.dark,
   },
 
-  popupButtonsRow: {
+  buttonsRow: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
 
-  popupRemoveButton: {
+  removeButton: {
     backgroundColor: appColors.darkRed,
   },
 });

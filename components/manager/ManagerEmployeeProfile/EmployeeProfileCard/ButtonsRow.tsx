@@ -1,40 +1,63 @@
 import React from 'react';
 import * as UI from 'ui';
 import appColors from 'constants/appColors';
-import RemoveEmployeePopup from './RemoveEmployeePopup';
 import WithPopup, { ShowPopupObject } from 'hoc/WithPopup';
 import { Employee } from 'types';
+import RemoveEmployeePopup from './RemoveEmployeePopup';
+import EditEmployeePopup from './EditEmployeePopup';
 
 interface Props {
   showPopup: (showPopupObject: ShowPopupObject) => void;
   closePopup: () => void;
   removeEmployee: () => void;
   employee: Employee;
+  fetchEmployeeData: () => void;
 }
 
 const ButtonsRow = (props: Props) => {
-  const { showPopup, closePopup, removeEmployee, employee } = props;
+  const {
+    showPopup,
+    closePopup,
+    removeEmployee,
+    employee,
+    fetchEmployeeData,
+  } = props;
+
+  const handleEditPress = () => {
+    showPopup({
+      content: (
+        <EditEmployeePopup
+          fetchEmployeeData={fetchEmployeeData}
+          closePopup={closePopup}
+          employee={employee}
+        />
+      ),
+      fullscreen: true,
+    });
+  };
+
+  const handleRemovePress = () => {
+    showPopup({
+      content: (
+        <RemoveEmployeePopup
+          employee={employee}
+          removeEmployee={removeEmployee}
+          closePopup={closePopup}
+        />
+      ),
+    });
+  };
 
   return (
     <UI.View style={styles.buttonsRow}>
-      <UI.PlainButton style={{ ...styles.button, borderRightWidth: 1 }}>
+      <UI.PlainButton
+        onPress={handleEditPress}
+        style={{ ...styles.button, borderRightWidth: 1 }}
+      >
         <UI.MCIcon style={styles.buttonIcon} name="account-edit" />
         <UI.Text weight="semibold">Edit</UI.Text>
       </UI.PlainButton>
-      <UI.PlainButton
-        onPress={() =>
-          showPopup({
-            content: (
-              <RemoveEmployeePopup
-                employee={employee}
-                onRemovePress={removeEmployee}
-                closePopup={closePopup}
-              />
-            ),
-          })
-        }
-        style={styles.removeButton}
-      >
+      <UI.PlainButton onPress={handleRemovePress} style={styles.removeButton}>
         <UI.MCIcon style={styles.removeIcon} name="account-remove" />
         <UI.Text weight="semibold" style={styles.removeButtonText}>
           Remove

@@ -94,6 +94,22 @@ class ManagerApi {
       .then(res => res);
   }
 
+  editEmployee({
+    name,
+    password,
+    passwordConfirmation: password_confirmation,
+    employeeId,
+  }) {
+    return this.api.put(`/api/v1/employees/${employeeId}`, {
+      employee: {
+        name,
+        password,
+        password_confirmation,
+        employee_id: employeeId,
+      },
+    });
+  }
+
   removeEmployee(employeeId) {
     return this.api.client
       .delete(`/api/v1/employees/${employeeId}`)
