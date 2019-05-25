@@ -23,13 +23,7 @@ const InfoCard = (props: Props) => {
               {employee.name}
             </UI.Text>
           </UI.View>
-          <UI.View
-            style={{
-              borderRightWidth: UI.StyleSheet.hairlineWidth,
-              borderRightColor: appColors.grey.regular,
-              width: 1,
-            }}
-          />
+          <UI.View style={styles.nameUsernameDivider} />
           <UI.View style={styles.usernameText}>
             <UI.Text size="small">{employee.username}</UI.Text>
           </UI.View>
@@ -45,12 +39,10 @@ const InfoCard = (props: Props) => {
           onPress={() => navigate('ManagerEmployees')}
           style={{ ...styles.button, borderRightWidth: 1 }}
         >
-          <UI.View style={{ alignSelf: 'center', flexDirection: 'row' }}>
-            <UI.MCIcon style={styles.buttonIcon} name="account-edit" />
-            <UI.Text weight="semibold" style={styles.buttonText}>
-              Edit
-            </UI.Text>
-          </UI.View>
+          <UI.MCIcon style={styles.buttonIcon} name="account-edit" />
+          <UI.Text weight="semibold" style={styles.buttonText}>
+            Edit
+          </UI.Text>
         </UI.PlainButton>
         <UI.PlainButton
           onPress={() => navigate('ManagerShifts')}
@@ -102,6 +94,12 @@ const styles = UI.StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: 'white',
+  },
+
+  nameUsernameDivider: {
+    borderRightWidth: UI.StyleSheet.hairlineWidth,
+    borderRightColor: appColors.grey.regular,
+    width: 1,
   },
 
   infoRow: {
@@ -165,7 +163,6 @@ const styles = UI.StyleSheet.create({
   },
 
   buttonText: {
-    marginRight: 'auto',
     marginLeft: 5,
     textAlign: 'center',
   },
