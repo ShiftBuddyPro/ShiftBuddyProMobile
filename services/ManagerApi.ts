@@ -69,6 +69,12 @@ class ManagerApi {
       .then((res: EmployeesResponse) => res.data);
   }
 
+  getEmployee(employeeId) {
+    return this.api
+      .get(`/api/v1/employees/${employeeId}`)
+      .then(res => res.data.data.attributes);
+  }
+
   addEmployee({
     name,
     username,

@@ -1,4 +1,4 @@
-import { View } from 'native-base';
+import { View, Spinner } from 'native-base';
 import { StyleSheet, ScrollView, FlatList } from 'react-native';
 import Card from './Card';
 import Text from './Text';
@@ -7,6 +7,8 @@ import Button from './Button';
 import BackHeader from './BackHeader';
 import PlainButton from './PlainButton';
 import ErrorText from './ErrorText';
+import LoadingScreen from './LoadingScreen';
+import BasicHeader from './BasicHeader';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {
   FontAwesome,
@@ -29,5 +31,8 @@ export {
   BackHeader,
   ErrorText,
   KeyboardAwareScrollView,
+  Spinner,
+  LoadingScreen,
+  BasicHeader,
   FlatList as List,
 };

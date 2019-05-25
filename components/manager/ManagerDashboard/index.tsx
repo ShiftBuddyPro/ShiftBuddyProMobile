@@ -29,7 +29,7 @@ export class ManagerDashboard extends Component<Props, State> {
   render() {
     return (
       <UI.View style={styles.fullContainer}>
-        <DashboardHeader />
+        <UI.BasicHeader title={'Manager Dashboard'} />
         <UI.View style={styles.container}>
           <InfoCard navigate={this.props.navigation.navigate} />
           <Activities />
@@ -42,7 +42,7 @@ export class ManagerDashboard extends Component<Props, State> {
 const styles = UI.StyleSheet.create({
   fullContainer: {
     flex: 1,
-    backgroundColor: '#f5f7fa',
+    // backgroundColor: '#f5f7fa',
   },
 
   container: {

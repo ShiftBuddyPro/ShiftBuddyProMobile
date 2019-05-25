@@ -1,29 +1,32 @@
 import React from 'react';
 import * as UI from 'ui';
 import appColors from 'constants/appColors';
-import { Employee } from 'types';
+import { Shift } from 'types';
+import moment from 'moment';
 
 interface Props {
-  employee: Employee;
-  navigate: any;
+  shift: Shift;
 }
 
-const EmployeeRow = (props: Props) => {
-  const { employee, navigate } = props;
+const ShiftRow = (props: Props) => {
+  const { shift } = props;
+  const { created_at } = shift.attributes;
+  const date = new Date(created_at);
+  const month = date.toLocaleString('en-us', { month: 'long' });
+  const dayOfMonth = date.getDate().toString();
+  const startTime = moment(date).format('hh:mm A');
 
   return (
     <UI.View style={styles.container}>
       <UI.View style={styles.avatarContainer}>
-        <UI.MIcon name="person-outline" style={styles.avatar} />
+        <UI.Text size="small">{month}</UI.Text>
+        <UI.Text size="small">{dayOfMonth}</UI.Text>
       </UI.View>
-      <UI.PlainButton
-        onPress={() =>
-          navigate('ManagerEmployeeProfile', { employeeId: employee.id })
-        }
-        style={{ flex: 1 }}
-      >
+      <UI.PlainButton style={{ flex: 1 }}>
         <UI.Card style={styles.card}>
-          <UI.Text>{employee.name}</UI.Text>
+          <UI.View>
+            <UI.Text>{startTime}</UI.Text>
+          </UI.View>
           <UI.MIcon name="chevron-right" style={styles.rightArrow} />
         </UI.Card>
       </UI.PlainButton>
@@ -40,9 +43,9 @@ const styles = UI.StyleSheet.create({
 
   avatarContainer: {
     marginLeft: 5,
-    width: 45,
-    height: 45,
-    borderRadius: 22.5,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
     marginRight: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -66,7 +69,7 @@ const styles = UI.StyleSheet.create({
   card: {
     flex: 1,
     marginRight: 10,
-    padding: 10,
+    paddingHorizontal: 10,
     alignItems: 'center',
     flexDirection: 'row',
   },
@@ -79,4 +82,4 @@ const styles = UI.StyleSheet.create({
   },
 });
 
-export default EmployeeRow;
+export default ShiftRow;

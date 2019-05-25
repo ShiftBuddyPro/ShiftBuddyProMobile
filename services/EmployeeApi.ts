@@ -1,5 +1,5 @@
-import Api from "./Api";
-import jwt_decode from "jwt-decode";
+import Api from './Api';
+import jwt_decode from 'jwt-decode';
 
 const throwErr = err => {
   throw err;
@@ -12,9 +12,9 @@ class EmployeeApi {
 
   login({ username, password }) {
     return this.api.client
-      .post("/api/v1/managers/employees/authenticate", {
+      .post('/api/v1/managers/employees/authenticate', {
         username,
-        password
+        password,
       })
       .then(res => {
         const { auth_token } = res.data;
@@ -50,43 +50,43 @@ class EmployeeApi {
   }
 
   createCashDrop(shiftId, number, amount) {
-    return this.api.client.post(this.shiftUrl(shiftId) + "/cash_drops", {
+    return this.api.client.post(this.shiftUrl(shiftId) + '/cash_drops', {
       number,
-      amount
+      amount,
     });
   }
 
   createPaidOut(shiftId, company, amount) {
-    return this.api.client.post(this.shiftUrl(shiftId) + "/paid_outs", {
+    return this.api.client.post(this.shiftUrl(shiftId) + '/paid_outs', {
       company,
-      amount
+      amount,
     });
   }
 
   createNote(shiftId, title, message) {
-    return this.api.client.post(this.shiftUrl(shiftId) + "/notes", {
+    return this.api.client.post(this.shiftUrl(shiftId) + '/notes', {
       title,
-      message
+      message,
     });
   }
 
   createCheck(shiftId, { company, amount, number }) {
-    return this.api.client.post(this.shiftUrl(shiftId) + "/checks", {
+    return this.api.client.post(this.shiftUrl(shiftId) + '/checks', {
       company,
       amount,
-      number
+      number,
     });
   }
 
   updateChange(shiftId, change_sheet) {
-    return this.api.client.put("/api/v1/shifts/" + shiftId + "/change_sheet", {
-      change_sheet
+    return this.api.client.put('/api/v1/shifts/' + shiftId + '/change_sheet', {
+      change_sheet,
     });
   }
 
   getInventory(shiftId) {
     return this.api.client
-      .get(this.shiftUrl(shiftId) + "/inventory_items")
+      .get(this.shiftUrl(shiftId) + '/inventory_items')
       .then(res => res.data);
   }
 
@@ -95,7 +95,7 @@ class EmployeeApi {
   }
 
   completeShift(shiftId) {
-    return this.api.client.put("/api/v1/shifts/" + shiftId + "/complete");
+    return this.api.client.put('/api/v1/shifts/' + shiftId + '/complete');
   }
 
   shiftUrl(shiftId) {
@@ -105,4 +105,6 @@ class EmployeeApi {
   }
 }
 
-export default new EmployeeApi();
+const employeeApi = new EmployeeApi();
+
+export default employeeApi;

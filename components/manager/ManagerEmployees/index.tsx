@@ -7,6 +7,7 @@ import EmployeeRow from './EmployeeRow';
 
 interface State {
   employees: Employee[];
+  loading: boolean;
 }
 
 interface Props {
@@ -16,6 +17,7 @@ interface Props {
 class ManagerEmployees extends React.Component<Props, State> {
   state = {
     employees: [],
+    loading: false,
   };
 
   componentDidMount() {
@@ -23,8 +25,10 @@ class ManagerEmployees extends React.Component<Props, State> {
   }
 
   fetchEmployees = async () => {
+    this.setState({ loading: true });
     const employees: Employee[] = await managerApi.getEmployees();
     this.setState({ employees });
+    this.setState({ loading: false });
   };
 
   renderAddEmployeeButton() {
@@ -46,7 +50,10 @@ class ManagerEmployees extends React.Component<Props, State> {
 
   render() {
     const { navigation } = this.props;
-    const { employees } = this.state;
+    const { employees, loading } = this.state;
+
+    if (loading) return <UI.LoadingScreen />;
+
     return (
       <UI.View style={styles.container}>
         <UI.View style={styles.headerContainer}>
@@ -58,7 +65,9 @@ class ManagerEmployees extends React.Component<Props, State> {
         </UI.View>
         <UI.List
           data={employees}
-          renderItem={({ item }) => <EmployeeRow employee={item} />}
+          renderItem={({ item }) => (
+            <EmployeeRow navigate={navigation.navigate} employee={item} />
+          )}
           keyExtractor={(item: Employee) => item.id.toString()}
         />
       </UI.View>
