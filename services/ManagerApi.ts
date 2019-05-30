@@ -11,6 +11,14 @@ import {
   ShiftsResponse,
   Shift,
   ActivitiesResponse,
+  ShiftResponse,
+  ShiftItem,
+  Note,
+  PaidOut,
+  Check,
+  CashDrop,
+  InventoryItem,
+  ChangeSheet,
 } from 'types';
 
 class ManagerApi {
@@ -55,6 +63,33 @@ class ManagerApi {
     return this.api
       .get(this.managerUrl('activity_logs'))
       .then((res: ActivitiesResponse) => res.data);
+  }
+
+  getShift(shiftId: number) {
+    return this.api
+      .get(`/api/v1/shifts/${shiftId}`)
+      .then((res: ShiftResponse) => {
+        const { included, data: shift }: ShiftResponse['data'] = res.data;
+        const { attributes }: Shift = shift;
+
+        const filterIncluded = (neededType: string) =>
+          included.filter(({ type }) => type === neededType);
+        const notes = filterIncluded('note');
+        const paidOuts = filterIncluded('paid_out');
+        const checks = filterIncluded('check');
+        const cashDrops = filterIncluded('cash_drop');
+        const inventoryItems = filterIncluded('inventory_item');
+        const changeSheet = filterIncluded('change_sheet')[0];
+        return {
+          attributes,
+          notes,
+          paidOuts,
+          checks,
+          cashDrops,
+          inventoryItems,
+          changeSheet,
+        };
+      });
   }
 
   getShifts() {
