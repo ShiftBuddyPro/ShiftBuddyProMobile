@@ -89,30 +89,12 @@ class ManagerShift extends React.Component<Props, State> {
     this.setState({ shift, loading: false });
   };
 
-  render() {
+  renderHeader() {
     const { created_at: shiftStart } = this.state.shift.attributes;
-    const {
-      cashDrops,
-      checks,
-      paidOuts,
-      notes,
-      inventoryItems,
-      changeSheet,
-    } = this.state.shift;
     const shiftStartDate = moment(shiftStart).format('MMMM Do YYYY');
     const shiftStartTime = moment(shiftStart).format('h:mm:ss a');
     const shiftSubheader = `${shiftStartTime} - `;
-
-    const shiftComponents = [
-      <CashDrops cashDrops={cashDrops} />,
-      <Checks checks={checks} />,
-      <PaidOuts paidOuts={paidOuts} />,
-      <Notes notes={notes} />,
-      <InventoryItems inventoryItems={inventoryItems} />,
-      <Change changeSheet={changeSheet} />,
-    ];
-
-    const renderHeader = () => (
+    return (
       <UI.View style={styles.headerContainer}>
         <UI.PlainButton
           style={{ marginBottom: 10 }}
@@ -136,19 +118,40 @@ class ManagerShift extends React.Component<Props, State> {
         </UI.Text>
       </UI.View>
     );
+  }
 
-    return (
-      <UI.View style={styles.container}>
-        {renderHeader()}
-        <UI.ScrollView>
-          {shiftComponents.map((ShiftComponent, i) => (
-            <UI.Card style={styles.card} key={i}>
-              {ShiftComponent}
-            </UI.Card>
-          ))}
-        </UI.ScrollView>
-      </UI.View>
-    );
+  render() {
+    const {
+      cashDrops,
+      checks,
+      paidOuts,
+      notes,
+      inventoryItems,
+      changeSheet,
+    } = this.state.shift;
+
+    const shiftComponents = [
+      <CashDrops cashDrops={cashDrops} />,
+      <Checks checks={checks} />,
+      <PaidOuts paidOuts={paidOuts} />,
+      <Notes notes={notes} />,
+      <InventoryItems inventoryItems={inventoryItems} />,
+      <Change changeSheet={changeSheet} />,
+    ];
+
+    if (this)
+      return (
+        <UI.View style={styles.container}>
+          {this.renderHeader()}
+          <UI.ScrollView>
+            {shiftComponents.map((ShiftComponent, i) => (
+              <UI.Card style={styles.card} key={i}>
+                {ShiftComponent}
+              </UI.Card>
+            ))}
+          </UI.ScrollView>
+        </UI.View>
+      );
   }
 }
 
