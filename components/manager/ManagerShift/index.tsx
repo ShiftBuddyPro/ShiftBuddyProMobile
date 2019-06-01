@@ -112,30 +112,34 @@ class ManagerShift extends React.Component<Props, State> {
       <Change changeSheet={changeSheet} />,
     ];
 
+    const renderHeader = () => (
+      <UI.View style={styles.headerContainer}>
+        <UI.PlainButton
+          style={{ marginBottom: 10 }}
+          onPress={() => this.props.navigation.pop()}
+        >
+          <UI.MIcon
+            color={appColors.primary.light}
+            name="arrow-back"
+            size={30}
+          />
+        </UI.PlainButton>
+        <UI.Text size="large" weight="bold">
+          {shiftStartDate}
+        </UI.Text>
+        <UI.Text
+          style={{ color: appColors.grey.dark }}
+          size="medium"
+          weight="semibold"
+        >
+          {shiftSubheader}
+        </UI.Text>
+      </UI.View>
+    );
+
     return (
       <UI.View style={styles.container}>
-        <UI.View style={styles.headerContainer}>
-          <UI.PlainButton
-            style={{ marginBottom: 10 }}
-            onPress={() => this.props.navigation.pop()}
-          >
-            <UI.MIcon
-              color={appColors.primary.light}
-              name="arrow-back"
-              size={30}
-            />
-          </UI.PlainButton>
-          <UI.Text size="large" weight="bold">
-            {shiftStartDate}
-          </UI.Text>
-          <UI.Text
-            style={{ color: appColors.grey.dark }}
-            size="medium"
-            weight="semibold"
-          >
-            {shiftSubheader}
-          </UI.Text>
-        </UI.View>
+        {renderHeader()}
         <UI.ScrollView>
           {shiftComponents.map((ShiftComponent, i) => (
             <UI.Card style={styles.card} key={i}>
