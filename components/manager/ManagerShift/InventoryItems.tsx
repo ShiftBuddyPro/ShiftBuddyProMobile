@@ -17,13 +17,13 @@ const InventoryItems = (props: Props) => {
         Name
       </UI.Text>
       <UI.Text weight="regular" style={styles.label}>
-        In
+        Start
       </UI.Text>
       <UI.Text weight="regular" style={styles.label}>
-        Out
+        End
       </UI.Text>
       <UI.Text weight="regular" style={styles.label}>
-        Sold
+        Diff
       </UI.Text>
     </UI.View>
   );
@@ -31,7 +31,11 @@ const InventoryItems = (props: Props) => {
   const renderDataRows = () =>
     inventoryItems.map(inventoryItem => {
       const { name, start_amount, end_amount } = inventoryItem.attributes;
-      const amountSold = end_amount - start_amount;
+      const diff = end_amount - start_amount;
+      const isPositive = diff >= 0;
+      const positiveOrNegateDiff = `${isPositive ? '+' : '-'} ${Math.abs(
+        diff
+      ).toString()}`;
       return (
         <UI.View key={inventoryItem.id} style={styles.dataRow}>
           <UI.Text size="small" style={{ flex: 3 }}>
@@ -43,8 +47,15 @@ const InventoryItems = (props: Props) => {
           <UI.Text size="small" variant="table-number" style={{ flex: 1 }}>
             {end_amount.toString()}
           </UI.Text>
-          <UI.Text size="small" variant="table-number" style={{ flex: 1 }}>
-            {amountSold.toString()}
+          <UI.Text
+            size="small"
+            variant="table-number"
+            style={{
+              flex: 1,
+              color: isPositive ? appColors.success.regular : appColors.darkRed,
+            }}
+          >
+            {diff !== 0 ? positiveOrNegateDiff : '-'}
           </UI.Text>
         </UI.View>
       );
