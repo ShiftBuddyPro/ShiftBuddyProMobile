@@ -50,7 +50,7 @@ export interface PaidOut {
   id: number;
   type: 'paid_out';
   attributes: {
-    company: number;
+    company: string;
     amount: number;
   };
 }

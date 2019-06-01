@@ -16,21 +16,24 @@ const CashDrops = (props: Props) => {
       <SectionHeader title="Cash Drops" />
       <UI.View style={styles.tableContainer}>
         <UI.View style={styles.labelsRow}>
-          <UI.Text weight="regular" style={styles.label}>
+          <UI.Text weight="regular" style={{ textAlign: 'left', flex: 1 }}>
             Number
           </UI.Text>
-          <UI.Text weight="regular" style={styles.label}>
+          <UI.Text weight="regular" style={{ textAlign: 'right', flex: 1 }}>
             Amount
           </UI.Text>
         </UI.View>
         {cashDrops.map(cashDrop => (
           <UI.View key={cashDrop.id} style={styles.dataRow}>
-            <UI.Text style={styles.data}>
+            <UI.Text style={{ textAlign: 'left', flex: 1 }}>
               {cashDrop.attributes.number.toString()}
             </UI.Text>
-            <UI.Text style={styles.data}>
-              ${cashDrop.attributes.amount.toFixed(2).toString()}
-            </UI.Text>
+            <UI.View style={{ flex: 1, flexDirection: 'row' }}>
+              <UI.Text style={{ paddingLeft: 5 }}>$</UI.Text>
+              <UI.Text variant="table-number">
+                {cashDrop.attributes.amount.toFixed(2).toString()}
+              </UI.Text>
+            </UI.View>
           </UI.View>
         ))}
       </UI.View>
@@ -40,7 +43,7 @@ const CashDrops = (props: Props) => {
 
 const styles = UI.StyleSheet.create({
   tableContainer: {
-    marginHorizontal: '5%',
+    marginHorizontal: '25%',
   },
 
   labelsRow: {
@@ -57,10 +60,14 @@ const styles = UI.StyleSheet.create({
 
   label: {
     flex: 1,
+    textAlign: 'right',
+    marginRight: 'auto',
   },
 
   data: {
     flex: 1,
+    textAlign: 'right',
+    marginRight: 'auto',
   },
 });
 

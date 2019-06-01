@@ -3,16 +3,26 @@ import React from 'react';
 import { systemWeights } from 'react-native-typography';
 import { StyleSheet } from 'react-native';
 import appColors from 'constants/appColors';
+import { FontVariant } from 'react-native-svg';
 
 interface Props {
   children: JSX.Element | string | (string | JSX.Element)[];
   style?: object;
   weight?: 'bold' | 'semibold' | 'regular' | 'light' | 'thin';
   size?: 'small' | 'medium' | 'large' | 'extraLarge';
+  variant?: 'table-number' | null;
 }
 
 export default (props: Props) => {
-  const { weight = 'light', children, style, size = 'medium' } = props;
+  const {
+    weight = 'light',
+    children,
+    style,
+    size = 'medium',
+    variant = null,
+  } = props;
+
+  const isTableNumber = variant === 'table-number';
 
   let fontSize;
   switch (size) {
@@ -33,6 +43,11 @@ export default (props: Props) => {
     ...systemWeights[weight],
     ...styles.text,
     ...{ fontSize },
+    ...(isTableNumber && {
+      fontVariant: ['tabular-nums'],
+      marginLeft: 'auto',
+      textAlign: 'right',
+    }),
     ...style,
   };
   return <Text style={textStyle}>{children}</Text>;

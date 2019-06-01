@@ -11,32 +11,45 @@ interface Props {
 const Checks = (props: Props) => {
   const { checks } = props;
 
+  const renderLabels = () => (
+    <UI.View style={styles.labelsRow}>
+      <UI.Text weight="regular" style={{ flex: 2 }}>
+        Company
+      </UI.Text>
+      <UI.Text weight="regular" style={styles.label}>
+        Amount
+      </UI.Text>
+      <UI.Text weight="regular" style={styles.label}>
+        Number
+      </UI.Text>
+    </UI.View>
+  );
+
+  const renderDataRows = () =>
+    checks.map(check => {
+      const { company, amount, number } = check.attributes;
+      return (
+        <UI.View key={check.id} style={styles.dataRow}>
+          <UI.Text style={{ flex: 2 }}>{company}</UI.Text>
+          <UI.View style={{ flex: 1, flexDirection: 'row' }}>
+            <UI.Text>$</UI.Text>
+            <UI.Text variant="table-number">
+              {amount.toFixed(2).toString()}
+            </UI.Text>
+          </UI.View>
+          <UI.Text variant="table-number" style={{ flex: 1 }}>
+            {number.toString()}
+          </UI.Text>
+        </UI.View>
+      );
+    });
+
   return (
     <UI.View>
       <SectionHeader title="Checks" />
       <UI.View style={styles.tableContainer}>
-        <UI.View style={styles.labelsRow}>
-          <UI.Text weight="regular" style={{ flex: 2 }}>
-            Company
-          </UI.Text>
-          <UI.Text weight="regular" style={styles.label}>
-            Amount
-          </UI.Text>
-          <UI.Text weight="regular" style={styles.label}>
-            Number
-          </UI.Text>
-        </UI.View>
-        {checks.map(check => (
-          <UI.View key={check.id} style={styles.dataRow}>
-            <UI.Text style={{ flex: 2 }}>{check.attributes.company}</UI.Text>
-            <UI.Text style={styles.data}>
-              ${check.attributes.amount.toFixed(2).toString()}
-            </UI.Text>
-            <UI.Text style={styles.data}>
-              {check.attributes.number.toString()}
-            </UI.Text>
-          </UI.View>
-        ))}
+        {renderLabels()}
+        {renderDataRows()}
       </UI.View>
     </UI.View>
   );
@@ -60,6 +73,7 @@ const styles = UI.StyleSheet.create({
   },
 
   label: {
+    textAlign: 'right',
     flex: 1,
   },
 
