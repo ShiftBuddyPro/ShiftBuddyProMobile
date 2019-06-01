@@ -13,10 +13,10 @@ const PaidOuts = (props: Props) => {
 
   const renderLabels = () => (
     <UI.View style={styles.labelsRow}>
-      <UI.Text weight="regular" style={styles.label}>
+      <UI.Text weight="regular" style={styles.companyLabel}>
         Company
       </UI.Text>
-      <UI.Text weight="regular" style={styles.label}>
+      <UI.Text weight="regular" style={styles.amountLabel}>
         Amount
       </UI.Text>
     </UI.View>
@@ -27,8 +27,13 @@ const PaidOuts = (props: Props) => {
       const { company, amount } = paidOut.attributes;
       return (
         <UI.View key={paidOut.id} style={styles.dataRow}>
-          <UI.Text style={styles.data}>{company}</UI.Text>
-          <UI.Text style={styles.data}>${amount.toFixed(2).toString()}</UI.Text>
+          <UI.Text style={styles.companyData}>{company}</UI.Text>
+          <UI.View style={styles.amountData}>
+            <UI.Text>$</UI.Text>
+            <UI.Text variant="table-number">
+              {amount.toFixed(2).toString()}
+            </UI.Text>
+          </UI.View>
         </UI.View>
       );
     });
@@ -61,12 +66,22 @@ const styles = UI.StyleSheet.create({
     marginBottom: 5,
   },
 
-  label: {
-    flex: 1,
+  companyLabel: {
+    flex: 2,
   },
 
-  data: {
+  amountLabel: {
     flex: 1,
+    textAlign: 'right',
+  },
+
+  companyData: {
+    flex: 2,
+  },
+
+  amountData: {
+    flex: 1,
+    flexDirection: 'row',
   },
 });
 
