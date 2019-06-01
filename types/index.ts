@@ -61,6 +61,7 @@ export interface CashDrop {
   attributes: {
     amount: number;
     number: number;
+    created_at: Date;
   };
 }
 
@@ -69,7 +70,7 @@ export interface Note {
   type: 'note';
   attributes: {
     message: string;
-    title: string;
+    title: string | null;
   };
 }
 

@@ -29,7 +29,7 @@ const PaidOuts = (props: Props) => {
         <UI.View key={paidOut.id} style={styles.dataRow}>
           <UI.Text style={styles.companyData}>{company}</UI.Text>
           <UI.View style={styles.amountData}>
-            <UI.Text>$</UI.Text>
+            <UI.Text style={{ paddingLeft: 10 }}>$</UI.Text>
             <UI.Text variant="table-number">
               {amount.toFixed(2).toString()}
             </UI.Text>
@@ -67,7 +67,7 @@ const styles = UI.StyleSheet.create({
   },
 
   companyLabel: {
-    flex: 2,
+    flex: 2.5,
   },
 
   amountLabel: {
@@ -76,7 +76,7 @@ const styles = UI.StyleSheet.create({
   },
 
   companyData: {
-    flex: 2,
+    flex: 2.5,
   },
 
   amountData: {

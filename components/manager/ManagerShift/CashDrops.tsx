@@ -3,6 +3,7 @@ import * as UI from 'ui';
 import { CashDrop } from 'types';
 import SectionHeader from './SectionHeader';
 import appColors from 'constants/appColors';
+import moment from 'moment';
 
 interface Props {
   cashDrops: CashDrop[];
@@ -11,31 +12,47 @@ interface Props {
 const CashDrops = (props: Props) => {
   const { cashDrops } = props;
 
+  const renderLabels = () => (
+    <UI.View style={styles.labelsRow}>
+      <UI.Text weight="regular" style={{ textAlign: 'left', flex: 1 }}>
+        Number
+      </UI.Text>
+      <UI.Text weight="regular" style={{ textAlign: 'right', flex: 1 }}>
+        Amount
+      </UI.Text>
+      <UI.Text weight="regular" style={{ textAlign: 'right', flex: 1.5 }}>
+        Time
+      </UI.Text>
+    </UI.View>
+  );
+
+  const renderDataRows = () =>
+    cashDrops.map(cashDrop => {
+      const { number, amount, created_at } = cashDrop.attributes;
+      const time = moment(created_at).format('h:m a');
+
+      return (
+        <UI.View key={cashDrop.id} style={styles.dataRow}>
+          <UI.Text style={{ textAlign: 'left', flex: 1 }}>
+            {number.toString()}
+          </UI.Text>
+          <UI.View style={{ flex: 1, flexDirection: 'row' }}>
+            <UI.Text style={{ paddingLeft: 10 }}>$</UI.Text>
+            <UI.Text variant="table-number">
+              {amount.toFixed(2).toString()}
+            </UI.Text>
+          </UI.View>
+          <UI.Text style={{ flex: 1.5, textAlign: 'right' }}>{time}</UI.Text>
+        </UI.View>
+      );
+    });
+
   return (
     <UI.View>
       <SectionHeader title="Cash Drops" />
       <UI.View style={styles.tableContainer}>
-        <UI.View style={styles.labelsRow}>
-          <UI.Text weight="regular" style={{ textAlign: 'left', flex: 1 }}>
-            Number
-          </UI.Text>
-          <UI.Text weight="regular" style={{ textAlign: 'right', flex: 1 }}>
-            Amount
-          </UI.Text>
-        </UI.View>
-        {cashDrops.map(cashDrop => (
-          <UI.View key={cashDrop.id} style={styles.dataRow}>
-            <UI.Text style={{ textAlign: 'left', flex: 1 }}>
-              {cashDrop.attributes.number.toString()}
-            </UI.Text>
-            <UI.View style={{ flex: 1, flexDirection: 'row' }}>
-              <UI.Text style={{ paddingLeft: 5 }}>$</UI.Text>
-              <UI.Text variant="table-number">
-                {cashDrop.attributes.amount.toFixed(2).toString()}
-              </UI.Text>
-            </UI.View>
-          </UI.View>
-        ))}
+        {renderLabels()}
+        {renderDataRows()}
       </UI.View>
     </UI.View>
   );
@@ -43,7 +60,7 @@ const CashDrops = (props: Props) => {
 
 const styles = UI.StyleSheet.create({
   tableContainer: {
-    marginHorizontal: '25%',
+    marginHorizontal: '5%',
   },
 
   labelsRow: {
