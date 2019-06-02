@@ -92,6 +92,12 @@ class ManagerApi {
       });
   }
 
+  getEmployeeShifts(employeeId: number) {
+    return this.api
+      .get(this.managerUrl(`/employees/${employeeId}/shifts`))
+      .then((res: ShiftsResponse) => res.data.data);
+  }
+
   getShifts() {
     return this.api
       .get(this.managerUrl('shifts'))

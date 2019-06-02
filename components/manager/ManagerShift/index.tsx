@@ -45,6 +45,8 @@ class ManagerShift extends React.Component<Props, State> {
         employee_id: 0,
         employee_name: '',
         id: 0,
+        status: 'active',
+        completed_at: new Date(),
       },
       cashDrops: [],
       notes: [],
@@ -90,10 +92,19 @@ class ManagerShift extends React.Component<Props, State> {
   };
 
   renderHeader() {
-    const { created_at: shiftStart } = this.state.shift.attributes;
-    const shiftStartDate = moment(shiftStart).format('MMMM Do YYYY');
-    const shiftStartTime = moment(shiftStart).format('h:mm:ss a');
-    const shiftSubheader = `${shiftStartTime} - `;
+    const {
+      created_at: shiftStart,
+      completed_at,
+      status,
+    } = this.state.shift.attributes;
+    const shiftStartDate = moment(shiftStart).format('ddd, MMMM Do YYYY');
+    const shiftStartTime = moment(shiftStart).format('h:mm a');
+
+    let shiftStopTime = 'Currently Working';
+    if (status === 'completed' && completed_at) {
+      shiftStopTime = moment(completed_at).format('h:mm a');
+    }
+    const shiftSubheader = `${shiftStartTime} - ${shiftStopTime}`;
     return (
       <UI.View style={styles.headerContainer}>
         <UI.PlainButton
@@ -157,6 +168,7 @@ class ManagerShift extends React.Component<Props, State> {
             flexGrow: 1,
             backgroundColor: appColors.background.regular,
             paddingTop: 10,
+            paddingBottom: 20,
           }}
           style={{
             paddingTop: 15,

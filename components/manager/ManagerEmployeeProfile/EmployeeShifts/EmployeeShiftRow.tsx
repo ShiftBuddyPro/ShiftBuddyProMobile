@@ -3,29 +3,41 @@ import * as UI from 'ui';
 import appColors from 'constants/appColors';
 import { Shift } from 'types';
 import moment from 'moment';
+import { Platform } from 'react-native';
 
 interface Props {
   shift: Shift;
+  navigate: any;
 }
 
 const ShiftRow = (props: Props) => {
-  const { shift } = props;
-  const { created_at } = shift.attributes;
+  const { shift, navigate } = props;
+  const { created_at, completed_at, status } = shift.attributes;
   const date = new Date(created_at);
   const month = date.toLocaleString('en-us', { month: 'long' });
   const dayOfMonth = date.getDate().toString();
-  const startTime = moment(date).format('hh:mm A');
+  const startTime = moment(date).format('hh:mm a');
+  let completedAtTime = 'Currently Working';
+  if (completed_at && status === 'completed')
+    completedAtTime = moment(completed_at).format('hh:mm a');
 
   return (
     <UI.View style={styles.container}>
       <UI.View style={styles.avatarContainer}>
-        <UI.Text size="small">{month}</UI.Text>
+        <UI.Text size="small">
+          {Platform.OS === 'ios' ? month : month.split(' ')[1]}
+        </UI.Text>
         <UI.Text size="small">{dayOfMonth}</UI.Text>
       </UI.View>
-      <UI.PlainButton style={{ flex: 1 }}>
+      <UI.PlainButton
+        onPress={() => navigate('ManagerShift', { shiftId: shift.id })}
+        style={{ flex: 1 }}
+      >
         <UI.Card style={styles.card}>
           <UI.View>
-            <UI.Text>{startTime}</UI.Text>
+            <UI.Text>
+              {startTime} - {completedAtTime}
+            </UI.Text>
           </UI.View>
           <UI.MIcon name="chevron-right" style={styles.rightArrow} />
         </UI.Card>

@@ -41,7 +41,7 @@ class ManagerEmployeeProfile extends Component<Props, State> {
     const { employeeId } = this.props.navigation.state.params;
     const [employee, shifts] = await Promise.all([
       managerApi.getEmployee(employeeId),
-      managerApi.getShifts(),
+      managerApi.getEmployeeShifts(employeeId),
     ]);
     this.setState({ employee, shifts, loading: false });
   };

@@ -10,7 +10,7 @@ interface Props {
 }
 
 const EmployeeShifts = (props: Props) => {
-  const { shifts } = props;
+  const { shifts, navigate } = props;
   return (
     <UI.View style={styles.container}>
       <UI.Text style={styles.header} weight="bold" size="large">
@@ -18,7 +18,9 @@ const EmployeeShifts = (props: Props) => {
       </UI.Text>
       <UI.List
         data={shifts}
-        renderItem={({ item }) => <EmployeeShiftRow shift={item} />}
+        renderItem={({ item }) => (
+          <EmployeeShiftRow navigate={navigate} shift={item} />
+        )}
         keyExtractor={(item: Shift) => item.id.toString()}
       />
     </UI.View>

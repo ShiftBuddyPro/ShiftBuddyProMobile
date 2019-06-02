@@ -125,6 +125,8 @@ export interface Shift {
     employee_id: number;
     employee_name: string;
     id: number;
+    status: 'active' | 'completed';
+    completed_at: Date | null;
   };
   id: number;
   type: 'shifts';

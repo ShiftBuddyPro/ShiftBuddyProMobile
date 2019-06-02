@@ -12,11 +12,16 @@ interface Props {
 
 const ShiftRow = (props: Props) => {
   const { shift, navigate } = props;
-  const { created_at, employee_name } = shift.attributes;
+  const { created_at, employee_name, completed_at, status } = shift.attributes;
   const date = new Date(created_at);
   const month = date.toLocaleString('en-us', { month: 'long' });
   const dayOfMonth = date.getDate().toString();
-  const startTime = moment(date).format('hh:mm A');
+  const startTime = moment(date).format('hh:mm a');
+  let completedAtTime = 'Currently Working';
+  console.log(shift.attributes);
+  if (status === 'completed' && completed_at) {
+    completedAtTime = moment(completed_at).format('hh:mm a');
+  }
 
   return (
     <UI.View style={styles.container}>
@@ -33,7 +38,9 @@ const ShiftRow = (props: Props) => {
         <UI.Card style={styles.card}>
           <UI.View>
             <UI.Text style={{ marginBottom: 2 }}>{employee_name}</UI.Text>
-            <UI.Text size="small">{startTime}</UI.Text>
+            <UI.Text size="small">
+              {startTime} - {completedAtTime}
+            </UI.Text>
           </UI.View>
           <UI.MIcon name="chevron-right" style={styles.rightArrow} />
         </UI.Card>

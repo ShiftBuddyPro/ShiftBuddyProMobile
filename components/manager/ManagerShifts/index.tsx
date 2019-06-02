@@ -7,6 +7,7 @@ import ShiftRow from './ShiftRow';
 
 interface State {
   shifts: Shift[];
+  loading: boolean;
 }
 
 interface Props {
@@ -16,15 +17,20 @@ interface Props {
 class ManagerEmployees extends React.Component<Props, State> {
   state = {
     shifts: [],
+    loading: false,
   };
 
   async componentDidMount() {
+    this.setState({ loading: true });
     const shifts: Shift[] = await managerApi.getShifts();
-    this.setState({ shifts });
+    this.setState({ shifts, loading: false });
   }
 
   render() {
-    const { shifts } = this.state;
+    const { shifts, loading } = this.state;
+
+    if (loading) return <UI.LoadingScreen />;
+
     return (
       <UI.View style={styles.container}>
         <UI.View style={styles.headerContainer}>
