@@ -44,12 +44,28 @@ const Checks = (props: Props) => {
       );
     });
 
+  const renderTotalAmount = () => {
+    const totalAmount = checks.reduce(
+      (acc, current) => acc + current.attributes.amount,
+      0
+    );
+    return (
+      <UI.View style={{ flexDirection: 'row', marginTop: 15 }}>
+        <UI.Text weight="regular">Total Amount: </UI.Text>
+        <UI.Text weight="semibold">
+          ${totalAmount.toFixed(2).toString()}
+        </UI.Text>
+      </UI.View>
+    );
+  };
+
   return (
     <UI.View>
       <SectionHeader title="Checks" />
       <UI.View style={styles.tableContainer}>
         {renderLabels()}
         {renderDataRows()}
+        {renderTotalAmount()}
       </UI.View>
     </UI.View>
   );

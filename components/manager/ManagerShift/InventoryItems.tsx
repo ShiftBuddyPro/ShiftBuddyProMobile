@@ -13,7 +13,7 @@ const InventoryItems = (props: Props) => {
 
   const renderLabels = () => (
     <UI.View style={styles.labelsRow}>
-      <UI.Text weight="regular" style={{ flex: 3 }}>
+      <UI.Text weight="regular" style={{ flex: 2.5 }}>
         Name
       </UI.Text>
       <UI.Text weight="regular" style={styles.label}>
@@ -38,21 +38,19 @@ const InventoryItems = (props: Props) => {
       ).toString()}`;
       return (
         <UI.View key={inventoryItem.id} style={styles.dataRow}>
-          <UI.Text size="small" style={{ flex: 3 }}>
-            {name}
-          </UI.Text>
-          <UI.Text size="small" variant="table-number" style={{ flex: 1 }}>
+          <UI.Text style={{ flex: 2.5 }}>{name}</UI.Text>
+          <UI.Text style={{ flex: 1, textAlign: 'center' }}>
             {start_amount.toString()}
           </UI.Text>
-          <UI.Text size="small" variant="table-number" style={{ flex: 1 }}>
+          <UI.Text style={{ flex: 1, textAlign: 'center' }}>
             {end_amount.toString()}
           </UI.Text>
           <UI.Text
-            size="small"
-            variant="table-number"
+            // variant="table-number"
             style={{
               flex: 1,
               color: isPositive ? appColors.success.regular : appColors.darkRed,
+              textAlign: 'center',
             }}
           >
             {diff !== 0 ? positiveOrNegateDiff : '-'}
@@ -90,7 +88,7 @@ const styles = UI.StyleSheet.create({
   },
 
   label: {
-    textAlign: 'right',
+    textAlign: 'center',
     flex: 1,
   },
 

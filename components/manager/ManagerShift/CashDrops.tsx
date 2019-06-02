@@ -27,7 +27,7 @@ const CashDrops = (props: Props) => {
   );
 
   const renderDataRows = () =>
-    cashDrops.map(cashDrop => {
+    cashDrops.reverse().map(cashDrop => {
       const { number, amount, created_at } = cashDrop.attributes;
       const time = moment(created_at).format('h:m a');
 
@@ -47,12 +47,28 @@ const CashDrops = (props: Props) => {
       );
     });
 
+  const renderTotalAmount = () => {
+    const totalAmount = cashDrops.reduce(
+      (acc, current) => acc + current.attributes.amount,
+      0
+    );
+    return (
+      <UI.View style={{ flexDirection: 'row', marginTop: 15 }}>
+        <UI.Text weight="regular">Total Amount: </UI.Text>
+        <UI.Text weight="semibold">
+          ${totalAmount.toFixed(2).toString()}
+        </UI.Text>
+      </UI.View>
+    );
+  };
+
   return (
     <UI.View>
       <SectionHeader title="Cash Drops" />
       <UI.View style={styles.tableContainer}>
         {renderLabels()}
         {renderDataRows()}
+        {renderTotalAmount()}
       </UI.View>
     </UI.View>
   );

@@ -105,6 +105,7 @@ export interface ChangeSheet {
     end_fives: number;
     end_tens: number;
     end_twenties: number;
+    [key: string]: number;
   };
 }
 

@@ -139,25 +139,29 @@ class ManagerShift extends React.Component<Props, State> {
       <Change changeSheet={changeSheet} />,
     ];
 
-    if (this)
-      return (
-        <UI.View style={styles.container}>
-          {this.renderHeader()}
-          <UI.ScrollView>
-            {shiftComponents.map((ShiftComponent, i) => (
-              <UI.Card style={styles.card} key={i}>
-                {ShiftComponent}
-              </UI.Card>
-            ))}
-          </UI.ScrollView>
-        </UI.View>
-      );
+    if (this.state.loading) return <UI.LoadingScreen />;
+
+    return (
+      <UI.View style={styles.container}>
+        {this.renderHeader()}
+        <UI.ScrollView
+          contentContainerStyle={{ flexGrow: 1 }}
+          style={{ paddingTop: 15 }}
+        >
+          {shiftComponents.map((ShiftComponent, i) => (
+            <UI.Card style={styles.card} key={i}>
+              {ShiftComponent}
+            </UI.Card>
+          ))}
+        </UI.ScrollView>
+      </UI.View>
+    );
   }
 }
 
 const styles = UI.StyleSheet.create({
   container: {
-    marginTop: '10%',
+    paddingTop: 40,
     flex: 1,
   },
 
@@ -166,7 +170,6 @@ const styles = UI.StyleSheet.create({
     borderBottomWidth: 1,
     paddingBottom: 10,
     borderBottomColor: appColors.grey.regular,
-    marginBottom: 15,
   },
 
   card: {
