@@ -33,13 +33,26 @@ class ManagerEmployees extends React.Component<Props, State> {
             onBackPress={() => this.props.navigation.pop()}
           />
         </UI.View>
-        <UI.List
-          data={shifts}
-          renderItem={({ item }) => (
-            <ShiftRow navigate={this.props.navigation.navigate} shift={item} />
-          )}
-          keyExtractor={(item: Shift) => item.id.toString()}
-        />
+        <UI.View style={styles.divider} />
+        <UI.View
+          style={{
+            backgroundColor: appColors.background.regular,
+            flex: 1,
+            paddingHorizontal: '5%',
+          }}
+        >
+          <UI.List
+            style={{ paddingTop: 15 }}
+            data={shifts}
+            renderItem={({ item }) => (
+              <ShiftRow
+                navigate={this.props.navigation.navigate}
+                shift={item}
+              />
+            )}
+            keyExtractor={(item: Shift) => item.id.toString()}
+          />
+        </UI.View>
       </UI.View>
     );
   }
@@ -47,16 +60,19 @@ class ManagerEmployees extends React.Component<Props, State> {
 
 const styles = UI.StyleSheet.create({
   container: {
-    marginTop: '10%',
-    marginHorizontal: '5%',
+    marginTop: 40,
     flex: 1,
   },
 
   headerContainer: {
-    borderBottomWidth: 1,
+    marginHorizontal: '5%',
     paddingBottom: 10,
+    marginBottom: 10,
+  },
+
+  divider: {
+    borderBottomWidth: 1,
     borderBottomColor: appColors.grey.regular,
-    marginBottom: 20,
   },
 });
 

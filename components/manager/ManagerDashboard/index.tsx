@@ -6,6 +6,7 @@ import ManagerApi from 'services/ManagerApi';
 import Activities from './Activities';
 import InfoCard from './InfoCard';
 import DashboardHeader from './DashboardHeader';
+import appColors from 'constants/appColors';
 
 interface State {
   activities: any;
@@ -42,12 +43,12 @@ export class ManagerDashboard extends Component<Props, State> {
 const styles = UI.StyleSheet.create({
   fullContainer: {
     flex: 1,
-    // backgroundColor: '#f5f7fa',
+    backgroundColor: appColors.background.regular,
   },
 
   container: {
     flex: 1,
-    paddingVertical: 20,
+    paddingTop: 20,
   },
 });
 

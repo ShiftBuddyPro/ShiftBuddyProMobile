@@ -3,6 +3,7 @@ import * as UI from 'ui';
 import appColors from 'constants/appColors';
 import { Shift } from 'types';
 import moment from 'moment';
+import { Platform } from 'react-native';
 
 interface Props {
   shift: Shift;
@@ -20,7 +21,9 @@ const ShiftRow = (props: Props) => {
   return (
     <UI.View style={styles.container}>
       <UI.View style={styles.avatarContainer}>
-        <UI.Text size="small">{month}</UI.Text>
+        <UI.Text size="small">
+          {Platform.OS === 'ios' ? month : month.split(' ')[1]}
+        </UI.Text>
         <UI.Text size="small">{dayOfMonth}</UI.Text>
       </UI.View>
       <UI.PlainButton

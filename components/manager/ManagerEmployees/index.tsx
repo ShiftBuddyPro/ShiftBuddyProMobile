@@ -63,7 +63,13 @@ class ManagerEmployees extends React.Component<Props, State> {
           />
           {this.renderAddEmployeeButton()}
         </UI.View>
+        <UI.View style={styles.divider} />
         <UI.List
+          style={{
+            backgroundColor: appColors.background.regular,
+            paddingTop: 15,
+            paddingHorizontal: '5%',
+          }}
           data={employees}
           renderItem={({ item }) => (
             <EmployeeRow
@@ -81,17 +87,20 @@ class ManagerEmployees extends React.Component<Props, State> {
 
 const styles = UI.StyleSheet.create({
   container: {
-    marginTop: '10%',
-    marginHorizontal: '5%',
+    marginTop: 40,
     flex: 1,
   },
 
   headerContainer: {
-    borderBottomWidth: 1,
+    marginHorizontal: '5%',
     paddingBottom: 10,
-    borderBottomColor: appColors.grey.regular,
-    marginBottom: 20,
+    marginBottom: 10,
     flexDirection: 'row',
+  },
+
+  divider: {
+    borderBottomWidth: 1,
+    borderBottomColor: appColors.grey.regular,
   },
 
   addEmployeeButton: {

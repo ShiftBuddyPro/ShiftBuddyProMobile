@@ -6,6 +6,7 @@ import EmployeeShifts from './EmployeeShifts';
 import EmployeeProfileCard from './EmployeeProfileCard';
 import { Shift, Employee } from 'types';
 import managerApi from 'services/ManagerApi';
+import appColors from 'constants/appColors';
 
 interface State {
   shifts: Shift[];
@@ -89,6 +90,7 @@ const styles = UI.StyleSheet.create({
     flex: 1,
     paddingVertical: 20,
     paddingHorizontal: 20,
+    backgroundColor: appColors.background.regular,
   },
 });
 

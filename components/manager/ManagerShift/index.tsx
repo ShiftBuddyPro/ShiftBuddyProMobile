@@ -144,9 +144,24 @@ class ManagerShift extends React.Component<Props, State> {
     return (
       <UI.View style={styles.container}>
         {this.renderHeader()}
+        <UI.View
+          style={{
+            borderBottomColor: appColors.grey.regular,
+            borderBottomWidth: 1,
+            width: '100%',
+            alignSelf: 'center',
+          }}
+        />
         <UI.ScrollView
-          contentContainerStyle={{ flexGrow: 1 }}
-          style={{ paddingTop: 15 }}
+          contentContainerStyle={{
+            flexGrow: 1,
+            backgroundColor: appColors.background.regular,
+            paddingTop: 10,
+          }}
+          style={{
+            paddingTop: 15,
+            backgroundColor: appColors.background.regular,
+          }}
         >
           {shiftComponents.map((ShiftComponent, i) => (
             <UI.Card style={styles.card} key={i}>
@@ -167,9 +182,7 @@ const styles = UI.StyleSheet.create({
 
   headerContainer: {
     marginHorizontal: '5%',
-    borderBottomWidth: 1,
     paddingBottom: 10,
-    borderBottomColor: appColors.grey.regular,
   },
 
   card: {

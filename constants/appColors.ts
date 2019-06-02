@@ -14,6 +14,11 @@ export default {
   //   regular: '#FDA50f'
   // },
 
+  background: {
+    // regular: '#f5f7fa'
+    regular: '#fbfbfb'
+  },
+
   primary: {
     light: '#3498db',
     regular: '#2980b9',
