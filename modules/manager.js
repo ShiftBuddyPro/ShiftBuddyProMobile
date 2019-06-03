@@ -3,6 +3,7 @@ import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 import { AsyncStorage } from 'react-native';
 import isEmpty from '../utils/isEmpty';
+import storage from 'react-native-modest-storage';
 
 const SET_CURRENT_MANAGER = 'manager/SET_CURRENT_MANAGER';
 const GET_ERRORS = 'manager/GET_ERRORS';
@@ -39,7 +40,7 @@ export const setCurrentManager = manager => {
 
 // Logout - Delete manager token
 export const logoutManager = () => dispatch => {
-  localStorage.clear();
+  storage.clear();
   dispatch({
     type: LOGOUT,
     payload: {},

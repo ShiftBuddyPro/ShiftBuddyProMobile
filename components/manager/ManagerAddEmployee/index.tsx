@@ -90,6 +90,7 @@ class ManagerAddEmployee extends React.Component<Props, State> {
               label="Name"
               value={name}
               onChangeText={setField('name')}
+              autoCapitalize="words"
               containerStyle={styles.inputContainer}
             />
             <UI.Input

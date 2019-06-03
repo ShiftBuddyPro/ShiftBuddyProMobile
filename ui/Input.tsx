@@ -11,6 +11,7 @@ interface Props {
   placeholder?: string;
   containerStyle?: object;
   secureTextEntry?: boolean;
+  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
 }
 
 export default (props: Props) => {
@@ -21,6 +22,7 @@ export default (props: Props) => {
     value,
     containerStyle,
     secureTextEntry,
+    autoCapitalize = 'none',
   } = props;
 
   const inputContainerStyle = {
@@ -46,7 +48,7 @@ export default (props: Props) => {
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
-        autoCapitalize="none"
+        autoCapitalize={autoCapitalize}
         secureTextEntry={secureTextEntry}
       />
     </Item>
