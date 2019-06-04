@@ -115,7 +115,7 @@ export interface InventoryItem {
   attributes: {
     name: string;
     start_amount: number;
-    end_amount: number;
+    end_amount: number | null;
   };
 }
 
