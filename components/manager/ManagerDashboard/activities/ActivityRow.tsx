@@ -30,6 +30,7 @@ const getIcon = (activityType: ActivityType) => {
 
 const ActivityRow = (props: Props) => {
   const { activityType, activityMessage } = props;
+
   return (
     <UI.View style={styles.container}>
       <UI.View style={styles.iconContainer}>{getIcon(activityType)}</UI.View>

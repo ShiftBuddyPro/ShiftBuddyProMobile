@@ -31,6 +31,7 @@ const InfoCard = (props: Props) => {
           </UI.PlainButton>
         </UI.View>
       </UI.View>
+      <UI.View style={styles.divider} />
       <UI.View style={styles.buttonsRow}>
         <UI.PlainButton
           onPress={() => navigate('ManagerEmployees')}
@@ -68,12 +69,15 @@ const styles = UI.StyleSheet.create({
   },
 
   avatarAndInfoRow: {
+    marginTop: 'auto',
+    marginBottom: 'auto',
     flexDirection: 'row',
+  },
+
+  divider: {
     borderBottomColor: appColors.grey.light,
     borderBottomWidth: 1,
     width: '90%',
-    marginBottom: 10,
-    paddingBottom: 35,
   },
 
   avatarContainer: {
@@ -98,6 +102,8 @@ const styles = UI.StyleSheet.create({
 
   buttonsRow: {
     width: '90%',
+    marginTop: 10,
+    marginBottom: 10,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
@@ -106,13 +112,12 @@ const styles = UI.StyleSheet.create({
   button: {
     flex: 1,
     flexDirection: 'row',
+    paddingVertical: 10,
     alignItems: 'center',
     justifyContent: 'space-between',
     borderRightColor: appColors.grey.light,
     paddingLeft: 5,
     paddingRight: 5,
-    paddingTop: 5,
-    paddingBottom: 5,
   },
 
   buttonIcon: {

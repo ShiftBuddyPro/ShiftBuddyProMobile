@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as UI from 'ui';
-import { AsyncStorage } from 'react-native';
 import ManagerApi from 'services/ManagerApi';
 import Activities from './Activities';
 import InfoCard from './InfoCard';
-import DashboardHeader from './DashboardHeader';
 import appColors from 'constants/appColors';
 
 interface State {

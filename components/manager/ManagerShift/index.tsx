@@ -96,6 +96,7 @@ class ManagerShift extends React.Component<Props, State> {
       created_at: shiftStart,
       completed_at,
       status,
+      employee_name,
     } = this.state.shift.attributes;
     const shiftStartDate = moment(shiftStart).format('ddd, MMMM Do YYYY');
     const shiftStartTime = moment(shiftStart).format('h:mm a');
@@ -126,6 +127,13 @@ class ManagerShift extends React.Component<Props, State> {
           weight="semibold"
         >
           {shiftSubheader}
+        </UI.Text>
+        <UI.Text
+          style={{ color: appColors.grey.dark }}
+          size="medium"
+          weight="regular"
+        >
+          {employee_name}
         </UI.Text>
       </UI.View>
     );

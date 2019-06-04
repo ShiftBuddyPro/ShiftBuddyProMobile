@@ -18,6 +18,7 @@ import ManagerEmployeeProfile from '@components/manager/ManagerEmployeeProfile';
 import ManagerShifts from '@components/manager/ManagerShifts';
 import ManagerSettings from '@components/manager/ManagerSettings';
 import ManagerAccount from '@components/manager/ManagerAccount';
+import ManageTrackedInventoryItems from '@components/manager/ManageTrackedInventoryItems';
 import ManagerShift from '@components/manager/ManagerShift';
 
 const AppStack = createStackNavigator(
@@ -30,6 +31,7 @@ const AppStack = createStackNavigator(
     ManagerShifts: { screen: ManagerShifts },
     ManagerSettings: { screen: ManagerSettings },
     ManagerAccount: { screen: ManagerAccount },
+    ManageTrackedInventoryItems: { screen: ManageTrackedInventoryItems },
 
     EmployeeLogin: { screen: EmployeeLogin },
     EmployeeDashboard: { screen: EmployeeDashboard },

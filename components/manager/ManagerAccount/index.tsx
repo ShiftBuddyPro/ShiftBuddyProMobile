@@ -58,19 +58,22 @@ class ManagerAccount extends React.Component<Props, State> {
   };
 
   render() {
-    console.log(this.props);
+    const { navigation } = this.props;
+
     return (
       <UI.View style={styles.fullContainer}>
         <UI.View style={styles.headerContainer}>
-          <UI.BackHeader
-            onBackPress={() => this.props.navigation.pop()}
-            title="Account"
-          />
+          <UI.BackHeader onBackPress={() => navigation.pop()} title="Account" />
         </UI.View>
         <UI.View style={styles.divider} />
         <UI.View style={styles.container}>
           <UI.Card style={styles.card}>
-            <UI.Button style={styles.button}>Manage Inventory Items</UI.Button>
+            <UI.Button
+              onPress={() => navigation.navigate('ManageTrackedInventoryItems')}
+              style={styles.button}
+            >
+              Manage Inventory Items
+            </UI.Button>
             <UI.Button
               onPress={this.handleLogoutPress}
               style={{

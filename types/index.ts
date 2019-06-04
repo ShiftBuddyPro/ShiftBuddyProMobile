@@ -132,4 +132,10 @@ export interface Shift {
   type: 'shifts';
 }
 
+export interface TrackedItem {
+  id: number;
+  manager_id: number;
+  name: string;
+}
+
 export type ActivitiesResponse = any;
