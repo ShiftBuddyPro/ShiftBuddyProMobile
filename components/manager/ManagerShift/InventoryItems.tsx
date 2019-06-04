@@ -43,7 +43,7 @@ const InventoryItems = (props: Props) => {
             {start_amount.toString()}
           </UI.Text>
           <UI.Text style={{ flex: 1, textAlign: 'center' }}>
-            {end_amount.toString()}
+            {end_amount ? end_amount.toString() : '-'}
           </UI.Text>
           <UI.Text
             // variant="table-number"
