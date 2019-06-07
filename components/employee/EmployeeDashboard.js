@@ -138,14 +138,28 @@ class EmployeeDashboard extends Component {
             </CardItem>
           </Card>
           <Button
-            style={{ marginTop: 35 }}
+            style={{
+              marginTop: 'auto',
+              marginBottom: 25,
+              width: '50%',
+              borderRadius: 10,
+              marginLeft: 'auto',
+              marginRight: 'auto',
+            }}
             onPress={() => {
               this.props.navigation.navigate('Home');
             }}
-            full
             danger
           >
-            <Text>Logout</Text>
+            <Text
+              style={{
+                textAlign: 'center',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+              }}
+            >
+              Logout
+            </Text>
           </Button>
         </Content>
         <Footer>

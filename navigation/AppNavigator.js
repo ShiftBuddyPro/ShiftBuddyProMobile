@@ -8,7 +8,6 @@ import EmployeeDashboard from '@components/employee/EmployeeDashboard';
 import EmployeeShift from '@components/employee/EmployeeShift';
 import Inventory from '@components/employee/employeeShift/Inventory';
 import Change from '@components/employee/employeeShift/Change';
-import TrackedItems from '@components/manager/settings/TrackedItems';
 
 import LoginScreen from '@components/LoginScreen';
 import ManagerDashboard from '@components/manager/ManagerDashboard';
@@ -32,14 +31,13 @@ const AppStack = createStackNavigator(
     ManagerSettings: { screen: ManagerSettings },
     ManagerAccount: { screen: ManagerAccount },
     ManageTrackedInventoryItems: { screen: ManageTrackedInventoryItems },
+    ManagerShift: { screen: ManagerShift },
 
     EmployeeLogin: { screen: EmployeeLogin },
     EmployeeDashboard: { screen: EmployeeDashboard },
     EmployeeShift: { screen: EmployeeShift },
     Inventory: { screen: Inventory },
     Change: { screen: Change },
-    TrackedItems: { screen: TrackedItems },
-    ManagerShift: { screen: ManagerShift },
   },
   {
     initialRouteName: 'Home',
