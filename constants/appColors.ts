@@ -28,7 +28,7 @@ export default {
     regular: 'green',
   },
 
-  yellow: 'yellow',
+  yellow: '#FCD116',
   darkerOrange: '#ff8547',
   darkOrange: '#ff9447',
   orange: '#FDA50F',
