@@ -5,9 +5,11 @@ import ManagerApi from 'services/ManagerApi';
 import Activities from './Activities';
 import InfoCard from './InfoCard';
 import appColors from 'constants/appColors';
+import { Activity } from 'types';
 
 interface State {
-  activities: any;
+  activities: Activity[];
+  loading: boolean;
 }
 
 interface Props {
@@ -19,19 +21,25 @@ interface Props {
 export class ManagerDashboard extends Component<Props, State> {
   state = {
     activities: [],
+    loading: true,
   };
 
   async componentDidMount() {
-    const activities = await ManagerApi.getActivityLogs();
+    this.setState({ loading: true });
+    const activities: Activity[] = await ManagerApi.getActivityLogs();
+    this.setState({ activities, loading: false });
   }
 
   render() {
+    const { activities, loading } = this.state;
+    if (loading) return <UI.LoadingScreen />;
+
     return (
       <UI.View style={styles.fullContainer}>
         <UI.BasicHeader title={'Manager Dashboard'} />
         <UI.View style={styles.container}>
           <InfoCard navigate={this.props.navigation.navigate} />
-          <Activities />
+          <Activities activities={activities} />
         </UI.View>
       </UI.View>
     );

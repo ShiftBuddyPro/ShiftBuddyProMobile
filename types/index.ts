@@ -138,4 +138,8 @@ export interface TrackedItem {
   name: string;
 }
 
-export type ActivitiesResponse = any;
+export interface ActivitiesResponse {
+  activities: Activity[];
+}
+
+export type Activity = string;

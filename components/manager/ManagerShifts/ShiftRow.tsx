@@ -18,7 +18,6 @@ const ShiftRow = (props: Props) => {
   const dayOfMonth = date.getDate().toString();
   const startTime = moment(date).format('hh:mm a');
   let completedAtTime = 'Currently Working';
-  console.log(shift.attributes);
   if (status === 'completed' && completed_at) {
     completedAtTime = moment(completed_at).format('hh:mm a');
   }

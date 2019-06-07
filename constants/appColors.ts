@@ -16,7 +16,7 @@ export default {
 
   background: {
     // regular: '#f5f7fa'
-    regular: '#fbfbfb'
+    regular: '#fbfbfb',
   },
 
   primary: {
@@ -28,6 +28,7 @@ export default {
     regular: 'green',
   },
 
+  yellow: 'yellow',
   darkerOrange: '#ff8547',
   darkOrange: '#ff9447',
   orange: '#FDA50F',

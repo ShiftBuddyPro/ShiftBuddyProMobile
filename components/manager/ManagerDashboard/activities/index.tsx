@@ -1,33 +1,14 @@
 import React from 'react';
 import * as UI from 'ui';
-import ActivityRow, { ActivityType } from './ActivityRow';
+import ActivityRow from './ActivityRow';
+import { Activity } from 'types';
 
-interface Props {}
-
-const activities = [
-  {
-    activityType: ActivityType.Note,
-    activityMessage: 'Taimur wrote a note: "Need Ice!"',
-  },
-  {
-    activityType: ActivityType.Note,
-    activityMessage: 'Taimur wrote a note: "Out of Marlboro Light."',
-  },
-  {
-    activityType: ActivityType.PaidOut,
-    activityMessage: 'Taimur made a paid out of $25.00 to Golden Flake.',
-  },
-  {
-    activityType: ActivityType.Check,
-    activityMessage: 'Arham wrote a check for $256.34 to Coke.',
-  },
-  {
-    activityType: ActivityType.CashDrop,
-    activityMessage: 'Arham made a cash drop of $100.00 in envelope #2.',
-  },
-];
+interface Props {
+  activities: Activity[];
+}
 
 const Activities = (props: Props) => {
+  const { activities } = props;
   return (
     <UI.View style={{ flex: 3 }}>
       <UI.Text
@@ -40,11 +21,7 @@ const Activities = (props: Props) => {
       <UI.ScrollView style={{ flex: 1 }}>
         <UI.View style={{ paddingHorizontal: 20, paddingTop: 10 }}>
           {activities.map(activity => (
-            <ActivityRow
-              key={activity.activityMessage}
-              activityType={activity.activityType}
-              activityMessage={activity.activityMessage}
-            />
+            <ActivityRow key={activity} activity={activity} />
           ))}
         </UI.View>
       </UI.ScrollView>
