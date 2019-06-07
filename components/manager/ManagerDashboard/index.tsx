@@ -5,7 +5,7 @@ import ManagerApi from 'services/ManagerApi';
 import Activities from './Activities';
 import InfoCard from './InfoCard';
 import appColors from 'constants/appColors';
-import { Activity } from 'types';
+import { Activity, Manager } from 'types';
 
 interface State {
   activities: Activity[];
@@ -16,6 +16,7 @@ interface Props {
   navigation: {
     navigate: any;
   };
+  manager: Manager;
 }
 
 export class ManagerDashboard extends Component<Props, State> {
@@ -38,7 +39,10 @@ export class ManagerDashboard extends Component<Props, State> {
       <UI.View style={styles.fullContainer}>
         <UI.BasicHeader title={'Manager Dashboard'} />
         <UI.View style={styles.container}>
-          <InfoCard navigate={this.props.navigation.navigate} />
+          <InfoCard
+            manager={this.props.manager}
+            navigate={this.props.navigation.navigate}
+          />
           <Activities activities={activities} />
         </UI.View>
       </UI.View>
@@ -59,7 +63,7 @@ const styles = UI.StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  manager: state.manager,
+  manager: state.manager.managerData,
 });
 
 const mapDispatchToProps = {};

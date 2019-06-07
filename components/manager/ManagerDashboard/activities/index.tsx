@@ -20,8 +20,8 @@ const Activities = (props: Props) => {
       </UI.Text>
       <UI.ScrollView style={{ flex: 1 }}>
         <UI.View style={{ paddingHorizontal: 20, paddingTop: 10 }}>
-          {activities.map(activity => (
-            <ActivityRow key={activity} activity={activity} />
+          {activities.map((activity, i) => (
+            <ActivityRow key={activity + i} activity={activity} />
           ))}
         </UI.View>
       </UI.ScrollView>

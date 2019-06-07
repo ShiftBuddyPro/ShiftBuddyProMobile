@@ -16,6 +16,9 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
+    "android": {
+      "package": "com.shiftbuddypro.shiftbuddymobile"
+    },
     "ios": {
       "bundleIdentifier": "com.shiftbuddypro.shiftbuddymobile",
       "supportsTablet": true
