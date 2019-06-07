@@ -5,7 +5,7 @@
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": ["ios", "android"],
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -21,7 +21,8 @@
     },
     "ios": {
       "bundleIdentifier": "com.shiftbuddypro.shiftbuddymobile",
-      "supportsTablet": true
+      "supportsTablet": true,
+      "buildNumber": "1.1.0"
     }
   }
 }
