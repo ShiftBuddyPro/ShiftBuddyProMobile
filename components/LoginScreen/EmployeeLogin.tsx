@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import EmployeeApi from 'services/EmployeeApi';
 import { withNavigation } from 'react-navigation';
 import appColors from 'constants/appColors';
+import { setCurrentShift } from 'modules/employeeShift';
 import * as UI from 'ui';
+import { connect } from 'react-redux';
 
 interface Props {
   navigation: any;
+  setCurrentShift: (employee: any) => void;
 }
 
-class ManagerLogin extends Component<Props> {
+class EmployeeLogin extends Component<Props> {
   state = {
     username: '',
     password: '',
@@ -20,11 +23,20 @@ class ManagerLogin extends Component<Props> {
     const { username, password } = this.state;
     this.setState({ loading: true, error: false });
     EmployeeApi.login({ username, password })
-      .then(() => {
-        this.setState({ loading: false });
-        this.props.navigation.navigate('EmployeeDashboard');
+      .then((employeeId: number) => {
+        EmployeeApi.getEmployee().then((employee: any) => {
+          const { status, current_shift_id: shiftId } = employee;
+          this.setState({ loading: false });
+          if (shiftId && status === 'active') {
+            this.props.setCurrentShift(shiftId);
+            this.props.navigation.navigate('EmployeeShift');
+          } else
+            this.props.navigation.navigate('EmployeeDashboard', { employeeId });
+        });
       })
-      .catch(() => this.setState({ loading: false, error: true }));
+      .catch(err => {
+        this.setState({ errors: true, loading: false });
+      });
   };
 
   render() {
@@ -57,4 +69,9 @@ class ManagerLogin extends Component<Props> {
   }
 }
 
-export default withNavigation(ManagerLogin);
+export default withNavigation(
+  connect(
+    null,
+    { setCurrentShift }
+  )(EmployeeLogin)
+);
