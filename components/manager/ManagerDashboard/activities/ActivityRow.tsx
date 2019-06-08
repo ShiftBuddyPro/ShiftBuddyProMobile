@@ -2,7 +2,7 @@ import React from 'react';
 import * as UI from 'ui';
 import { StyleSheet } from 'react-native';
 import appColors from 'constants/appColors';
-import { Activity } from 'types/';
+import { Activity } from 'types';
 
 interface Props {
   activity: Activity;
@@ -46,21 +46,21 @@ const ActivityRow = (props: Props) => {
     activityType = ActivityType.Check;
   else activityType = ActivityType.CashDrop;
 
-  let iconStyle;
-  switch (activityType) {
-    case ActivityType.Note:
-      iconStyle = styles.noteIcon;
-      break;
-    case ActivityType.PaidOut:
-      iconStyle = styles.paidOutIcon;
-      break;
-    case ActivityType.Check:
-      iconStyle = styles.checkIcon;
-      break;
-    case ActivityType.CashDrop:
-      iconStyle = styles.cashDropIcon;
-      break;
-  }
+  // let iconStyle;
+  // switch (activityType) {
+  //   case ActivityType.Note:
+  //     iconStyle = styles.noteIcon;
+  //     break;
+  //   case ActivityType.PaidOut:
+  //     iconStyle = styles.paidOutIcon;
+  //     break;
+  //   case ActivityType.Check:
+  //     iconStyle = styles.checkIcon;
+  //     break;
+  //   case ActivityType.CashDrop:
+  //     iconStyle = styles.cashDropIcon;
+  //     break;
+  // }
 
   return (
     <UI.View style={styles.container}>
