@@ -32,7 +32,7 @@ export default (props: Props) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: appColors.blue,
+    backgroundColor: appColors.primary.regular,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,

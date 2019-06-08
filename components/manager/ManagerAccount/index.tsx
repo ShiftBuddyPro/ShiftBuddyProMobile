@@ -47,7 +47,12 @@ class ManagerAccount extends React.Component<Props, State> {
           >
             Logout
           </UI.Button>
-          <UI.Button onPress={closePopup}>Cancel</UI.Button>
+          <UI.Button
+            style={{ backgroundColor: appColors.grey.regular }}
+            onPress={closePopup}
+          >
+            Cancel
+          </UI.Button>
         </UI.View>
       </UI.View>
     );

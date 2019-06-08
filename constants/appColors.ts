@@ -19,9 +19,19 @@ export default {
     regular: '#fbfbfb',
   },
 
+  primary1: {
+    light: '#71B3FF',
+    regular: '#4B9EFF',
+    dark: '#1180FF',
+  },
+
   primary: {
     light: '#3498db',
     regular: '#2980b9',
+  },
+
+  secondary: {
+    regular: '#ff8605',
   },
 
   success: {

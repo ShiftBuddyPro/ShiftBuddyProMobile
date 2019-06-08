@@ -26,7 +26,12 @@ const RemoveEmployeePopup = (props: Props) => {
         <UI.Button onPress={handleRemovePress} style={styles.removeButton}>
           Remove
         </UI.Button>
-        <UI.Button onPress={closePopup}>Cancel</UI.Button>
+        <UI.Button
+          style={{ backgroundColor: appColors.grey.regular }}
+          onPress={closePopup}
+        >
+          Cancel
+        </UI.Button>
       </UI.View>
     </UI.View>
   );
