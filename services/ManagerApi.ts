@@ -19,6 +19,8 @@ import {
   CashDrop,
   InventoryItem,
   ChangeSheet,
+  Business,
+  ManagerLoginObject,
 } from 'types';
 
 class ManagerApi {
@@ -46,13 +48,24 @@ class ManagerApi {
       });
   }
 
-  setManager(currentUser: Manager) {
+  setManager(currentUser: ManagerLoginObject) {
     this.api.setDefaultHeader(currentUser.auth_token);
     store.dispatch(setCurrentManager(currentUser));
   }
 
   managerId() {
     return store.getState().manager.managerData.id;
+  }
+
+  getCurrentManager() {
+    return this.api.get(this.managerUrl('')).then(res => {
+      const manager: Manager = res.data.data;
+      const included = res.data.included;
+      const business: Business = included.find(
+        (item: Business) => item.type === 'business'
+      );
+      return { manager, business };
+    });
   }
 
   managerUrl(suffix: string) {

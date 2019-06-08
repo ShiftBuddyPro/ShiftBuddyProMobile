@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as UI from 'ui';
-import ManagerApi from 'services/ManagerApi';
 import Activities from './Activities';
 import InfoCard from './InfoCard';
 import appColors from 'constants/appColors';
-import { Activity, Manager } from 'types';
+import { Activity, Manager, Business } from 'types';
+import managerApi from 'services/ManagerApi';
 
 interface State {
   activities: Activity[];
+  manager: Manager;
+  business: Business;
   loading: boolean;
 }
 
@@ -22,13 +24,33 @@ interface Props {
 export class ManagerDashboard extends Component<Props, State> {
   state = {
     activities: [],
+    manager: {
+      id: -1,
+      type: 'manager' as Manager['type'],
+      attributes: {
+        name: '',
+        email: '',
+      },
+    },
+    business: {
+      id: -1,
+      type: 'business' as Business['type'],
+      attributes: {
+        address1: '',
+        city: '',
+        name: '',
+        state: '',
+        zip_code: '',
+      },
+    },
     loading: true,
   };
 
   async componentDidMount() {
     this.setState({ loading: true });
-    const activities: Activity[] = await ManagerApi.getActivityLogs();
-    this.setState({ activities, loading: false });
+    const { manager, business } = await managerApi.getCurrentManager();
+    const activities: Activity[] = await managerApi.getActivityLogs();
+    this.setState({ activities, manager, business, loading: false });
   }
 
   render() {
@@ -40,7 +62,7 @@ export class ManagerDashboard extends Component<Props, State> {
         <UI.BasicHeader title={'Manager Dashboard'} />
         <UI.View style={styles.container}>
           <InfoCard
-            manager={this.props.manager}
+            manager={this.state.manager}
             navigate={this.props.navigation.navigate}
           />
           <Activities activities={activities} />

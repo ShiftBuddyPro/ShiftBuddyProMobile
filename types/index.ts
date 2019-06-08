@@ -4,14 +4,35 @@ export interface LoginParams {
 }
 
 export interface LoginResponse {
-  data: Manager;
+  data: ManagerLoginObject;
 }
 
-export interface Manager {
+export interface ManagerLoginObject {
   auth_token: string;
   name: string;
   id: string;
   email: string;
+}
+
+export interface Manager {
+  id: number;
+  type: 'manager';
+  attributes: {
+    name: string;
+    email: string;
+  };
+}
+
+export interface Business {
+  id: number;
+  type: 'business';
+  attributes: {
+    address1: string;
+    city: string;
+    name: string;
+    state: string;
+    zip_code: string;
+  };
 }
 
 export interface EmployeesResponse {
