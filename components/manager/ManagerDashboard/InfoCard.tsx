@@ -6,20 +6,41 @@ import { Manager, Business } from 'types';
 interface Props {
   navigate: any;
   manager: Manager;
-  business: Business;
+  business?: Business;
 }
 
 const InfoCard = (props: Props) => {
   const { navigate, manager, business } = props;
 
   const { name: managerName } = manager.attributes;
-  const {
-    name: businessName,
-    address1,
-    city,
-    state,
-    zip_code,
-  } = business.attributes;
+
+  const renderBusinessInformation = () => {
+    let businessNameLine = 'Business name not entered.';
+    let businessAddress1Line = 'Business address not entered.';
+    let businessLocationLine = 'Business location not entered.';
+    if (business && business.attributes) {
+      const {
+        name: businessName,
+        address1,
+        city,
+        state,
+        zip_code,
+      } = business.attributes;
+      businessName && (businessNameLine = businessName);
+      address1 && (businessAddress1Line = address1);
+      city &&
+        state &&
+        zip_code &&
+        (businessLocationLine = `${city}, ${state} ${zip_code}`);
+    }
+    return (
+      <>
+        <UI.Text size="small">{businessNameLine}</UI.Text>
+        <UI.Text size="small">{businessAddress1Line}</UI.Text>
+        <UI.Text size="small">{businessLocationLine}</UI.Text>
+      </>
+    );
+  };
 
   return (
     <UI.Card style={styles.card}>
@@ -29,11 +50,7 @@ const InfoCard = (props: Props) => {
         </UI.Card>
         <UI.View>
           <UI.Text size="small">{managerName}</UI.Text>
-          <UI.Text size="small">{businessName}</UI.Text>
-          <UI.Text size="small">{address1}</UI.Text>
-          <UI.Text size="small">
-            {city}, {state} {zip_code}
-          </UI.Text>
+          {renderBusinessInformation()}
           <UI.PlainButton
             shadow="medium"
             onPress={() => navigate('ManagerAccount')}
