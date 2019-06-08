@@ -1,15 +1,25 @@
 import React from 'react';
 import * as UI from 'ui';
 import appColors from 'constants/appColors';
-import { Manager } from 'types';
+import { Manager, Business } from 'types';
 
 interface Props {
   navigate: any;
   manager: Manager;
+  business: Business;
 }
 
 const InfoCard = (props: Props) => {
-  const { navigate, manager } = props;
+  const { navigate, manager, business } = props;
+
+  const { name: managerName } = manager.attributes;
+  const {
+    name: businessName,
+    address1,
+    city,
+    state,
+    zip_code,
+  } = business.attributes;
 
   return (
     <UI.Card style={styles.card}>
@@ -18,10 +28,12 @@ const InfoCard = (props: Props) => {
           <UI.MIcon name="person" size={75} color="silver" />
         </UI.Card>
         <UI.View>
-          <UI.Text size="small">{manager.name}</UI.Text>
-          <UI.Text size="small">-</UI.Text>
-          <UI.Text size="small">-</UI.Text>
-          <UI.Text size="small">-</UI.Text>
+          <UI.Text size="small">{managerName}</UI.Text>
+          <UI.Text size="small">{businessName}</UI.Text>
+          <UI.Text size="small">{address1}</UI.Text>
+          <UI.Text size="small">
+            {city}, {state} {zip_code}
+          </UI.Text>
           <UI.PlainButton
             shadow="medium"
             onPress={() => navigate('ManagerAccount')}

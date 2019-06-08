@@ -27,9 +27,9 @@ export interface Business {
   id: number;
   type: 'business';
   attributes: {
+    name: string;
     address1: string;
     city: string;
-    name: string;
     state: string;
     zip_code: string;
   };

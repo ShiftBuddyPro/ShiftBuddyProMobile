@@ -54,7 +54,7 @@ export class ManagerDashboard extends Component<Props, State> {
   }
 
   render() {
-    const { activities, loading } = this.state;
+    const { activities, loading, manager, business } = this.state;
     if (loading) return <UI.LoadingScreen />;
 
     return (
@@ -62,7 +62,8 @@ export class ManagerDashboard extends Component<Props, State> {
         <UI.BasicHeader title={'Manager Dashboard'} />
         <UI.View style={styles.container}>
           <InfoCard
-            manager={this.state.manager}
+            manager={manager}
+            business={business}
             navigate={this.props.navigation.navigate}
           />
           <Activities activities={activities} />
