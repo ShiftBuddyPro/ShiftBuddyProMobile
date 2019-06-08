@@ -94,7 +94,7 @@ class LoginScreen extends Component<Props, State> {
 
   render() {
     return (
-      <UI.KeyboardAwareScrollView contentContainerStylegs={styles.container}>
+      <UI.KeyboardAwareScrollView contentContainerStyle={styles.container}>
         <UI.View style={styles.topHalfContainer}>
           <UI.Text style={styles.header}>ShiftBuddyPro</UI.Text>
         </UI.View>
