@@ -18,13 +18,21 @@ export enum ActivityType {
 const getIcon = (activityType: ActivityType) => {
   switch (activityType) {
     case ActivityType.Note:
-      return <UI.MIcon color="#fafafa" size={25} name="event-note" />;
+      return <UI.MIcon style={styles.noteIcon} size={25} name="event-note" />;
     case ActivityType.PaidOut:
-      return <UI.Icon color="#fafafa" size={25} name="money" />;
+      return <UI.Icon style={styles.paidOutIcon} size={25} name="money" />;
     case ActivityType.CashDrop:
-      return <UI.Icon color="#fafafa" size={25} name="envelope-open-o" />;
+      return (
+        <UI.Icon style={styles.cashDropIcon} size={25} name="envelope-open-o" />
+      );
     case ActivityType.Check:
-      return <UI.MCIcon color="#fafafa" size={25} name="book-open-page-variant" />;
+      return (
+        <UI.MCIcon
+          style={styles.checkIcon}
+          size={25}
+          name="book-open-page-variant"
+        />
+      );
   }
 };
 
@@ -56,9 +64,9 @@ const ActivityRow = (props: Props) => {
 
   return (
     <UI.View style={styles.container}>
-      <UI.View style={{ ...styles.iconContainer, ...iconStyle }}>
+      <UI.Card style={{ ...styles.iconContainer }}>
         {getIcon(activityType)}
-      </UI.View>
+      </UI.Card>
       <UI.Card style={styles.card}>
         <UI.Text size="small">{activity}</UI.Text>
       </UI.Card>
@@ -89,19 +97,19 @@ const styles = StyleSheet.create({
   },
 
   noteIcon: {
-    backgroundColor: appColors.orange,
+    color: appColors.orange,
   },
 
   checkIcon: {
-    backgroundColor: appColors.primary.regular,
+    color: appColors.primary.regular,
   },
 
   cashDropIcon: {
-    backgroundColor: appColors.yellow,
+    color: appColors.yellow,
   },
 
   paidOutIcon: {
-    backgroundColor: appColors.success.regular,
+    color: appColors.success.regular,
   },
 });
 
