@@ -55,13 +55,13 @@ class LoginScreen extends Component<Props, State> {
   renderToggle() {
     const renderToggleButton = (loginType: LoginType) => {
       const activeToggleStyle = {
-        backgroundColor: appColors.orange,
+        backgroundColor: appColors.primary.regular,
       };
       const activeTextStyle = {
         color: appColors.white,
       };
       const inActiveTextStyle = {
-        color: appColors.orange,
+        color: appColors.primary.regular,
       };
       const isActive = this.state.loginType === loginType;
       const isManager = loginType === LoginType.Manager;
@@ -123,7 +123,7 @@ const styles = UI.StyleSheet.create({
 
   topHalfContainer: {
     flex: 1,
-    backgroundColor: appColors.lighterOrange,
+    backgroundColor: appColors.secondary.regular,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -136,7 +136,7 @@ const styles = UI.StyleSheet.create({
 
   header: {
     fontSize: 36,
-    color: appColors.darkOrange,
+    color: appColors.white,
   },
 
   loginCard: {
@@ -152,7 +152,7 @@ const styles = UI.StyleSheet.create({
   toggleRow: {
     flexDirection: 'row',
     height: 35,
-    borderColor: appColors.orange,
+    borderColor: appColors.primary.regular,
     borderRadius: 10,
     marginBottom: 15,
     borderWidth: UI.StyleSheet.hairlineWidth,
