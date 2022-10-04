@@ -10,7 +10,7 @@
   "dependencies": {
     "@types/react-redux": "^7.0.9",
     "axios": "^0.18.0",
-    "expo": "^32.0.0",
+    "expo": "^46.0.14",
     "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",
     "native-base": "^2.12.0",
